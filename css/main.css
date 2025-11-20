@@ -2239,3 +2239,39 @@ input[type=checkbox] {
     margin-left: 1rem;
   }
 }
+.post-author-card {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  margin-top: 12px;
+  border-radius: 8px;
+  background: rgba(0,0,0,0.02);
+}
+.post-author-card__avatar {
+  margin-right: 12px;
+}
+.post-author-card__avatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: block;
+}
+.post-author-card__name {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.post-author-card__intro {
+  font-size: 14px;
+  color: #718096;
+  margin-bottom: 4px;
+}
+.post-author-card__github {
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  color: #0366d6;
+}
+.post-author-card__github .iconfont {
+  font-size: 16px;
+  margin-right: 4px;
+}
