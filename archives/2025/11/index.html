@@ -217,7 +217,7 @@
                 
 
 <div class="list-group">
-  <p class="h4">1 posts in total</p>
+  <p class="h4">3 posts in total</p>
   <hr>
   
   
@@ -319,7 +319,9 @@
       }
       var text = subtitle.getAttribute('data-typed-text');
       
-        typing(text);
+        var texts = ["rubbishbro's Blog","欢迎来到本菜鸡的博客ovo"];
+        var idx = Math.floor(Math.random() * texts.length);
+        typing(texts[idx]);
       
     })(window, document);
   </script>
