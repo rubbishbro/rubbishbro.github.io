@@ -19,22 +19,24 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="问题描述:1wsl: 检测到 localhost 代理配置，但未镜像到 WSL 。NAT 模式下的 WSL 不支持 localhost 代理。  默认情况下,wsl2的网络模式为NAT模式 NAT简介:网络地址转换（NAT）是一种在私有网络和公有网络之间进行IP地址转换的技术。NAT的主要作用是解决IPv4地址不足的问题，同时也能提高网络安全性，隐藏内部网络结构。 NAT的实现方式主要有三种：静态">
+    <meta name="description" content="linux文件结构在linux中，所有的文件和目录都被组织成一个以根节点开始的倒置的树状结构 文件系统的最顶层是从根目录开始的，使用&#x2F;来表示根目录,根目录之下既可以是目录也可以是文件,而每一个目录又可以包含子目录文件,反复,构成了一个庞大的文件系统 在文件系统中有两个特殊目录,一个是用户所在的工作目录,一个是父目录 一个文件或者目录如果以.开始,表示隐藏目录或者文件,默认查找不显示,比如.bash">
 <meta property="og:type" content="article">
-<meta property="og:title" content="wsl-codex配置">
-<meta property="og:url" content="https://rubbishbro.github.io/2025/11/20/wsl-codex%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:title" content="linux文件结构">
+<meta property="og:url" content="https://rubbishbro.github.io/2025/12/07/linux%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="问题描述:1wsl: 检测到 localhost 代理配置，但未镜像到 WSL 。NAT 模式下的 WSL 不支持 localhost 代理。  默认情况下,wsl2的网络模式为NAT模式 NAT简介:网络地址转换（NAT）是一种在私有网络和公有网络之间进行IP地址转换的技术。NAT的主要作用是解决IPv4地址不足的问题，同时也能提高网络安全性，隐藏内部网络结构。 NAT的实现方式主要有三种：静态">
+<meta property="og:description" content="linux文件结构在linux中，所有的文件和目录都被组织成一个以根节点开始的倒置的树状结构 文件系统的最顶层是从根目录开始的，使用&#x2F;来表示根目录,根目录之下既可以是目录也可以是文件,而每一个目录又可以包含子目录文件,反复,构成了一个庞大的文件系统 在文件系统中有两个特殊目录,一个是用户所在的工作目录,一个是父目录 一个文件或者目录如果以.开始,表示隐藏目录或者文件,默认查找不显示,比如.bash">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-11-20T09:30:10.000Z">
-<meta property="article:modified_time" content="2025-12-06T11:12:32.577Z">
+<meta property="og:image" content="https://rubbishbro.github.io/2025/12/07/linux%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/2025-1.jpg">
+<meta property="article:published_time" content="2025-12-06T17:42:10.000Z">
+<meta property="article:modified_time" content="2025-12-06T17:46:26.287Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="demo">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://rubbishbro.github.io/2025/12/07/linux%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/2025-1.jpg">
   
   
   
-  <title>wsl-codex配置 - Hexo</title>
+  <title>linux文件结构 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="wsl-codex配置"></span>
+            <span id="subtitle" data-typed-text="linux文件结构"></span>
           
         </div>
 
@@ -211,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-11-20 17:30" pubdate>
-          November 20, 2025 pm
+        <time datetime="2025-12-07 01:42" pubdate>
+          December 7, 2025 am
         </time>
       </span>
     
@@ -223,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k words
+          2.2k words
         
       </span>
     
@@ -234,7 +236,7 @@
         
         
         
-          13 mins
+          19 mins
         
       </span>
     
@@ -271,83 +273,183 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">wsl-codex配置</h1>
+            <h1 id="seo-header">linux文件结构</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述:"></a>问题描述:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wsl: 检测到 localhost 代理配置，但未镜像到 WSL 。NAT 模式下的 WSL 不支持 localhost 代理。<br></code></pre></td></tr></table></figure>
+                <h3 id="linux文件结构"><a href="#linux文件结构" class="headerlink" title="linux文件结构"></a><code>linux</code>文件结构</h3><p>在<code>linux</code>中，所有的文件和目录都被组织成一个以根节点开始的倒置的树状结构</p>
+<p>文件系统的最顶层是从根目录开始的，使用<code>/</code>来表示根目录,根目录之下既可以是目录也可以是文件,而每一个目录又可以包含子目录文件,反复,构成了一个庞大的文件系统</p>
+<p>在文件系统中有两个特殊目录,一个是用户所在的工作目录,一个是父目录</p>
+<p>一个文件或者目录如果以<code>.</code>开始,表示隐藏目录或者文件,默认查找不显示,比如<code>.bashrc</code></p>
+<p>登录系统输入:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ls</span>/<br></code></pre></td></tr></table></figure>
 
-<p>默认情况下,wsl2的网络模式为<code>NAT模式</code></p>
-<h3 id="NAT简介"><a href="#NAT简介" class="headerlink" title="NAT简介:"></a><code>NAT</code>简介:</h3><p>网络地址转换（NAT）是一种在私有网络和公有网络之间进行IP地址转换的技术。NAT的主要作用是解决IPv4地址不足的问题，同时也能提高网络安全性，隐藏内部网络结构。</p>
-<p>NAT的实现方式主要有三种：静态NAT、动态NAT和端口地址转换（PAT）。</p>
+<p>会看到:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">rubbishbro@LAPTOP-Q8PG36F8:~$ <span class="hljs-built_in">ls</span> /<br>bin   dev     etc   init  lib64       media  opt   root  sbin  sys  usr<br>boot  Docker  home  lib   lost+found  mnt    proc  run   srv   tmp  var<br></code></pre></td></tr></table></figure>
+
+<p>这就是树状结构</p>
+<img src="/2025/12/07/linux%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/2025-1.jpg" srcset="/img/loading.gif" lazyload class="" title="文件结构示意图">
+
+<table>
+<thead>
+<tr>
+<th align="left">目录</th>
+<th align="left">作用详解</th>
+<th align="left">常见文件 &#x2F; 示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>/</code></td>
+<td align="left">根文件系统，所有挂载点与路径的起点。包含系统必须的子目录与入口结构。</td>
+<td align="left">无具体数据文件，只有子目录结构。</td>
+</tr>
+<tr>
+<td align="left"><code>/bin</code></td>
+<td align="left">系统启动和单用户模式下必须的基础命令，所有用户可执行。</td>
+<td align="left"><code>ls</code>, <code>cp</code>, <code>mv</code>, <code>rm</code>, <code>bash</code></td>
+</tr>
+<tr>
+<td align="left"><code>/sbin</code></td>
+<td align="left">系统管理与维护命令，面向 root。</td>
+<td align="left"><code>fsck</code>, <code>reboot</code>, <code>shutdown</code></td>
+</tr>
+<tr>
+<td align="left"><code>/usr</code></td>
+<td align="left">用户级程序与库的主集合，包含大部分系统软件、文档与工具。</td>
+<td align="left"><code>/usr/bin</code>, <code>/usr/lib</code>, <code>/usr/share</code></td>
+</tr>
+<tr>
+<td align="left"><code>/usr/bin</code></td>
+<td align="left">常规用户程序的主要放置目录。</td>
+<td align="left"><code>python3</code>, <code>vim</code>, <code>git</code></td>
+</tr>
+<tr>
+<td align="left"><code>/usr/sbin</code></td>
+<td align="left">管理工具的扩展集合。</td>
+<td align="left"><code>useradd</code>, <code>apache2ctl</code></td>
+</tr>
+<tr>
+<td align="left"><code>/usr/lib</code></td>
+<td align="left"><code>/usr</code> 内程序所依赖的动态库与模块。</td>
+<td align="left">各类 <code>.so</code> 动态库</td>
+</tr>
+<tr>
+<td align="left"><code>/usr/local</code></td>
+<td align="left">本机安装或编译软件的独立区域。</td>
+<td align="left"><code>/usr/local/bin</code>, <code>/usr/local/lib</code></td>
+</tr>
+<tr>
+<td align="left"><code>/lib</code> 或 <code>/lib64</code></td>
+<td align="left">系统启动核心库、动态链接器所在位置。</td>
+<td align="left"><code>libc.so.6</code>, <code>ld-linux.so</code></td>
+</tr>
+<tr>
+<td align="left"><code>/etc</code></td>
+<td align="left">系统级配置中心，统一存放所有服务和系统配置。</td>
+<td align="left"><code>passwd</code>, <code>group</code>, <code>fstab</code>, <code>ssh/sshd_config</code></td>
+</tr>
+<tr>
+<td align="left"><code>/home</code></td>
+<td align="left">普通用户的个人主目录集合。</td>
+<td align="left"><code>/home/user/.bashrc</code>, <code>/home/user/Documents</code></td>
+</tr>
+<tr>
+<td align="left"><code>/root</code></td>
+<td align="left">root 用户的主目录。</td>
+<td align="left"><code>/root/.ssh/</code></td>
+</tr>
+<tr>
+<td align="left"><code>/var</code></td>
+<td align="left">频繁变化的数据：日志、缓存、数据库运行文件等。</td>
+<td align="left"><code>/var/log</code>, <code>/var/lib</code>, <code>/var/cache</code></td>
+</tr>
+<tr>
+<td align="left"><code>/var/log</code></td>
+<td align="left">所有系统与服务日志的集中位置。</td>
+<td align="left"><code>syslog</code>, <code>auth.log</code>, <code>kern.log</code></td>
+</tr>
+<tr>
+<td align="left"><code>/var/cache</code></td>
+<td align="left">应用和包管理器缓存。</td>
+<td align="left"><code>/var/cache/apt/</code></td>
+</tr>
+<tr>
+<td align="left"><code>/var/lib</code></td>
+<td align="left">服务的持久化状态数据。</td>
+<td align="left"><code>mysql/</code>, <code>docker/</code></td>
+</tr>
+<tr>
+<td align="left"><code>/tmp</code></td>
+<td align="left">程序运行时的临时文件区，随时可清理。</td>
+<td align="left">临时文件、socket 路径</td>
+</tr>
+<tr>
+<td align="left"><code>/boot</code></td>
+<td align="left">启动所需文件：内核、<code>initramfs</code>、引导配置。</td>
+<td align="left"><code>vmlinuz-*</code>, <code>initrd.img</code>, <code>grub/grub.cfg</code></td>
+</tr>
+<tr>
+<td align="left"><code>/dev</code></td>
+<td align="left">设备节点集合，文件即设备。</td>
+<td align="left"><code>/dev/sda</code>, <code>/dev/null</code>, <code>/dev/tty0</code></td>
+</tr>
+<tr>
+<td align="left"><code>/proc</code></td>
+<td align="left">由内核提供的虚拟文件系统，展示系统与进程的实时信息。</td>
+<td align="left"><code>/proc/cpuinfo</code>, <code>/proc/&lt;pid&gt;/</code></td>
+</tr>
+<tr>
+<td align="left"><code>/sys</code></td>
+<td align="left">设备、驱动、内核子系统的状态接口。</td>
+<td align="left"><code>/sys/class/net/</code>, <code>/sys/block/</code></td>
+</tr>
+<tr>
+<td align="left"><code>/mnt</code></td>
+<td align="left">手动挂载的临时挂载点。</td>
+<td align="left"><code>/mnt/usb</code></td>
+</tr>
+<tr>
+<td align="left"><code>/media</code></td>
+<td align="left">自动挂载外接设备的默认位置。</td>
+<td align="left"><code>/media/user/USB_DRIVE</code></td>
+</tr>
+<tr>
+<td align="left"><code>/run</code></td>
+<td align="left">运行时数据存放点，重启后清空。</td>
+<td align="left"><code>*.pid</code>, 运行状态 socket 文件</td>
+</tr>
+</tbody></table>
+<h3 id="linux的几个系统关键区域"><a href="#linux的几个系统关键区域" class="headerlink" title="linux的几个系统关键区域"></a><code>linux</code>的几个系统关键区域</h3><p><strong>除非你知道你在干什么,否则不要更改!</strong></p>
+<p><strong><code>/etc</code>— 系统配置核心</strong></p>
+<p>所有关键配置集中于此。任何错误修改都可能导致服务挂掉，甚至系统无法启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">/etc/passwd     <span class="hljs-comment"># 用户信息</span><br>/etc/shadow     <span class="hljs-comment"># 密码加密保存</span><br>/etc/hosts      <span class="hljs-comment"># 本地DNS解析</span><br>/etc/fstab      <span class="hljs-comment"># 磁盘挂载配置</span><br>/etc/network    <span class="hljs-comment"># 网络设置</span><br></code></pre></td></tr></table></figure>
+
+<p><strong><code>/bin</code>、<code>/sbin</code>、<code>/usr/bin</code>、<code>/usr/sbin</code> — 系统指令区</strong></p>
+<p>系统预置命令的所在位置。</p>
 <ul>
-<li><strong>静态NAT</strong>：实现私网地址和公网地址的一对一转换。这种方式不节约公网地址，但可以隐藏内部网络结构。</li>
-<li><strong>动态NAT</strong>：多个私网IP地址对应多个公网IP地址，基于地址池一对一映射。</li>
-<li><strong>PAT</strong>：也称为NAPT（Network Address Port Translation），实现一个公网地址和多个私网地址之间的映射，从而节约公网地址。</li>
+<li><strong><code>/bin</code>、<code>/usr/bin</code></strong>：供普通用户使用的基础指令（如 <code>ls</code> 位于 <code>/bin/ls</code>）。</li>
+<li><strong><code>/sbin</code>、<code>/usr/sbin</code></strong>：系统管理指令，主要由 <code>root</code> 使用。</li>
 </ul>
-<p>这导致<code>wsl</code>不是直接连入网络,而是通过windows共享,<code>clash</code>只更改<code>windows</code>的流量,不会更改<code>wsl</code></p>
-<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案:"></a>解决方案:</h3><p>在资源管理器输入 <code>%userprofile%</code> ，在打开的文件夹新建 <code>.wslconfig</code> 文件。</p>
-<p><code>.wslconfig</code> 内容如下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">[wsl2]<br><br>[experimental]<br>autoMemoryReclaim=gradual <span class="hljs-comment"># 开启自动回收内存，可在 gradual, dropcache, disabled 之间选择</span><br>networkingMode=mirrored <span class="hljs-comment"># 开启镜像网络</span><br>dnsTunneling=<span class="hljs-literal">true</span> <span class="hljs-comment"># 开启 DNS Tunneling</span><br>firewall=<span class="hljs-literal">true</span> <span class="hljs-comment"># 开启 Windows 防火墙</span><br>autoProxy=<span class="hljs-literal">true</span> <span class="hljs-comment"># 开启自动同步代理</span><br>sparseVhd=<span class="hljs-literal">true</span> <span class="hljs-comment"># 开启自动释放 WSL2 虚拟硬盘空间</span><br></code></pre></td></tr></table></figure>
+<p><strong><code>/var</code> — 动态数据区</strong></p>
+<p>系统运行时不断写入的数据都落在这里。<br>重点是**<code>/var/log</code>**，各种服务日志全部存放此处；邮件、缓存、队列等内容也在此目录下维护。</p>
+<h3 id="linux文件结构特别之处"><a href="#linux文件结构特别之处" class="headerlink" title="linux文件结构特别之处"></a><code>linux</code>文件结构特别之处</h3><ul>
+<li><code>everything is a file</code> 万物皆是文件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">硬盘 → `/dev/sda`<br>GPIO → `/sys/class/gpio/`<br>进程 → `/proc/1234/`<br>UART/串口 → `/dev/ttyS0`<br>LED → `/sys/class/leds/led0/brightness`<br></code></pre></td></tr></table></figure>
 
-<p>使用 <code>wsl --shutdown</code> 命令结束<code> wsl</code> ，再次运行 <code>wsl</code> 就可以了</p>
-<table>
-<thead>
-<tr>
-<th>配置项</th>
-<th>作用</th>
-<th>效果理解</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>networkingMode=mirrored</code></td>
-<td>WSL 和 Windows 使用<strong>同一张网卡</strong></td>
-<td>WSL 不再是“热点设备”，而是“同一台电脑”</td>
-</tr>
-<tr>
-<td><code>dnsTunneling=true</code></td>
-<td>DNS 请求也跟随代理进入 VPN</td>
-<td>避免 DNS 污染（你之前的 <code>Could not resolve host</code> 就是这个问题）</td>
-</tr>
-<tr>
-<td><code>autoProxy=true</code></td>
-<td>自动同步 Windows 的系统代理</td>
-<td>WSL 自动使用 Clash，无需 export 环境变量</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>配置</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>autoMemoryReclaim=gradual</code></td>
-<td>WSL 不再占内存，用完会自动释放</td>
-</tr>
-<tr>
-<td><code>firewall=true</code></td>
-<td>让 Windows 防火墙管理 WSL，提升安全性</td>
-</tr>
-<tr>
-<td><code>sparseVhd=true</code></td>
-<td>自动减小 WSL 虚拟硬盘体积</td>
-</tr>
-</tbody></table>
-<h3 id="配置codex"><a href="#配置codex" class="headerlink" title="配置codex"></a>配置<code>codex</code></h3><p>在<code>wsl</code>中</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt update<br><span class="hljs-built_in">sudo</span> apt install curl -y<br>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash<br><span class="hljs-built_in">source</span> ~/.bashrc<br>nvm install --lts<br><br>node -v<br>npm -v<br></code></pre></td></tr></table></figure>
-
-<p>如果正常输出,则安装nodejs和npm完毕</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> ~/.npm-global<br>npm config <span class="hljs-built_in">set</span> prefix <span class="hljs-string">&#x27;~/.npm-global&#x27;</span><br></code></pre></td></tr></table></figure>
-
-<p>编辑<code>path</code>变量</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">nano ~/.bashrc<br><span class="hljs-comment"># 配置 NPM 全局安装路径(在最后一行)</span><br><span class="hljs-built_in">export</span> PATH=~/.npm-global/bin:<span class="hljs-variable">$PATH</span><br><span class="hljs-comment">#（添加完毕后，在 nano 中按 Ctrl + X，然后按 Y 确认保存，最后按 Enter 退出）</span><br><span class="hljs-built_in">source</span> ~/.bashrc  <span class="hljs-comment"># 根据您编辑的文件选择相应的 source 命令</span><br>npm install -g @openai/codex<br></code></pre></td></tr></table></figure>
-
-<p>安装完毕~</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">codex<br><span class="hljs-comment"># 然后就用你的gpt账号进行配置吧</span><br></code></pre></td></tr></table></figure>
-
+<p>这些都当成了文件接口,访问外设就是读取文件</p>
+<ul>
+<li>无盘符</li>
+</ul>
+<p>所有的设备通过<strong>挂载</strong>加入到一个目录树中,存储设备被关联到系统的目录节点,让设备内容通过这个目录访问,挂载完成后,目录原本的内容不可见,新设备的内容可以像本地文件一样操作</p>
+<p>好处是:</p>
+<ul>
+<li>统一的文件系统结构：所有设备都挂载在单一的目录树里，不需要区分不同盘符。</li>
+<li>灵活接入各种存储：本地磁盘、移动设备、网络共享都可以通过挂载方式整合。</li>
+<li>权限及访问控制：可针对挂载点设定读写权限、只读&#x2F;读写模式等。</li>
+<li>动态管理：可根据需要随时挂载&#x2F;卸载设备，不影响整体系统结构。</li>
+</ul>
 
                 
               </div>
@@ -366,7 +468,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/agent/" class="category-chain-item">agent</a>
+  <a href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8Flinux/" class="category-chain-item">嵌入式linux</a>
   
   
 
@@ -393,8 +495,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>wsl-codex配置</div>
-      <div>https://rubbishbro.github.io/2025/11/20/wsl-codex配置/</div>
+      <div>linux文件结构</div>
+      <div>https://rubbishbro.github.io/2025/12/07/linux文件结构/</div>
     </div>
     <div class="license-meta">
       
@@ -406,7 +508,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>November 20, 2025</div>
+          <div>December 7, 2025</div>
         </div>
       
       
@@ -438,15 +540,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/11/20/hexo-fluid-blog/" title="hexo-fluid blog">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">hexo-fluid blog</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2025/12/06/wsl-codex%E9%85%8D%E7%BD%AE/" title="wsl-codex配置">
+                        <span class="hidden-mobile">wsl-codex配置</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
