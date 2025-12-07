@@ -694,8 +694,7 @@
       var text = subtitle.getAttribute('data-typed-text');
       
         var texts = ["rubbishbro's Blog","欢迎来到本菜鸡的博客ovo"];
-        var idx = Math.floor(Math.random() * texts.length);
-        typing(texts[idx]);
+        typing(texts.join('<br>'));
       
     })(window, document);
   </script>
