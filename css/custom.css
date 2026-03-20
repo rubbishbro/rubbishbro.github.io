@@ -1,0 +1,9 @@
+.icon-eletronic {
+    display: inline-block;
+    width: 1.2em;
+    height: 1.2em; /* matching typical font-size */
+    background: url('/img/icon-eletronic.png') no-repeat center center;
+    background-size: contain;
+    vertical-align: middle;
+    /* ensure no pseudo content interferes */
+}
