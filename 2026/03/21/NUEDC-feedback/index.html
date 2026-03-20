@@ -19,24 +19,22 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="linux文件结构概述在linux中，所有的文件和目录都被组织成一个以根节点开始的倒置的树状结构 文件系统的最顶层是从根目录开始的，使用&#x2F;来表示根目录,根目录之下既可以是目录也可以是文件,而每一个目录又可以包含子目录文件,反复,构成了一个庞大的文件系统 在文件系统中有两个特殊目录,一个是用户所在的工作目录,一个是父目录 一个文件或者目录如果以.开始,表示隐藏目录或者文件,默认查找不显示,比如.ba">
+    <meta name="description" content="复盘目的复盘的目的不是简单记录“哪里出错了”，而是总结出一套可复用的工程方法，避免在之后的系统设计中重复犯错 2026-3-21 水温控制系统本次问题暴露的并不是单个元件、单个模块或单次操作失误，而是系统工程能力、验证流程和鲁棒性意识的不足 本次项目暴露出的核心问题可以归纳为以下三类： 系统工程能力表现为：  驱动电路设计错误，说明对器件工作方式和电路拓扑理解不够深入 机械结构不稳定，导致容器打孔">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux文件结构">
-<meta property="og:url" content="https://rubbishbro.github.io/2025/12/07/linux-file-structure/index.html">
+<meta property="og:title" content="练习题目复盘">
+<meta property="og:url" content="https://rubbishbro.github.io/2026/03/21/NUEDC-feedback/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="linux文件结构概述在linux中，所有的文件和目录都被组织成一个以根节点开始的倒置的树状结构 文件系统的最顶层是从根目录开始的，使用&#x2F;来表示根目录,根目录之下既可以是目录也可以是文件,而每一个目录又可以包含子目录文件,反复,构成了一个庞大的文件系统 在文件系统中有两个特殊目录,一个是用户所在的工作目录,一个是父目录 一个文件或者目录如果以.开始,表示隐藏目录或者文件,默认查找不显示,比如.ba">
+<meta property="og:description" content="复盘目的复盘的目的不是简单记录“哪里出错了”，而是总结出一套可复用的工程方法，避免在之后的系统设计中重复犯错 2026-3-21 水温控制系统本次问题暴露的并不是单个元件、单个模块或单次操作失误，而是系统工程能力、验证流程和鲁棒性意识的不足 本次项目暴露出的核心问题可以归纳为以下三类： 系统工程能力表现为：  驱动电路设计错误，说明对器件工作方式和电路拓扑理解不够深入 机械结构不稳定，导致容器打孔">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://rubbishbro.github.io/2025/12/07/linux-file-structure/2025-1.jpg">
-<meta property="article:published_time" content="2025-12-06T17:42:10.000Z">
-<meta property="article:modified_time" content="2026-01-01T15:17:08.006Z">
+<meta property="article:published_time" content="2026-03-20T16:28:56.000Z">
+<meta property="article:modified_time" content="2026-03-20T16:49:20.892Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="demo">
+<meta property="article:tag" content="feedback">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://rubbishbro.github.io/2025/12/07/linux-file-structure/2025-1.jpg">
   
   
   
-  <title>linux文件结构 - Hexo</title>
+  <title>练习题目复盘 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -202,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="linux文件结构"></span>
+            <span id="subtitle" data-typed-text="练习题目复盘"></span>
           
         </div>
 
@@ -213,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-12-07 01:42" pubdate>
-          December 7, 2025 am
+        <time datetime="2026-03-21 00:28" pubdate>
+          March 21, 2026 am
         </time>
       </span>
     
@@ -225,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k words
+          2.3k words
         
       </span>
     
@@ -236,7 +234,7 @@
         
         
         
-          19 mins
+          20 mins
         
       </span>
     
@@ -273,183 +271,164 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">linux文件结构</h1>
+            <h1 id="seo-header">练习题目复盘</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="linux文件结构"><a href="#linux文件结构" class="headerlink" title="linux文件结构"></a><code>linux</code>文件结构</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>在<code>linux</code>中，所有的文件和目录都被组织成一个以根节点开始的倒置的树状结构</p>
-<p>文件系统的最顶层是从根目录开始的，使用<code>/</code>来表示根目录,根目录之下既可以是目录也可以是文件,而每一个目录又可以包含子目录文件,反复,构成了一个庞大的文件系统</p>
-<p>在文件系统中有两个特殊目录,一个是用户所在的工作目录,一个是父目录</p>
-<p>一个文件或者目录如果以<code>.</code>开始,表示隐藏目录或者文件,默认查找不显示,比如<code>.bashrc</code></p>
-<p>登录系统输入:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ls</span>/<br></code></pre></td></tr></table></figure>
-
-<p>会看到:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">rubbishbro@LAPTOP-Q8PG36F8:~$ <span class="hljs-built_in">ls</span> /<br>bin   dev     etc   init  lib64       media  opt   root  sbin  sys  usr<br>boot  Docker  home  lib   lost+found  mnt    proc  run   srv   tmp  var<br></code></pre></td></tr></table></figure>
-
-<p>这就是树状结构</p>
-<img src="/2025/12/07/linux-file-structure/2025-1.jpg" srcset="/img/loading.gif" lazyload class="" title="文件结构示意图">
-
-<table>
-<thead>
-<tr>
-<th align="left">目录</th>
-<th align="left">作用详解</th>
-<th align="left">常见文件 &#x2F; 示例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><code>/</code></td>
-<td align="left">根文件系统，所有挂载点与路径的起点。包含系统必须的子目录与入口结构。</td>
-<td align="left">无具体数据文件，只有子目录结构。</td>
-</tr>
-<tr>
-<td align="left"><code>/bin</code></td>
-<td align="left">系统启动和单用户模式下必须的基础命令，所有用户可执行。</td>
-<td align="left"><code>ls</code>, <code>cp</code>, <code>mv</code>, <code>rm</code>, <code>bash</code></td>
-</tr>
-<tr>
-<td align="left"><code>/sbin</code></td>
-<td align="left">系统管理与维护命令，面向 root。</td>
-<td align="left"><code>fsck</code>, <code>reboot</code>, <code>shutdown</code></td>
-</tr>
-<tr>
-<td align="left"><code>/usr</code></td>
-<td align="left">用户级程序与库的主集合，包含大部分系统软件、文档与工具。</td>
-<td align="left"><code>/usr/bin</code>, <code>/usr/lib</code>, <code>/usr/share</code></td>
-</tr>
-<tr>
-<td align="left"><code>/usr/bin</code></td>
-<td align="left">常规用户程序的主要放置目录。</td>
-<td align="left"><code>python3</code>, <code>vim</code>, <code>git</code></td>
-</tr>
-<tr>
-<td align="left"><code>/usr/sbin</code></td>
-<td align="left">管理工具的扩展集合。</td>
-<td align="left"><code>useradd</code>, <code>apache2ctl</code></td>
-</tr>
-<tr>
-<td align="left"><code>/usr/lib</code></td>
-<td align="left"><code>/usr</code> 内程序所依赖的动态库与模块。</td>
-<td align="left">各类 <code>.so</code> 动态库</td>
-</tr>
-<tr>
-<td align="left"><code>/usr/local</code></td>
-<td align="left">本机安装或编译软件的独立区域。</td>
-<td align="left"><code>/usr/local/bin</code>, <code>/usr/local/lib</code></td>
-</tr>
-<tr>
-<td align="left"><code>/lib</code> 或 <code>/lib64</code></td>
-<td align="left">系统启动核心库、动态链接器所在位置。</td>
-<td align="left"><code>libc.so.6</code>, <code>ld-linux.so</code></td>
-</tr>
-<tr>
-<td align="left"><code>/etc</code></td>
-<td align="left">系统级配置中心，统一存放所有服务和系统配置。</td>
-<td align="left"><code>passwd</code>, <code>group</code>, <code>fstab</code>, <code>ssh/sshd_config</code></td>
-</tr>
-<tr>
-<td align="left"><code>/home</code></td>
-<td align="left">普通用户的个人主目录集合。</td>
-<td align="left"><code>/home/user/.bashrc</code>, <code>/home/user/Documents</code></td>
-</tr>
-<tr>
-<td align="left"><code>/root</code></td>
-<td align="left">root 用户的主目录。</td>
-<td align="left"><code>/root/.ssh/</code></td>
-</tr>
-<tr>
-<td align="left"><code>/var</code></td>
-<td align="left">频繁变化的数据：日志、缓存、数据库运行文件等。</td>
-<td align="left"><code>/var/log</code>, <code>/var/lib</code>, <code>/var/cache</code></td>
-</tr>
-<tr>
-<td align="left"><code>/var/log</code></td>
-<td align="left">所有系统与服务日志的集中位置。</td>
-<td align="left"><code>syslog</code>, <code>auth.log</code>, <code>kern.log</code></td>
-</tr>
-<tr>
-<td align="left"><code>/var/cache</code></td>
-<td align="left">应用和包管理器缓存。</td>
-<td align="left"><code>/var/cache/apt/</code></td>
-</tr>
-<tr>
-<td align="left"><code>/var/lib</code></td>
-<td align="left">服务的持久化状态数据。</td>
-<td align="left"><code>mysql/</code>, <code>docker/</code></td>
-</tr>
-<tr>
-<td align="left"><code>/tmp</code></td>
-<td align="left">程序运行时的临时文件区，随时可清理。</td>
-<td align="left">临时文件、socket 路径</td>
-</tr>
-<tr>
-<td align="left"><code>/boot</code></td>
-<td align="left">启动所需文件：内核、<code>initramfs</code>、引导配置。</td>
-<td align="left"><code>vmlinuz-*</code>, <code>initrd.img</code>, <code>grub/grub.cfg</code></td>
-</tr>
-<tr>
-<td align="left"><code>/dev</code></td>
-<td align="left">设备节点集合，文件即设备。</td>
-<td align="left"><code>/dev/sda</code>, <code>/dev/null</code>, <code>/dev/tty0</code></td>
-</tr>
-<tr>
-<td align="left"><code>/proc</code></td>
-<td align="left">由内核提供的虚拟文件系统，展示系统与进程的实时信息。</td>
-<td align="left"><code>/proc/cpuinfo</code>, <code>/proc/&lt;pid&gt;/</code></td>
-</tr>
-<tr>
-<td align="left"><code>/sys</code></td>
-<td align="left">设备、驱动、内核子系统的状态接口。</td>
-<td align="left"><code>/sys/class/net/</code>, <code>/sys/block/</code></td>
-</tr>
-<tr>
-<td align="left"><code>/mnt</code></td>
-<td align="left">手动挂载的临时挂载点。</td>
-<td align="left"><code>/mnt/usb</code></td>
-</tr>
-<tr>
-<td align="left"><code>/media</code></td>
-<td align="left">自动挂载外接设备的默认位置。</td>
-<td align="left"><code>/media/user/USB_DRIVE</code></td>
-</tr>
-<tr>
-<td align="left"><code>/run</code></td>
-<td align="left">运行时数据存放点，重启后清空。</td>
-<td align="left"><code>*.pid</code>, 运行状态 socket 文件</td>
-</tr>
-</tbody></table>
-<h3 id="linux的几个系统关键区域"><a href="#linux的几个系统关键区域" class="headerlink" title="linux的几个系统关键区域"></a><code>linux</code>的几个系统关键区域</h3><p><strong>除非你知道你在干什么,否则不要更改!</strong></p>
-<p><strong><code>/etc</code>— 系统配置核心</strong></p>
-<p>所有关键配置集中于此。任何错误修改都可能导致服务挂掉，甚至系统无法启动</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">/etc/passwd     <span class="hljs-comment"># 用户信息</span><br>/etc/shadow     <span class="hljs-comment"># 密码加密保存</span><br>/etc/hosts      <span class="hljs-comment"># 本地DNS解析</span><br>/etc/fstab      <span class="hljs-comment"># 磁盘挂载配置</span><br>/etc/network    <span class="hljs-comment"># 网络设置</span><br></code></pre></td></tr></table></figure>
-
-<p><strong><code>/bin</code>、<code>/sbin</code>、<code>/usr/bin</code>、<code>/usr/sbin</code> — 系统指令区</strong></p>
-<p>系统预置命令的所在位置。</p>
+                <h2 id="复盘目的"><a href="#复盘目的" class="headerlink" title="复盘目的"></a>复盘目的</h2><p>复盘的目的不是简单记录“哪里出错了”，而是总结出一套可复用的工程方法，避免在之后的系统设计中重复犯错</p>
+<h3 id="2026-3-21-水温控制系统"><a href="#2026-3-21-水温控制系统" class="headerlink" title="2026-3-21 水温控制系统"></a>2026-3-21 水温控制系统</h3><p>本次问题暴露的并不是单个元件、单个模块或单次操作失误，而是系统工程能力、验证流程和鲁棒性意识的不足</p>
+<p>本次项目暴露出的核心问题可以归纳为以下三类：</p>
+<h3 id="系统工程能力"><a href="#系统工程能力" class="headerlink" title="系统工程能力"></a>系统工程能力</h3><p>表现为：</p>
 <ul>
-<li><strong><code>/bin</code>、<code>/usr/bin</code></strong>：供普通用户使用的基础指令（如 <code>ls</code> 位于 <code>/bin/ls</code>）。</li>
-<li><strong><code>/sbin</code>、<code>/usr/sbin</code></strong>：系统管理指令，主要由 <code>root</code> 使用。</li>
+<li>驱动电路设计错误，说明对器件工作方式和电路拓扑理解不够深入</li>
+<li>机械结构不稳定，导致容器打孔后漏水、胶体开裂、系统整体可靠性下降</li>
+<li>软件设计脱离硬件实际情况，很多内容停留在预想中，缺少对完整系统状态的依托</li>
 </ul>
-<p><strong><code>/var</code> — 动态数据区</strong></p>
-<p>系统运行时不断写入的数据都落在这里。<br>重点是**<code>/var/log</code>**，各种服务日志全部存放此处；邮件、缓存、队列等内容也在此目录下维护。</p>
-<h3 id="linux文件结构特别之处"><a href="#linux文件结构特别之处" class="headerlink" title="linux文件结构特别之处"></a><code>linux</code>文件结构特别之处</h3><ul>
-<li><code>everything is a file</code> 万物皆是文件</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">硬盘 → `/dev/sda`<br>GPIO → `/sys/class/gpio/`<br>进程 → `/proc/1234/`<br>UART/串口 → `/dev/ttyS0`<br>LED → `/sys/class/leds/led0/brightness`<br></code></pre></td></tr></table></figure>
+<p>本质上是：</p>
+<blockquote>
+<p>没有以“完整系统”视角思考问题，而是分散地处理局部问题。</p>
+</blockquote>
+<h4 id="缺少验证闭环"><a href="#缺少验证闭环" class="headerlink" title="缺少验证闭环"></a>缺少验证闭环</h4><p>当前流程更接近：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs text">想法 → 直接设计 → 直接画PCB/写程序 → 集成<br>````<br><br>而正确的工程流程应当是：<br><br>```text<br>想法 → 最小验证 → 子系统验证 → 集成测试 → 完整系统优化<br></code></pre></td></tr></table></figure>
 
-<p>这些都当成了文件接口,访问外设就是读取文件</p>
+<p>也就是说，本次很多问题不是“不会”，而是“没有先验证再推进”</p>
+<h4 id="鲁棒性意识不足"><a href="#鲁棒性意识不足" class="headerlink" title="鲁棒性意识不足"></a>鲁棒性意识不足</h4><p>本次项目中很多失效现象，本质都与鲁棒性不足有关。</p>
 <ul>
-<li>无盘符</li>
+<li>容器打孔后漏水，热熔胶在机械拉扯后裂缝</li>
+<li>机械结构不稳定导致线路、胶体、探头等承受额外应力</li>
+<li>电路设计没有充分考虑驱动、电源和保护的可靠性</li>
+<li>软件没有在最小可运行系统上逐步验证</li>
 </ul>
-<p>所有的设备通过<strong>挂载</strong>加入到一个目录树中,存储设备被关联到系统的目录节点,让设备内容通过这个目录访问,挂载完成后,目录原本的内容不可见,新设备的内容可以像本地文件一样操作</p>
-<p>好处是:</p>
+<p>说明在设计时对“真实环境下系统如何稳定运行”考虑不够充分。</p>
+<h3 id="硬件PCB设计问题总结"><a href="#硬件PCB设计问题总结" class="headerlink" title="硬件PCB设计问题总结"></a>硬件PCB设计问题总结</h3><h4 id="电路理解不足，导致驱动电路设计错误"><a href="#电路理解不足，导致驱动电路设计错误" class="headerlink" title="电路理解不足，导致驱动电路设计错误"></a>电路理解不足，导致驱动电路设计错误</h4><p>本次驱动电路出现错误，说明在设计前没有对核心器件的工作模式、连接方式和典型应用电路形成明确掌握</p>
+<p>我们对于电子学院，信通学院的同学的劣势就在于电路能力不足，尽管目前时间很紧张，也需要挤出时间合理安排来每周进行一次电路的文档的书写，坚持几周后相信会有明显改善</p>
 <ul>
-<li>统一的文件系统结构：所有设备都挂载在单一的目录树里，不需要区分不同盘符。</li>
-<li>灵活接入各种存储：本地磁盘、移动设备、网络共享都可以通过挂载方式整合。</li>
-<li>权限及访问控制：可针对挂载点设定读写权限、只读&#x2F;读写模式等。</li>
-<li>动态管理：可根据需要随时挂载&#x2F;卸载设备，不影响整体系统结构。</li>
+<li>MOS 管驱动拓扑理解不牢固</li>
+<li>关键驱动电路没有经过面包板验证或最小电路验证</li>
+<li>直接在 PCB 中固化未验证的设计</li>
 </ul>
+<p><strong>对于关键电路</strong></p>
+<ul>
+<li>进行面包板的最小系统验证</li>
+<li>在权威文档中找到了对应的说明</li>
+<li>询问学长并且经过自身思考</li>
+</ul>
+<h4 id="CPB-设计缺少交叉检查机制"><a href="#CPB-设计缺少交叉检查机制" class="headerlink" title="CPB 设计缺少交叉检查机制"></a>CPB 设计缺少交叉检查机制</h4><p>本次 PCB 设计没有形成有效的交叉审查流程，导致问题未能在生产前被发现。</p>
+<p>重点检查：</p>
+<ul>
+<li>驱动电路连接关系是否正确</li>
+<li>按键与 GPIO 是否一一对应</li>
+<li>电源、地线、负载回流路径是否合理</li>
+<li>器件方向、接口方向是否正确</li>
+<li>是否存在引脚冲突、启动脚占用等问题</li>
+</ul>
+<h3 id="机械结构不稳定，影响系统可靠性"><a href="#机械结构不稳定，影响系统可靠性" class="headerlink" title="机械结构不稳定，影响系统可靠性"></a>机械结构不稳定，影响系统可靠性</h3><p>本次容器打孔后出现漏水，热熔胶因机械拉扯开裂，本质并不是“胶不够强”，而是：</p>
+<blockquote>
+<p>机械结构本身不合理，导致密封件长期承受不该承受的应力。</p>
+</blockquote>
+<p>机械结构不稳定带来的问题包括：</p>
+<ul>
+<li>容器密封失效</li>
+<li>导线、探头、接口受到拉扯</li>
+<li>振动导致测量误差增大</li>
+<li>物理结构不稳，系统鲁棒性下降</li>
+</ul>
+<p>这说明在系统设计中，机械底座和结构固定的重要性被低估了</p>
+<h3 id="软件设计问题总结"><a href="#软件设计问题总结" class="headerlink" title="软件设计问题总结"></a>软件设计问题总结</h3><h3 id="软件设计脱离完整系统实际"><a href="#软件设计脱离完整系统实际" class="headerlink" title="软件设计脱离完整系统实际"></a>软件设计脱离完整系统实际</h3><p>本次软件设计中存在大量停留在预想中的部分，原因不是没有思路，而是：</p>
+<blockquote>
+<p>硬件系统不完整，导致软件设计缺少真实依托。</p>
+</blockquote>
+<p>这会导致：</p>
+<ul>
+<li>控制逻辑无法真正验证</li>
+<li>UI 设计先于系统功能实现</li>
+<li>很多模块只是设想，缺乏最小测试结果支撑</li>
+</ul>
+<h3 id="2-缺少模块级最小测试"><a href="#2-缺少模块级最小测试" class="headerlink" title="2. 缺少模块级最小测试"></a>2. 缺少模块级最小测试</h3><p>正确的软件推进顺序应该是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">驱动层验证 → 子模块验证 → 控制闭环验证 → UI与功能整合<br></code></pre></td></tr></table></figure>
+
+<p>而本次问题在于：</p>
+<ul>
+<li>没有先完成各个部件的独立驱动</li>
+<li>没有为每个模块设计最小测试</li>
+<li>没有先保证最小系统可运行，再逐步扩展</li>
+</ul>
+<p>本质上，软件问题不是“写得不够多”，而是：</p>
+<blockquote>
+<p>没有先做出最小可验证系统。</p>
+</blockquote>
+<h3 id="问题本质总结"><a href="#问题本质总结" class="headerlink" title="问题本质总结"></a>问题本质总结</h3><p>本次项目最大的问题不是某个电路错了，也不是某个模块没做好，而是：</p>
+<blockquote>
+<p>没有建立完整的工程流程。</p>
+</blockquote>
+<p>具体表现为：</p>
+<ul>
+<li>设计前验证不足</li>
+<li>硬件、机械、软件脱节</li>
+<li>缺少系统级鲁棒性考虑</li>
+<li>缺少标准化检查流程</li>
+<li>缺少模块化最小测试</li>
+</ul>
+<p>因此，下一次改进的重点不能只是“更认真”，而必须是：</p>
+<blockquote>
+<p>建立工程流程、验证流程和检查流程。</p>
+</blockquote>
+<h3 id="改进措施"><a href="#改进措施" class="headerlink" title="改进措施"></a>改进措施</h3><h4 id="硬件方面"><a href="#硬件方面" class="headerlink" title="硬件方面"></a>硬件方面</h4><p><strong>所有关键电路必须先做最小验证</strong></p>
+<p><strong>建立 PCB 交叉检查制度</strong></p>
+<p>建议检查表至少包括：</p>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs md"><span class="hljs-section">##### 电源部分</span><br><br><span class="hljs-bullet">*</span> 电源输入是否合理<br><span class="hljs-bullet">*</span> 是否存在短路风险<br><span class="hljs-bullet">*</span> 电流路径是否清晰<br><span class="hljs-bullet">*</span> 线宽是否满足电流要求<br><br><span class="hljs-section">##### 驱动部分</span><br><br><span class="hljs-bullet">*</span> MOS 管连接是否正确<br><span class="hljs-bullet">*</span> Gate 是否有串联电阻<br><span class="hljs-bullet">*</span> Gate 是否有下拉电阻<br><span class="hljs-bullet">*</span> 感性负载是否有续流二极管<br><br><span class="hljs-section">##### IO 和接口</span><br><br><span class="hljs-bullet">*</span> 按键和引脚是否一一对应<br><span class="hljs-bullet">*</span> GPIO 是否冲突<br><span class="hljs-bullet">*</span> 是否占用启动相关引脚<br><span class="hljs-bullet">*</span> 接口方向是否正确<br><br><span class="hljs-section">##### 地线和布局</span><br><br><span class="hljs-bullet">*</span> 大电流回流是否影响模拟部分<br><span class="hljs-bullet">*</span> 传感器地是否干净<br><span class="hljs-bullet">*</span> 是否存在明显不合理走线<br><br>检查完成后，必须形成记录，而不是口头确认<br></code></pre></td></tr></table></figure>
+
+<h4 id="设计稳定的机械结构和底座"><a href="#设计稳定的机械结构和底座" class="headerlink" title="设计稳定的机械结构和底座"></a>设计稳定的机械结构和底座</h4><p>下一轮设计中，应把机械结构稳定性作为高优先级问题处理。</p>
+<p>重点包括：</p>
+<ul>
+<li>为容器、传感器、PCB、导线提供可靠固定</li>
+<li>减少外力拉扯和震动传递</li>
+<li>尽量减少容器打孔，或采用真正的密封结构</li>
+<li>不依赖热熔胶承担结构功能</li>
+<li>对线缆做应力释放设计</li>
+</ul>
+<p>基本原则：</p>
+<p>密封问题应靠结构设计解决，而不是靠后期补胶解决。</p>
+<h3 id="团队流程"><a href="#团队流程" class="headerlink" title="团队流程"></a>团队流程</h3><h4 id="1-每周进行常见电路学习与汇报"><a href="#1-每周进行常见电路学习与汇报" class="headerlink" title="1. 每周进行常见电路学习与汇报"></a>1. 每周进行常见电路学习与汇报</h4><p>原计划“每周每人书写一个常见电路文档并汇报”是有价值的，但还不够。</p>
+<p>更有效的做法应是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">1. 学习电路原理<br>2. 画出典型电路<br>3. 实际搭建最小电路<br>4. 做测量验证<br>5. 汇报结果和问题<br></code></pre></td></tr></table></figure>
+
+<p>这样才能把“看懂”真正转化成“会用”。</p>
+<p>建议优先覆盖：</p>
+<ul>
+<li>MOS 驱动电路</li>
+<li>运放基础电路</li>
+<li>电源稳压电路</li>
+<li>传感器接口电路</li>
+<li>按键和显示电路</li>
+</ul>
+<hr>
+<h4 id="2-形成文档沉淀"><a href="#2-形成文档沉淀" class="headerlink" title="2. 形成文档沉淀"></a>2. 形成文档沉淀</h4><p>所有验证过的内容要沉淀为团队文档，方便后续直接复用，而不是每次从零开始。</p>
+<p>文档内容建议包括：</p>
+<ul>
+<li>电路图</li>
+<li>工作原理</li>
+<li>关键参数</li>
+<li>常见错误</li>
+<li>实测现象</li>
+<li>适用场景</li>
+</ul>
+<h3 id="最终总结"><a href="#最终总结" class="headerlink" title="最终总结"></a>最终总结</h3><p>本次项目的最大收获，不只是发现了驱动、电路、结构和软件中的问题，而是意识到：</p>
+<blockquote>
+<p>真正限制系统质量的，不是某个模块不会做，而是整个工程流程没有建立起来。</p>
+</blockquote>
+<p>因此，下一步的重点应当是建立：</p>
+<ul>
+<li>最小验证流程</li>
+<li>PCB 检查流程</li>
+<li>模块开发流程</li>
+<li>机械稳定性优先原则</li>
+<li>团队知识沉淀机制</li>
+</ul>
+<p>只有这样，后续设计才能真正从“试错式实现”走向“工程化实现”。</p>
+<hr>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs"><br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -468,7 +447,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8Flinux/" class="category-chain-item">嵌入式linux</a>
+  <a href="/categories/%E9%9A%8F%E7%AC%94/" class="category-chain-item">随笔</a>
   
   
 
@@ -483,7 +462,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/demo/" class="print-no-link">#demo</a>
+        <a href="/tags/feedback/" class="print-no-link">#feedback</a>
       
     </div>
   
@@ -495,8 +474,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>linux文件结构</div>
-      <div>https://rubbishbro.github.io/2025/12/07/linux-file-structure/</div>
+      <div>练习题目复盘</div>
+      <div>https://rubbishbro.github.io/2026/03/21/NUEDC-feedback/</div>
     </div>
     <div class="license-meta">
       
@@ -508,7 +487,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>December 7, 2025</div>
+          <div>March 21, 2026</div>
         </div>
       
       
@@ -540,18 +519,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/03/21/NUEDC-feedback/" title="练习题目复盘">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">练习题目复盘</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/12/06/wsl-codex-config/" title="wsl-codex配置">
-                        <span class="hidden-mobile">wsl-codex配置</span>
+                      <a href="/2025/12/07/linux-file-structure/" title="linux文件结构">
+                        <span class="hidden-mobile">linux文件结构</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
