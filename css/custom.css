@@ -2,8 +2,10 @@
     display: inline-block;
     width: 1.2em;
     height: 1.2em; /* matching typical font-size */
-    background: url('/img/icon-eletronic.png') no-repeat center center;
+    background: url('/img/icon-eletronic.png') no-repeat 0px -2px;
     background-size: contain;
-    vertical-align: middle;
+    vertical-align: middle; /* align with text */
+    margin-right: -1px;
+    filter: invert(100%); /* 将图标反色：黑变白，白变黑 */
     /* ensure no pseudo content interferes */
 }
