@@ -1,0 +1,1005 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="人工智能学习(1)1.1神经网络基础E.G. 卷积神经网络–图像识别 长短期记忆网络–语音识别  1.1.1 MLP 多层感知器（vanilla） 神经元可以被理解为一个装有数字的容器 E.G.   我们让每一个神经元中标注的数字代表灰度值, 1表示一个纯白像素, 0表示一个纯黑像素， 神经元里装着的值, 叫做激活值,整个图片的2828总共784个神经元组成了网络的*第一层 对于网络的最后一层,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://rubbishbro.github.io/2026/03/23/machine_learning_basics/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="人工智能学习(1)1.1神经网络基础E.G. 卷积神经网络–图像识别 长短期记忆网络–语音识别  1.1.1 MLP 多层感知器（vanilla） 神经元可以被理解为一个装有数字的容器 E.G.   我们让每一个神经元中标注的数字代表灰度值, 1表示一个纯白像素, 0表示一个纯黑像素， 神经元里装着的值, 叫做激活值,整个图片的2828总共784个神经元组成了网络的*第一层 对于网络的最后一层,">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://rubbishbro.github.io/2026/03/23/machine_learning_basics/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250517115230333.png">
+<meta property="og:image" content="https://rubbishbro.github.io/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709181815842.png">
+<meta property="og:image" content="https://rubbishbro.github.io/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709182020913.png">
+<meta property="og:image" content="https://rubbishbro.github.io/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709182037636.png">
+<meta property="og:image" content="https://rubbishbro.github.io/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709183144875.png">
+<meta property="og:image" content="https://rubbishbro.github.io/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/e58d7204fef7f7410e92b4bf82e91938.png">
+<meta property="og:image" content="https://rubbishbro.github.io/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/f08a4f516132c6965a99f4e4ede084e5.png">
+<meta property="og:image" content="https://rubbishbro.github.io/2026/03/23/machine_learning_basics/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709182601636.png">
+<meta property="og:image" content="https://rubbishbro.github.io/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709182708900.png">
+<meta property="og:image" content="https://rubbishbro.github.io/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709183853233.png">
+<meta property="og:image" content="https://rubbishbro.github.io/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709184051679.png">
+<meta property="og:image" content="https://rubbishbro.github.io/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709184404065.png">
+<meta property="og:image" content="https://rubbishbro.github.io/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709184631133.png">
+<meta property="og:image" content="https://rubbishbro.github.io/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250818145651085.png">
+<meta property="og:image" content="https://rubbishbro.github.io/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709211214958.png">
+<meta property="og:image" content="https://rubbishbro.github.io/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709212807874.png">
+<meta property="og:image" content="https://rubbishbro.github.io/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250818143013526.png">
+<meta property="og:image" content="https://rubbishbro.github.io/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250818144933553.png">
+<meta property="og:image" content="https://rubbishbro.github.io/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250818145420798.png">
+<meta property="og:image" content="https://rubbishbro.github.io/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250818181429381.png">
+<meta property="og:image" content="https://rubbishbro.github.io/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250818181634656.png">
+<meta property="og:image" content="https://rubbishbro.github.io/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250818182013268.png">
+<meta property="og:image" content="https://rubbishbro.github.io/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250818182026967.png">
+<meta property="og:image" content="https://rubbishbro.github.io/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250714121113349.png">
+<meta property="og:image" content="https://rubbishbro.github.io/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250818182559375.png">
+<meta property="article:published_time" content="2026-03-23T01:13:07.756Z">
+<meta property="article:modified_time" content="2026-03-15T19:40:25.461Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://rubbishbro.github.io/2026/03/23/machine_learning_basics/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250517115230333.png">
+  
+  
+  
+  <title>Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"rubbishbro.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/embedded/" target="_self">
+                <i class="icon-eletronic"></i>
+                <span>嵌入式以及嵌入式ai</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/post.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-03-23 09:13" pubdate>
+          March 23, 2026 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          12k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          100 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="人工智能学习-1"><a href="#人工智能学习-1" class="headerlink" title="人工智能学习(1)"></a>人工智能学习(1)</h2><h4 id="1-1神经网络基础"><a href="#1-1神经网络基础" class="headerlink" title="1.1神经网络基础"></a>1.1神经网络基础</h4><p>E.G.</p>
+<p>卷积神经网络–图像识别</p>
+<p>长短期记忆网络–语音识别 </p>
+<h5 id="1-1-1-MLP-多层感知器（vanilla）"><a href="#1-1-1-MLP-多层感知器（vanilla）" class="headerlink" title="1.1.1 MLP 多层感知器（vanilla）"></a>1.1.1 MLP 多层感知器（vanilla）</h5><p> <strong>神经元</strong>可以被理解为<strong>一个装有数字的容器</strong></p>
+<p>E.G.</p>
+<img src="./人工智能学习报告.assets/image-20250517115230333.png" srcset="/img/loading.gif" lazyload alt="image-20250517115230333" style="zoom: 50%;" />
+
+<p>我们让每一个神经元中标注的数字代表灰度值, <code>1</code>表示一个纯白像素, <code>0</code>表示一个纯黑像素， 神经元里装着的值, 叫做<strong>激活值</strong>,整个图片的28<em>28总共784个神经元组成了网络的*<em>第一层</em></em></p>
+<p>对于网络的最后一层, 一共输出十个神经元, 每个神经元的激活值, 代表着<strong>系统认为输入的图像对应着这个数字的可能性</strong></p>
+<p>中间的层数代表着隐含层, 里面进行着处理识别数字的具体工作,隐含层的本质就是将图片拆分后的部分识别出来,再有激活函数组合成整体,从而得出结果</p>
+<p>E.G.激活函数的表格表示,红负绿正:乘算取加权和得到要关注的像素</p>
+<p><img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709181815842.png" srcset="/img/loading.gif" lazyload alt="image-20250709181815842"></p>
+<h5 id="1-1-2激活函数"><a href="#1-1-2激活函数" class="headerlink" title="1.1.2激活函数"></a>1.1.2激活函数</h5><ol>
+<li><strong>sigmoid</strong>:将一个数轴压缩到0–1区间(逻辑斯蒂曲线)  加偏置b,再sigmoid–&gt;加权和区间<br> <img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709182020913.png" srcset="/img/loading.gif" lazyload alt="image-20250709182020913"></li>
+</ol>
+<p><img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709182037636.png" srcset="/img/loading.gif" lazyload alt="image-20250709182037636"></p>
+<ol start="2">
+<li><strong>ReLU</strong>:超过某个阈值得到线性或者恒定输出</li>
+</ol>
+<p><img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709183144875.png" srcset="/img/loading.gif" lazyload alt="image-20250709183144875"></p>
+<ol start="3">
+<li><strong>Tanh</strong>:<br>$$<br>\frac{e^x - e^{-x}}{e^x + e^{-x}}<br>$$</li>
+</ol>
+<p>和<code>sigmoid</code>不同的是, <code>tanh</code>是以0为中心的, 在实际应用中, tanh要比sigmoid好一些, 但是在饱和神经元的情况下,<code>tanh</code>是没有解决[梯度消失](#2.1.4 梯度消失)的问题的</p>
+<p>使用情况: <code>tanh</code>输出间隔为1, 并且整个函数以0为中心, 比sigmoid函数更好<br>缺点: 仍然存在梯度饱和, 负输入被强映射为负数, 零输入趋近于0</p>
+<p><img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/e58d7204fef7f7410e92b4bf82e91938.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ol start="4">
+<li><strong>Leaky ReLU</strong>:</li>
+</ol>
+<p>$f(x) &#x3D; max(ax, x)$</p>
+<p><img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/f08a4f516132c6965a99f4e4ede084e5.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>使用情况: 解决了ReLU为负数时神经元死亡的问题</p>
+<p>​		线性非饱和的性质, 在SGD中能够快速收敛</p>
+<h5 id="1-1-3线性代数表示"><a href="#1-1-3线性代数表示" class="headerlink" title="1.1.3线性代数表示"></a>1.1.3线性代数表示</h5><img src="./人工智能学习报告.assets/image-20250709182601636.png" srcset="/img/loading.gif" lazyload alt="image-20250709182601636" style="zoom:80%;" />
+
+<p>对结果的每一个元素取一次sigmoid</p>
+<p><img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709182708900.png" srcset="/img/loading.gif" lazyload alt="image-20250709182708900"></p>
+<p><strong>所以神经网路的本质就是一个函数,输入A*A的自变量,得到B的输出</strong></p>
+<h4 id="2-1-梯度和梯度下降"><a href="#2-1-梯度和梯度下降" class="headerlink" title="2.1 梯度和梯度下降"></a>2.1 梯度和梯度下降</h4><h5 id="2-1-1-代价和损失"><a href="#2-1-1-代价和损失" class="headerlink" title="2.1.1 代价和损失"></a>2.1.1 代价和损失</h5><p>刚开始训练时,我们会随机赋予权重矩阵随机的值,随后输入图像,很显然预测结果会是混乱的这时候要给计算机一个评定结果是好是坏的标准,这就是训练单个样本的代价**(差的平方和)<strong>也就是</strong>损失**</p>
+<p><img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709183853233.png" srcset="/img/loading.gif" lazyload alt="image-20250709183853233"></p>
+<p>代价的平均值叫<strong>经验风险</strong>,代价函数也是一种函数</p>
+<p><img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709184051679.png" srcset="/img/loading.gif" lazyload alt="image-20250709184051679"></p>
+<h5 id="2-1-2如何优化"><a href="#2-1-2如何优化" class="headerlink" title="2.1.2如何优化"></a>2.1.2如何优化</h5><p>由于输入值太多,不可能微积分求解,所以<strong>随意选值</strong>,决定函数向左还是右优化以得到代价函数的MIN</p>
+<p><img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709184404065.png" srcset="/img/loading.gif" lazyload alt="image-20250709184404065"></p>
+<p>&#x3D;&#x3D;显然这样求出的是<strong>局部最小值</strong>&#x3D;&#x3D;</p>
+<p>现在升维到二维(高维):</p>
+<p><img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709184631133.png" srcset="/img/loading.gif" lazyload alt="image-20250709184631133"></p>
+<p>对于多元微分,上升最快的方向是梯度的方向,那么下降最快的方向就是<strong>梯度的反方向</strong>,将输入的权重看作向量,那么梯度也是<strong>向量</strong></p>
+<p>对于代价函数,取得结果为总体平均值,这样对整体识别能力更好</p>
+<p>这就是梯度下降,btw,我们希望代价函数是平滑的,便于找到MIN</p>
+<h5 id="2-1-3-另一种理解"><a href="#2-1-3-另一种理解" class="headerlink" title="2.1.3 另一种理解"></a>2.1.3 另一种理解</h5><p>梯度向量得出的结果实际上也是一种权重,告诉我们改变哪个参数性价比最高,参数越大,方向越陡峭,改变性价比越高</p>
+<h5 id="2-1-4-梯度消失"><a href="#2-1-4-梯度消失" class="headerlink" title="2.1.4 梯度消失"></a>2.1.4 梯度消失</h5><ul>
+<li><p>直觉叙述: 我们知道深度网络需要反向传播, 如果<strong>信号在传递过程中越来越小, 传到前面的层时几乎为0, 前面的层就几乎学不到东西</strong>, 这就是<strong>宏观上的</strong>梯度消失</p>
+</li>
+<li><p>数学叙述: [反向传播的本质是很多导数相乘](#3.1.3 反向传播的本质)以L层网络为例子<br><img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250818145651085.png" srcset="/img/loading.gif" lazyload alt="image-20250818145651085"></p>
+</li>
+</ul>
+<p>其中$J^{(L)}$包含本层激活函数的导数和权重的雅可比, 若这些矩阵点谱范数多数小于1,  就会被连乘压扁</p>
+<p>比如: </p>
+<ul>
+<li>激活饱和: <code>sigmoid</code> 的导数小于等于0.25 , <code>tanh</code>的导数小于等于1, 且在两端接近0, 多层相乘衰减快</li>
+<li>深度高: CNN&#x2F;MLP或者是回传步数多</li>
+<li>初始化: 权重矩阵特征值过小或者过大</li>
+</ul>
+<h5 id="2-1-5-学习率"><a href="#2-1-5-学习率" class="headerlink" title="2.1.5 学习率"></a>2.1.5 学习率</h5><p>宏观：学习率是一种衡量每次进行学习时，学习的内容的多少的<strong>超参数</strong><br>想象一下下山的情景。要想安全到达山底，速度必须足够快，才能取得有意义的进展，但又不能太快，以免失去控制，跌跌撞撞。最佳学习率设定了安全的下山速度</p>
+<p>机器学习：学习率是一个超参数(&#x3D;&#x3D;只是一个控制更新权重的常数&#x3D;&#x3D;)，用于控制机器学习模型在优化算法的<strong>每一步中调整参数的程度</strong></p>
+<p><strong>为什么学习率很重要？</strong></p>
+<ul>
+<li><p>在<strong>最佳学习率</strong>下，外星人会得出结论，鸡也是动物。如果是这样的话，这一定意味着腿的数量不是决定某物是否是动物的关键因素。</p>
+</li>
+<li><p>如果外星人的<strong>学习率低</strong>，就无法从它这只鸡身上获得足够的洞察分析。外星人会得出结论，鸡不是动物，因为它们没有四条腿。外星人的学习能力很弱，在看到更多的鸡之前，它无法更新自己的思维。</p>
+</li>
+<li><p>在<strong>高学习率</strong>下，外星人会过度纠正。现在，它会得出这样的结论：因为鸡是一种动物，而且鸡有两条腿，所以<em>所有</em>动物都必须有两条腿。高学习率意味着模型一次学习的东西“太多”</p>
+</li>
+</ul>
+<h4 id="3-1-反向传播算法"><a href="#3-1-反向传播算法" class="headerlink" title="3.1 反向传播算法"></a>3.1 反向传播算法</h4><h5 id="3-1-1-训练过程"><a href="#3-1-1-训练过程" class="headerlink" title="3.1.1 训练过程"></a>3.1.1 训练过程</h5><p>在前面已经得知:对于正权重的神经元,需要调大其激活值;对于负权重的神经元,需要减少其激活值;这样使得总输出减小</p>
+<p>那么对于一个随机的结果,我们需要增大其标记参数的输出值,减小其它非标记参数的输出值,如果我们根据它需要更改的程度来记录每个标记或者非标记参数的激活值需要增大或者减小的程度,最后将这些程度加和起来,得到一个总的改变趋势,也是总改变权重(向量)</p>
+<p>这就是<strong>反向传播</strong>,传播出了对上一层如何改变神经元激活值的指示</p>
+<p><img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709211214958.png" srcset="/img/loading.gif" lazyload alt="image-20250709211214958"></p>
+<p><strong>不断对上一层进行反向传播</strong>,得到初始的期望,从而改变权重,这就是<strong>反向传播算法</strong></p>
+<p>刚才我们关注的是<strong>单个样本对权重偏置的影响</strong>,如果只按照此权重更改,会将所有图像识别为一种图像,若想识别1-9,应该将训练集每一个样本过一次反向传播,为了整体识别效果最佳,取1-9的向量的平均值</p>
+<p>&#x3D;&#x3D;此处得到的平均值,不严格地说就是上一节的负梯度&#x3D;&#x3D;</p>
+<p>注:像素组成的图像有无数种形式,1-9只是其中的几种,因平均向量会让整体识别的更好</p>
+<p><img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709212807874.png" srcset="/img/loading.gif" lazyload alt="image-20250709212807874"></p>
+<h5 id="3-1-2-训练简化"><a href="#3-1-2-训练简化" class="headerlink" title="3.1.2 训练简化"></a>3.1.2 训练简化</h5><p>如果训练集每一个样本都要过一次反向传播那就太费时间了,所以我们将训练集随机划分为许多minibatch,每个minibatch得出的结果当然不是最好的结果,但是是一个<strong>非常好的近似</strong>,这减少了我们的计算量</p>
+<p>这个技巧叫做<strong>随机梯度下降</strong></p>
+<h5 id="3-1-3-反向传播的本质"><a href="#3-1-3-反向传播的本质" class="headerlink" title="3.1.3 反向传播的本质"></a>3.1.3 反向传播的本质</h5><p>直觉叙述: 反向传播优化的目标: <strong>改变权重$W^{(l)}$ , 让损失函数$L$变小</strong></p>
+<p>比如一个三层网络: <img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250818143013526.png" srcset="/img/loading.gif" lazyload alt="image-20250818143013526"></p>
+<p>损失$L(y, t)$依赖于所有层的输出, 想更新$W^{(1)}$, 必须知道<strong>损失对$W^{(1)}$的敏感度</strong>也就是损失函数对于$W^{(1)}$的偏导</p>
+<p>根据偏导数链式法则: <img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250818144933553.png" srcset="/img/loading.gif" lazyload alt="image-20250818144933553"></p>
+<p>实际上每个$\frac{\partial h^{(l)}}{\partial h^{(l-1)}}$都是本层使用的激活函数的<strong>导数*权重矩阵</strong>, 所以:</p>
+<p><img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250818145420798.png" srcset="/img/loading.gif" lazyload alt="image-20250818145420798"></p>
+<p>此处体现了梯度消失的问题: 比如<code>sigmoid</code>的导数最大为0.25, 那么如果经过多层的反向传播,可能对第一层的矫正能力就消失了</p>
+<h5 id="3-1-4-求梯度和误差项"><a href="#3-1-4-求梯度和误差项" class="headerlink" title="3.1.4 求梯度和误差项"></a>3.1.4 求梯度和误差项</h5><p>在bp([反向传播](#3.1 反向传播算法))中, 误差项$\delta$是损失函数$L$对于第$l$层加权输入$z^{(l)}$的导数</p>
+<p>表示着这一层神经元的敏感度: 如果输入$z^{(l)}$变化了, 损失会怎么变</p>
+<p>对于最后一层: ($h^{(l)} &#x3D; f(z^{(l)})$)</p>
+<p><img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250818181429381.png" srcset="/img/loading.gif" lazyload alt="image-20250818181429381"></p>
+<p>对于除了最后一层之外的第$l$层:</p>
+<p><img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250818181634656.png" srcset="/img/loading.gif" lazyload alt="image-20250818181634656"></p>
+<p>那么梯度就很好求了:</p>
+<ul>
+<li>权重:</li>
+</ul>
+<p><img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250818182013268.png" srcset="/img/loading.gif" lazyload alt="image-20250818182013268"></p>
+<ul>
+<li><p>偏置: </p>
+<p><img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250818182026967.png" srcset="/img/loading.gif" lazyload alt="image-20250818182026967"></p>
+</li>
+</ul>
+<p>利用误差项$\delta$更新权重矩阵: ($\eta$ &#x3D; [学习率](# 2.1.5 学习率))</p>
+<p>$\Delta w_{ki} &#x3D; \eta \delta <em>k x</em>{ki}$, $w_{ki} &#x3D; w_{ki} + \Delta w_{ki}$</p>
+<h4 id="4-1-k折交叉验证"><a href="#4-1-k折交叉验证" class="headerlink" title="4.1 k折交叉验证"></a>4.1 <a target="_blank" rel="noopener" href="https://machinelearningmastery.com/k-fold-cross-validation/">k折交叉验证</a></h4><p>此时已经得到了模型和数据集，需要判断模型是否拟合，可以将数据拆分为训练集和测试集，如果只评估一次结果，很可能不准确，预期多评估模型，来确认可靠</p>
+<p>此时有一个k的参数，引用给定数据样本要拆分为的组数，因此叫k折交叉验证，<strong>使用有限的样本来估计模型在用于预测模型训练期间未使用的数据时通常预期性能</strong></p>
+<h5 id="4-1-1一般程序"><a href="#4-1-1一般程序" class="headerlink" title="4.1.1一般程序"></a>4.1.1一般程序</h5><p>一般程序如下：</p>
+<ol>
+<li>随机排列数据集。</li>
+<li>将数据集拆分为 k 组</li>
+<li>对于每个唯一组：<ol>
+<li>将组作为维持数据集或检验数据集</li>
+<li>将剩余组作为训练数据集</li>
+<li>在训练集上拟合模型并在测试集上评估模型</li>
+<li>保留评估分数并丢弃模型</li>
+</ol>
+</li>
+<li>使用模型评估分数样本总结模型的技能</li>
+</ol>
+<blockquote>
+<p><em><strong>这种方法涉及将观测值集随机划分为大小大致相等的 k 组或折叠。第一个折叠被视为验证集，该方法适用于剩余的 k − 1 个折叠。</strong></em><sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="— 第 181 页，[统计学习导论](http://amzn.to/2FkHqvW)，2013 年">[1]</span></a></sup></p>
+</blockquote>
+<p>在使用**交叉验证（cross-validation, CV）**来评估机器学习模型的表现时，有一个非常重要的原则：<strong>所有数据准备（如标准化、编码、特征选择等）以及超参数调优，都必须只在每次交叉验证划分出来的训练集上进行，而不能在整个数据集上提前做</strong></p>
+<h5 id="4-1-2-k的配置"><a href="#4-1-2-k的配置" class="headerlink" title="4.1.2 k的配置"></a>4.1.2 k的配置</h5><p>为k选择值的常见策略如下三种:</p>
+<p>1.具有代表性的: k值划分为的k个测试和数据集足够大以至于每个集都能代表整个数据集的特征</p>
+<p>2.k &#x3D; 10: 固定为10,这是一个有惊讶的折数,有低偏差和适度方差</p>
+<p>3.k &#x3D; n,逐个留出法,每一折只留一个样本进行测试<strong>Leave-One-Out Cross-Validation（LOOCV）</strong></p>
+<p>数据少时效果好，但计算代价高、波动大</p>
+<h5 id="4-1-3-工作实例"><a href="#4-1-3-工作实例" class="headerlink" title="4.1.3 工作实例"></a>4.1.3 工作实例</h5><p><img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250714121113349.png" srcset="/img/loading.gif" lazyload alt="image-20250714121113349"></p>
+<h5 id="4-1-4-交叉验证API"><a href="#4-1-4-交叉验证API" class="headerlink" title="4.1.4 交叉验证API"></a>4.1.4 交叉验证API</h5><p>可以使用<code>kfold()</code>函数去进行随机排序,参数为k&#x2F;是否随机&#x2F;<a href="%E4%BC%AA%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90.md">伪随机数生成器的种子</a></p>
+<h4 id="5-Pytorch基础和构建回归模型"><a href="#5-Pytorch基础和构建回归模型" class="headerlink" title="5  Pytorch基础和构建回归模型"></a>5  Pytorch基础和构建回归模型</h4><h5 id="5-1-Pytorch"><a href="#5-1-Pytorch" class="headerlink" title="5.1 Pytorch"></a>5.1 Pytorch</h5><h6 id="5-1-1-张量-Tensor"><a href="#5-1-1-张量-Tensor" class="headerlink" title="5.1.1 张量(Tensor)"></a>5.1.1 张量(Tensor)</h6><p><strong>张量</strong>: 核心数据结构, 用于存储和操作多维数组, 张量可以看作一个多维数组, 支持加速计算, 在pytorch中, 张量就类似<strong>Numpy的数组</strong>, 但是pytorch可以运行在不同的设备上, 比如GPU和CPU, 使得非常适合于进行大规模并行计算, 特别是在深度学习领域</p>
+<ul>
+<li>维度(Dimensionality): 张量的维度就是数据的多维数组结构</li>
+<li>形状(Shape): 张量的形状指的是每个维度上的大小, 例如, 形状为(3, 4)的张量意味着有三行四列</li>
+<li>数据类型(Dtype): 张量中的数据类型, 比如整数: torch.int8, torch.int32… , 浮点: torch.float32, torch.float64和布尔: torch.bool</li>
+</ul>
+<p><strong>张量创建</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><br>a = torch.zeros(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>) <span class="hljs-comment"># 全0张量</span><br>b = torch.ones(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)<br>c = torch.randn(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>) <span class="hljs-comment"># 随机数张量</span><br><br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br>numpy_array = np.array([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>])<br>tensor_from_numpy = torch.from_numpy(numpy_array) <span class="hljs-comment">#将numpy数组转换成张量</span><br><span class="hljs-comment"># !! torch.from_numpy 不会复制数据, 而是直接与原始的numpy数组共享内存, 就是说, 如果你修改了numpy_array, tensor_from_numpy的数值也会随之改变, 反之亦然</span><br><span class="hljs-built_in">print</span>(tensor_from_numpy)<br><br><span class="hljs-comment"># 指定设备创建张量</span><br>device = torch.device(<span class="hljs-string">&quot;cuda&quot;</span> <span class="hljs-keyword">if</span> torch.cuda.is_availbale() <span class="hljs-keyword">else</span> <span class="hljs-string">&quot;cpu&quot;</span>)<br>d = torch.randn(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, device=device)<br><span class="hljs-built_in">print</span>(d)<br></code></pre></td></tr></table></figure>
+
+<p><strong>常用张量操作</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 张量相加</span><br>e = torch.randn(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)<br>f = torch.randn(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)<br><span class="hljs-built_in">print</span>(e + f)<br><br><span class="hljs-comment"># 逐个元素乘法</span><br><span class="hljs-built_in">print</span>(e * f)<br><br><span class="hljs-comment"># 转置</span><br>g = torch.randn(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>)<br><span class="hljs-built_in">print</span>(g.t()) <span class="hljs-comment"># 或者二g.transpose(0, 1)</span><br><br><span class="hljs-comment"># 张量的形状</span><br><span class="hljs-built_in">print</span>(g.shape)<br></code></pre></td></tr></table></figure>
+
+<p><strong>张量的移动</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">if</span> torch.cuda.is_available():<br>	tensor_gpu = tensor_from_list.to(<span class="hljs-string">&#x27;cuda&#x27;</span>) <span class="hljs-comment">#张量移动到gpu</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>梯度和自动微分</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 创建一个需要梯度的张量</span><br>tensor_requires_grad = torch.tensor([<span class="hljs-number">1.0</span>], requires_grad = <span class="hljs-literal">True</span>)<br><br><span class="hljs-comment"># 进行一些操作</span><br>tensor_result = tensor_requires_grad * <span class="hljs-number">2</span><br><br><span class="hljs-comment"># 计算梯度</span><br>tensor_result.backward()<br><span class="hljs-built_in">print</span>(tensor_requires_grad.grad) <span class="hljs-comment"># 输出梯度</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h6 id="5-1-2-自动求导-Autograd"><a href="#5-1-2-自动求导-Autograd" class="headerlink" title="5.1.2 自动求导(Autograd)"></a>5.1.2 自动求导(Autograd)</h6><p><strong>自动求导(Automatic Differentiation)</strong>: 是深度学习框架中的一个核心特性, 它允许计算机自动计算数学函数的导数</p>
+<p>在深度学习中, 主要用于两个方面, <strong>1. 在训练神经网络时计算梯度</strong>, <strong>2. 进行反向传播</strong></p>
+<p>自动求导基于[链式法则](# 3.1.3 反向传播的本质)(微积分偏导)</p>
+<ul>
+<li>动态图: 在动态图中计算图在运行时动态构建. 每次执行操作时, 计算图都会更新, 这使得调试和修改模型变得更加容易. <code>pytorch</code>是动态图</li>
+<li>静态图: 静态图中济三途在开始执行之前构建完成, 并且不会改变<code>Tensorflow</code>同时支持静态和动态</li>
+</ul>
+<p><code>pytorch</code>有自动求导功能, 通过<code>autograd</code>模块来自动计算梯度, <code>torch.Tensor</code>对象有一个<code>requires_grad = True</code> 的张量时, <code>Pytorch</code> 会自动跟踪所有对它的操作, 以便在之后计算梯度</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">x = torch.randn(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, requires_grad = <span class="hljs-literal">True</span>)<br><span class="hljs-built_in">print</span>(x)<br><br>y = x + <span class="hljs-number">2</span><br>z = y * y * <span class="hljs-number">3</span><br>out = z.mean() <span class="hljs-comment">#.mean()后缀是求平均值</span><br><span class="hljs-comment"># dim = ... 指维度 print(x.mean(dim = 0))</span><br><span class="hljs-built_in">print</span>(out)<br></code></pre></td></tr></table></figure>
+
+<h6 id="5-1-3-反向传播-Backpropagation"><a href="#5-1-3-反向传播-Backpropagation" class="headerlink" title="5.1.3 反向传播(Backpropagation)"></a>5.1.3 反向传播(Backpropagation)</h6><p>一旦定义了计算图就可以使用<code>.backward()</code>来计算梯度</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 反向传播计算梯度</span><br>out.backward()<br><br><span class="hljs-comment"># 查看x的梯度</span><br><span class="hljs-built_in">print</span>(x.grad)<br></code></pre></td></tr></table></figure>
+
+<p><strong>停止梯度计算</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 使用pytorch停止计算</span><br><span class="hljs-keyword">with</span> torch.no_grad():<br>    y = x * <span class="hljs-number">2</span><br>    <br><span class="hljs-comment"># 或者使用</span><br>requires_grad = <span class="hljs-literal">False</span><br></code></pre></td></tr></table></figure>
+
+<p>**<code>requires_grad</code>属性 **</p>
+<p>每个<code>torch.Tensor</code>都有这个属性， 如果是<code>true</code>就会被<code>autograd</code>跟踪， 记录计算图， <code>false</code>就不记录梯度</p>
+<p><strong><code>with torch.no_grad</code></strong></p>
+<p>上下文管理器, 控制整个代码块, <strong>临时禁用</strong>autograd机制, 在此代码块里不会记录计算图也不计算梯度, 用于<strong>推理, 或者需要节省内存</strong>的情况, &#x3D;&#x3D;不改动<code>requires_grad</code>的属性&#x3D;&#x3D;</p>
+<p><strong><code>model.eval()</code></strong></p>
+<p><strong>torch.nn.Module</strong>的方法, 即评估模式, 影响<code>Dropout, BatchNorm</code>这类层的行为:</p>
+<p><code>Dropout</code>: 不再随机丢弃神经元</p>
+<p><code>BatchNorm</code>: 使用训练时统计的均值和方差,而不是<code>batch</code>里的</p>
+<p>和<code>train()</code>的区别就为以上两点</p>
+<h6 id="5-1-4-神经网络-nn-Module"><a href="#5-1-4-神经网络-nn-Module" class="headerlink" title="5.1 4 神经网络 (nn.Module)"></a>5.1 4 神经网络 (nn.Module)</h6><p>神经网络是一种模仿人脑神经元连接, 由多层节点(神经元)组成, 用于学习数据之间的复杂模式和关系</p>
+<p>包括前馈神经网络, 卷积神经网络, 循环神经网络和长短期记忆网络, 在图像识别, 语音处理, 自然语言处理等多个领域都有广泛的应用</p>
+<p><code>Pytorch</code>提供了一个非常方便的接口来构建神经网络模型, 即<code>torch.nn.Module</code>, 我们可以继承<code>nn.Module</code>类并定义自己的网络层</p>
+<p><strong>创建简单网络</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim <span class="hljs-comment"># pytorch的优化模块, 根据梯度更新模型参数, 从而最小化损失函数</span><br><br><span class="hljs-comment"># 定义一个简单的全连接神经网络</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SimpleNN</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">_init_</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">super</span>(SimpleNN, <span class="hljs-variable language_">self</span>)._init_()<br>        <span class="hljs-variable language_">self</span>.fc1 = nn.Linear(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>) <span class="hljs-comment"># 输入层到隐藏层</span><br>        <span class="hljs-variable language_">self</span>.fc2 = nn.Linear(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>) <span class="hljs-comment"># 隐藏层到输出层</span><br>        <br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        x = torch.relu(<span class="hljs-variable language_">self</span>.fc1(x)) <span class="hljs-comment"># ReLU 激活函数</span><br>        x = <span class="hljs-variable language_">self</span>.fc2(x)<br>        <span class="hljs-keyword">return</span> x<br>   <br><span class="hljs-comment"># 创建网络实例</span><br>model = SimpleNN()<br><br><span class="hljs-comment"># 打印模型结构</span><br><span class="hljs-built_in">print</span>(model)<br></code></pre></td></tr></table></figure>
+
+<p><strong>训练过程</strong>:</p>
+<ol>
+<li><strong>前向传播（Forward Propagation）</strong>： 在前向传播阶段，输入数据通过网络层传递，每层应用权重和激活函数，直到产生输出</li>
+<li><strong>计算损失（Calculate Loss）</strong>： 根据网络的输出和真实标签，计算损失函数的值</li>
+<li><strong>反向传播（Backpropagation）</strong>： 反向传播利用自动求导技术计算损失函数关于每个参数的梯度</li>
+<li><strong>参数更新（Parameter Update）</strong>： 使用优化器根据梯度更新网络的权重和偏置</li>
+<li><strong>迭代（Iteration）</strong>： 重复上述过程，直到模型在训练数据上的性能达到满意的水平</li>
+</ol>
+<p><strong>前向传播和损失计算</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 随机输入</span><br>x = torch.randn(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)<br><br><span class="hljs-comment"># 前向传播</span><br>output = model(x)<br><span class="hljs-built_in">print</span>(output)<br><br><span class="hljs-comment"># 定义损失函数</span><br>criterion = nn.MSELoss()<br><br><span class="hljs-comment"># 假设目标值为1</span><br>target = torch.randn(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>)<br><br><span class="hljs-comment"># 计算损失</span><br>loss = criterion(output, target)<br><span class="hljs-built_in">print</span>(loss)<br></code></pre></td></tr></table></figure>
+
+<p><strong>优化器(Optimizers)</strong></p>
+<p>优化器在训练过程中更新神经网络的参数, 来降低损失函数</p>
+<p><code>pytorch</code>提供SGD, Adam等等</p>
+<p><strong>使用优化器进行参数更新</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 定义优化器(Adam)</span><br>optimizer = optim.Adam(model.parameters(), lr = <span class="hljs-number">0.001</span>)<br><br><span class="hljs-comment">#训练步骤</span><br>optimizer.zero_grad() <span class="hljs-comment"># 清空梯度</span><br>loss.backward() <span class="hljs-comment">#反向传播</span><br>optimizer.step() <span class="hljs-comment">#更新参数</span><br></code></pre></td></tr></table></figure>
+
+<h6 id="5-1-5-训练模型"><a href="#5-1-5-训练模型" class="headerlink" title="5.1.5 训练模型"></a>5.1.5 训练模型</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim<br><br><span class="hljs-comment"># 1.定义SimpleNN</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SimpleNN</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">super</span>(SimpleNN, <span class="hljs-variable language_">self</span>).__init__()<br>        <span class="hljs-variable language_">self</span>.fc1 = nn.Linear(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>) <span class="hljs-comment"># 输入层到隐藏层</span><br>        <span class="hljs-variable language_">self</span>.fc2 = nn.Linear(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>) <span class="hljs-comment"># 隐藏层到输出</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        x = torch.relu(<span class="hljs-variable language_">self</span>.fc1(x)) <span class="hljs-comment"># relu</span><br>        x = <span class="hljs-variable language_">self</span>.fc2(x)<br>        <span class="hljs-keyword">return</span> x<br><br><span class="hljs-comment"># 2. 创建模型实例</span><br>model = SimpleNN()<br><br><span class="hljs-comment"># 3. 定义损失函数和优化器</span><br>criterion = nn.MSELoss()  <span class="hljs-comment"># 均方误差损失函数</span><br>optimizer = optim.Adam(model.parameters(), lr=<span class="hljs-number">0.001</span>)  <span class="hljs-comment"># Adam 优化器</span><br><br><span class="hljs-comment"># 4. 假设我们有训练数据 X 和 Y</span><br>X = torch.randn(<span class="hljs-number">10</span>, <span class="hljs-number">2</span>)  <span class="hljs-comment"># 10 个样本，2 个特征</span><br>Y = torch.randn(<span class="hljs-number">10</span>, <span class="hljs-number">1</span>)  <span class="hljs-comment"># 10 个目标值</span><br><br><span class="hljs-comment"># 5. 训练循环</span><br><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">100</span>):  <span class="hljs-comment"># 训练 100 轮</span><br>    optimizer.zero_grad()  <span class="hljs-comment"># 清空之前的梯度</span><br>    output = model(X)  <span class="hljs-comment"># 前向传播</span><br>    loss = criterion(output, Y)  <span class="hljs-comment"># 计算损失</span><br>    loss.backward()  <span class="hljs-comment"># 反向传播</span><br>    optimizer.step()  <span class="hljs-comment"># 更新参数</span><br>   <br>    <span class="hljs-comment"># 每 10 轮输出一次损失</span><br>    <span class="hljs-keyword">if</span> (epoch+<span class="hljs-number">1</span>) % <span class="hljs-number">10</span> == <span class="hljs-number">0</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Epoch [<span class="hljs-subst">&#123;epoch+<span class="hljs-number">1</span>&#125;</span>/100], Loss: <span class="hljs-subst">&#123;loss.item():<span class="hljs-number">.4</span>f&#125;</span>&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<h6 id="5-1-6-设备（Device）"><a href="#5-1-6-设备（Device）" class="headerlink" title="5.1.6 设备（Device）"></a>5.1.6 设备（Device）</h6><p>PyTorch 允许你将模型和数据移动到 GPU 上进行加速。</p>
+<p>使用 <code>torch.device</code>来指定计算设备。</p>
+<p>将模型和数据移至 GPU:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">device = torch.device(<span class="hljs-string">&quot;cuda&quot;</span> <span class="hljs-keyword">if</span> torch.cuda.is_available() <span class="hljs-keyword">else</span> <span class="hljs-string">&quot;cpu&quot;</span>)<br><br><span class="hljs-comment"># 将模型移动到设备</span><br>model.to(device)<br><br><span class="hljs-comment"># 将数据移动到设备</span><br>X = X.to(device)<br>Y = Y.to(device)<br></code></pre></td></tr></table></figure>
+
+<p>在训练过程中，所有张量和模型都应该移到同一个设备上（要么都在 CPU 上，要么都在 GPU 上）。</p>
+<h5 id="5-2实例"><a href="#5-2实例" class="headerlink" title="5.2实例"></a>5.2实例</h5><h4 id="6-pytorch数据处理和加载"><a href="#6-pytorch数据处理和加载" class="headerlink" title="6 pytorch数据处理和加载"></a>6 pytorch数据处理和加载</h4><h5 id="6-1-自定义Dataset"><a href="#6-1-自定义Dataset" class="headerlink" title="6.1 自定义Dataset"></a>6.1 自定义Dataset</h5><p><code>torch.utils.data.Dataset</code>是一个抽象类, 允许你从自己的数据源中创建数据集</p>
+<p>我们需要继承该类并实现以下两个方法:</p>
+<ul>
+<li><code>_len_(self)</code>: 返回数据集中的样本数量</li>
+<li><code>_getitem_(self, idx)</code>: 通过索引返回一个样本</li>
+</ul>
+<p><strong>假设已经有一个csv文件或者一些数据, 我们可以通过继承Dataset类来创建自己的数据集</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> Dataset<br><br><span class="hljs-comment"># 自定义数据集类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyDataset</span>(<span class="hljs-title class_ inherited__">Dataset</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">_init_</span>(<span class="hljs-params">self, X_data, Y_data</span>):<br>        <span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">        初始化数据集, X_data 和 Y_data 是两个列表或数据</span><br><span class="hljs-string">        X_data: 输入特征</span><br><span class="hljs-string">        Y_data: 目标标签</span><br><span class="hljs-string">        &#x27;&#x27;&#x27;</span><br>        <span class="hljs-variable language_">self</span>.X_data = X_data<br>        <span class="hljs-variable language_">self</span>.Y_data = Y_data<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__len__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">        返回数据集的长度</span><br><span class="hljs-string">        &#x27;&#x27;&#x27;</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">len</span>(<span class="hljs-variable language_">self</span>.X_data)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__getitem__</span>(<span class="hljs-params">self, index</span>):<br>        <span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">        返回数据集中第 index 个数据</span><br><span class="hljs-string">        &#x27;&#x27;&#x27;</span><br>        x = torch.tensor(<span class="hljs-variable language_">self</span>.X_data[index], dtype=torch.float32) <span class="hljs-comment"># 转换为Tensor</span><br>        y = torch.tensor(<span class="hljs-variable language_">self</span>.Y_data[index], dtype=torch.float32) <span class="hljs-comment"># 转换为Tensor</span><br>        <span class="hljs-keyword">return</span> x, y<br>    <br><span class="hljs-comment"># 示例数据</span><br>X_data = [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>], [<span class="hljs-number">5</span>, <span class="hljs-number">6</span>], [<span class="hljs-number">7</span>, <span class="hljs-number">8</span>]]<br>Y_data = [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>]<br><br><span class="hljs-comment"># 创建数据集实例</span><br>dataset = MyDataset(X_data, Y_data)<br><br></code></pre></td></tr></table></figure>
+
+<p><strong>使用DataLoader加载数据</strong></p>
+<p><code>Dataloader</code>是<code>pytorch</code>的一个重要工具, 用于从<code>Dataset</code>中按批次<code>(batch)</code>加载数据</p>
+<p><code>DataLoader</code>允许我们批量读取数据并且多线程加载, 从而提高训练效率</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader<br><br><span class="hljs-comment"># 创建 DataLoader 实例, batch_size 设置每次加载的样本数量</span><br>dataLoader = DataLoader(dataset, batch_size=<span class="hljs-number">2</span>, shuffle=<span class="hljs-literal">True</span>)<br><br><span class="hljs-comment"># 打印加载的数据</span><br><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>):<br>    <span class="hljs-keyword">for</span> batch_idx, (inputs, labels)<span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(dataloader):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Batch <span class="hljs-subst">&#123;batch_idx + <span class="hljs-number">1</span>&#125;</span>&#x27;</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Input: <span class="hljs-subst">&#123;inputs&#125;</span>&#x27;</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Labels: <span class="hljs-subst">&#123;labels&#125;</span>&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>batch_size</code>: 每次加载的样本数量</li>
+<li><code>shuffle</code>: 是否对数据进行洗牌, 通常训练时需要将数据打乱</li>
+<li><code>drop_last</code>: 如果数据集中的样本不能被<code>batch_size</code> 整除, 设置<code>True</code>时, 丢弃最后一个不完整的<code>batch</code></li>
+</ul>
+<h4 id="7-清华科协-–神经网络和基础-总结"><a href="#7-清华科协-–神经网络和基础-总结" class="headerlink" title="7. 清华科协 –神经网络和基础(总结)"></a>7. 清华科协 –神经网络和基础(总结)</h4><h5 id="7-1-1-神经网络的组成"><a href="#7-1-1-神经网络的组成" class="headerlink" title="7.1.1 神经网络的组成"></a>7.1.1 神经网络的组成</h5><p><strong>输入(input)</strong>: 输入信号的权重, 可以是外部输入或者是来自于其它神经元的输出</p>
+<p><strong>权重(weights)</strong>: 输入信号的权重, 表示每个输入对神经元影响的大小</p>
+<p><strong>偏置(bias)</strong>: 每个神经元的偏移量, 即为<code>wx+b</code>中的<code>b</code>, 保持输入的灵活性, 控制输入数据的阈值</p>
+<p><strong>激活函数(Activation)</strong>: 对加权输入的结果应用非线性变换, 常见的有ReLU, Sigmoid, Tanh等</p>
+<h5 id="6-1-2-抽象表达"><a href="#6-1-2-抽象表达" class="headerlink" title="6.1.2 抽象表达"></a>6.1.2 抽象表达</h5><ul>
+<li>是一个具有数以万计的特定参数的高维映射, <strong>对于待定参数可以求偏导</strong>(权重矩阵和偏置), 具有强大的表示能力</li>
+<li>形式上来说$f_{\theta}(x) &#x3D; y$, <code>x</code>就是向量输入, y是向量输出</li>
+<li>实际上这个定义非常的宽泛, 所以神经网络可以做很多事情</li>
+<li>f(图片) &#x3D; Possibility(用于图像分类)</li>
+<li>f(上文) &#x3D; next token(LLM)</li>
+<li>f(x) &#x3D; v(文字生成图片)</li>
+</ul>
+<h5 id="6-1-3-两个问题"><a href="#6-1-3-两个问题" class="headerlink" title="6.1.3  两个问题"></a>6.1.3  两个问题</h5><ul>
+<li>待定参数的形式(“神经网络”)是对的吗? 这样设计的函数的表示能力有上界吗? 会不会这么设计的函数, 根本找不到一组令人满意的参数来组成这样的函数? (任意一种形状的复杂函数)<ol>
+<li>此处不要求闭式解</li>
+<li>泰勒展开, $f(x) &#x3D; [1, x, x^2 …]dot[w_0, w_1, w_2…]$</li>
+<li>傅立叶展开, $f(x) &#x3D; [1, sin(x), sin(2x)…cos(x), cos(2x)…]dot[c, a_1, a_2…b_1, b_2…]$</li>
+<li>上述都可以无限逼近(前者描述充分好的光滑函数, 不断提高n, 后者是周期函数)</li>
+<li><strong>逼近定理</strong>: 对于&#x3D;&#x3D;有限定义域上&#x3D;&#x3D;的&#x3D;&#x3D;连续函数&#x3D;&#x3D;f, 如果网络具有一个隐藏层, 并且使用非线性激活函数(sigmoid, ReLU), 可以找到权重, 使得网络的输出以任意精度逼近f (只解决了<strong>存在性</strong>)</li>
+</ol>
+</li>
+<li>假设说待定参数的形式是对的, 考虑到数以亿计的参数, 如何求解出来呢? <ol>
+<li>求解出来之后要有一个判据判定好坏, 可以理解为现有的函数到目标函数的距离, 也就是损失</li>
+<li>用一个集合来近似所有区域的学习,即{(真实输入), (真实输出)}</li>
+<li>梯度下降法来达到最优值, 需要思考修改量的大小和方向, 也要思考极小和最小的问题</li>
+<li>如何得到梯度? –&gt;[反向传播算法](# 3.1.4 求梯度和误差项)</li>
+</ol>
+</li>
+</ul>
+<p><img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250818182559375.png" srcset="/img/loading.gif" lazyload alt="image-20250818182559375"></p>
+<h4 id="7-1-清华科协–pytorch代码基础-总结"><a href="#7-1-清华科协–pytorch代码基础-总结" class="headerlink" title="7.1 清华科协–pytorch代码基础(总结)"></a>7.1 清华科协–pytorch代码基础(总结)</h4><h5 id="7-1-1-计算图"><a href="#7-1-1-计算图" class="headerlink" title="7.1.1 计算图"></a>7.1.1 计算图</h5><h5 id="Autograd-automatic-differentiation（自动微分）"><a href="#Autograd-automatic-differentiation（自动微分）" class="headerlink" title="Autograd &#x3D; automatic differentiation（自动微分）"></a><strong>Autograd</strong> &#x3D; <strong>automatic differentiation（自动微分）</strong></h5><p>可以自动计算梯度的工具</p>
+<p>计算图是由一系列节点和边组成的有向无环图, 每个节点代表一个操作和变量, 边表示变量之间的依赖关系, 在深度学习中, 计算图记录了每个操作(+, *, dot …)如何组成最终的输出</p>
+<p>在前向传播的过程中, 模型通过一系列的操作计算出最终的结果, 同时构建计算图</p>
+<ul>
+<li>当对张量进行操作时, 框架会创建一个新的节点, 记录操作和其输入输出</li>
+<li>输出成为下一个输入, 操作之间通过边连起来</li>
+<li>计算图的节点不仅记录操作, 还会记录输入输出张量以便计算梯度</li>
+</ul>
+<h5 id="7-1-2-存储空间-OOM警告"><a href="#7-1-2-存储空间-OOM警告" class="headerlink" title="7.1.2 存储空间(OOM警告)"></a>7.1.2 存储空间(OOM警告)</h5><p><code>OOM = out of memory</code></p>
+<p>计算图需要占用内存空间来存储与向前传播过程中的每个操作相关的中间结果以及梯度.  在训练过程中, pytorch 会动态构建计算图, 每个操作会生成一个对应的节点, 并在计算图中记录这些操作及其输入输出:</p>
+<ul>
+<li><strong>操作</strong>: 加法, 乘法, 激活函数</li>
+<li><strong>输入张量</strong>: 这些张量是计算图中某个节点的输入</li>
+<li><strong>输出张量</strong>: 这是计算图中某个节点的输出</li>
+</ul>
+<p>由于计算图的每个节点都可能有梯度信息, 因此计算图的存储空间会随着模型的复杂度和输入数据的大小而增加. 大模型和大数据集会使得计算图占用更多的内存空间</p>
+<h5 id="7-1-3-行成时间-动态构建"><a href="#7-1-3-行成时间-动态构建" class="headerlink" title="7.1.3 行成时间(动态构建)"></a>7.1.3 行成时间(动态构建)</h5><p>计算图的行程时间是指在pytorch之中, 每当执行一个操作时, 计算图就会动态地构建, 只有当张量的require_grad设置为true时, pytorch会追踪该向量的运损并且记录操作, 构建出一个计算图, 每次向前传播的时候, pytorch都是根据当前的操作动态更新计算图, 以便于支持后续的梯度计算. 此过程按需进行, 并且能够根据不同的输入动态调整</p>
+<h5 id="7-1-4-销毁时间-反向传播后"><a href="#7-1-4-销毁时间-反向传播后" class="headerlink" title="7.1.4 销毁时间(反向传播后)"></a>7.1.4 销毁时间(反向传播后)</h5><p>在完成反向传播并且计算出梯度时, 计算图会被销毁, 在pytorch中, 计算图在执行backward()时被使用, 并且在计算完梯度后通常会被销毁, 为了节省内存, pytorch会在完成反向传播后, 自动释放计算贴图所占用的内存</p>
+<p>然而, 如果我们设置了<strong>backward(retain_graph &#x3D; True)</strong>, 那么计算图就不会被销毁, 这对于需要多次反向传播的情况非常有用</p>
+<h5 id="7-1-5-pytorch模型"><a href="#7-1-5-pytorch模型" class="headerlink" title="7.1.5 pytorch模型"></a>7.1.5 pytorch模型</h5><p><strong>torch.nn.Module</strong>: </p>
+<ul>
+<li><p>是pytorch中所有神经网络模型的基类, 所有写的神经模型都要继承这个类, 并且重写两个重要的方法</p>
+</li>
+<li><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">_init_() <span class="hljs-comment"># 构造函数, 定义了这个神经网络模型的组成部分</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">forward() <span class="hljs-comment"># 前向传播函数, 当执行model()时, 函数对象执行的就是forward()函数, 定义了数据流</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>其它重要的成员函数:</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">parameters()<br>named_parameters()<br>to()<br>apply()<br><span class="hljs-built_in">eval</span>()<br>train()<br>state_dict()<br>load_state_dict()<br>zero_grad()<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>— 第 181 页，<a target="_blank" rel="noopener" href="http://amzn.to/2FkHqvW">统计学习导论</a>，2013 年
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>https://rubbishbro.github.io/2026/03/23/machine_learning_basics/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>March 23, 2026</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/03/21/NUEDC-feedback/" title="练习题目复盘">
+                        <span class="hidden-mobile">练习题目复盘</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        var texts = ["rubbishbro's Blog","欢迎来到本菜鸡的博客ovo"];
+        typing(texts.join('<br>'));
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
