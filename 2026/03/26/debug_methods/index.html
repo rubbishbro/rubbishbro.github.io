@@ -1,0 +1,828 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="STM32 遇到 Bug 怎么办？(VS Code 调试保姆级教程)1. 写在前面             💡 导读： 这篇指南写给刚接触 STM32 开发的小伙伴。遇到 Bug 不要慌，也不要“玄学”瞎改代码碰运气。Debug（调试）的本质就是“排除法”，我们要按照流程一步步排查，直到揪出到底是哪行代码写乱了、哪个 CubeMX 配置点漏了，或者是板子哪根线没插好。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="stm32调试指南">
+<meta property="og:url" content="https://rubbishbro.github.io/2026/03/26/debug_methods/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="STM32 遇到 Bug 怎么办？(VS Code 调试保姆级教程)1. 写在前面             💡 导读： 这篇指南写给刚接触 STM32 开发的小伙伴。遇到 Bug 不要慌，也不要“玄学”瞎改代码碰运气。Debug（调试）的本质就是“排除法”，我们要按照流程一步步排查，直到揪出到底是哪行代码写乱了、哪个 CubeMX 配置点漏了，或者是板子哪根线没插好。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-26T07:08:34.000Z">
+<meta property="article:modified_time" content="2026-03-26T09:31:35.050Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="demo">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>stm32调试指南 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"rubbishbro.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/embedded/" target="_self">
+                <i class="icon-eletronic"></i>
+                <span>嵌入式以及嵌入式ai</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/post.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="stm32调试指南"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-03-26 15:08" pubdate>
+          March 26, 2026 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          33 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">stm32调试指南</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="STM32-遇到-Bug-怎么办？-VS-Code-调试保姆级教程"><a href="#STM32-遇到-Bug-怎么办？-VS-Code-调试保姆级教程" class="headerlink" title="STM32 遇到 Bug 怎么办？(VS Code 调试保姆级教程)"></a>STM32 遇到 Bug 怎么办？(VS Code 调试保姆级教程)</h2><h2 id="1-写在前面"><a href="#1-写在前面" class="headerlink" title="1. 写在前面"></a>1. 写在前面</h2><div class="note note-info">
+            <p><strong>💡 导读：</strong> 这篇指南写给刚接触 STM32 开发的小伙伴。遇到 Bug 不要慌，也不要“玄学”瞎改代码碰运气。<strong>Debug（调试）的本质就是“排除法”</strong>，我们要按照流程一步步排查，直到揪出到底是哪行代码写乱了、哪个 CubeMX 配置点漏了，或者是板子哪根线没插好。</p> 
+          </div>
+
+<p>本文主要针对在 <strong>VS Code (CubeIDE for VS Code)</strong> 环境下，手把手教你如何使用工具来给代码debug</p>
+<hr>
+<h2 id="2-Bug-怎么分类"><a href="#2-Bug-怎么分类" class="headerlink" title="2. Bug 怎么分类"></a>2. Bug 怎么分类</h2><p>排查问题前，先看看你的 Bug 属于下面哪个类别：</p>
+<table>
+<thead>
+<tr>
+<th align="left">层级</th>
+<th align="left">表现现象</th>
+<th align="left">翻译成大白话</th>
+<th align="left">重点查哪儿</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>L0</strong></td>
+<td align="left"><strong>编译报错</strong></td>
+<td align="left"><strong>连编译都过不去（满屏红线）</strong></td>
+<td align="left">拼写错误、少写分号、忘加头文件路径。</td>
+</tr>
+<tr>
+<td align="left"><strong>L1</strong></td>
+<td align="left"><strong>下载失败</strong></td>
+<td align="left"><strong>程序死活烧录不进板子</strong></td>
+<td align="left">ST-Link 没插牢、驱动没装、线接反了、板子没供电。</td>
+</tr>
+<tr>
+<td align="left"><strong>L2</strong></td>
+<td align="left"><strong>内核死机</strong></td>
+<td align="left"><strong>代码跑着跑着卡死了（HardFault）</strong></td>
+<td align="left">数组越界（比如大小为5的数组你存了第6个）、遇到了野指针、死循环出不来了。</td>
+</tr>
+<tr>
+<td align="left"><strong>L3</strong></td>
+<td align="left"><strong>外设没反应</strong></td>
+<td align="left"><strong>没报错也下进去了，但灯不亮&#x2F;无数字输出</strong></td>
+<td align="left">CubeMX 引脚选错了、没勾选开启时钟、外围电路接错了。</td>
+</tr>
+<tr>
+<td align="left"><strong>L4</strong></td>
+<td align="left"><strong>数据瞎跳</strong></td>
+<td align="left"><strong>有数据，但全是错的或者乱码</strong></td>
+<td align="left">DMA 传错了地址、Cache 缓存没刷新（高级单片机常见）、中断互相抢占打架了。</td>
+</tr>
+</tbody></table>
+<h3 id="🐛-常见-Bug-实例与解决思路"><a href="#🐛-常见-Bug-实例与解决思路" class="headerlink" title="🐛 常见 Bug 实例与解决思路"></a>🐛 常见 Bug 实例与解决思路</h3><div class="note note-info">
+            <p><strong>🔥 L0 编译报错：找不到 <code>core_cm3.h</code> 或 <code>main.h</code></strong></p> <ul> <li><strong>现象：</strong> <code>#include &quot;main.h&quot;</code> 下面划了红线，终端一堆 <code>fatal error: No such file or directory</code>。</li> <li><strong>原因分析：</strong> 编译器在“寻找头文件”的清单里，没看到你这个文件的路径。或者路径里含有<code>诡异的中文名</code>。</li> <li><strong>解决方法：</strong> <ol> <li>检查工程夹路径<strong>不要有中文和特殊符号</strong>。</li> <li>在工程配置文件（如 <code>Makefile</code> 或 <code>CMakeLists.txt</code>）的 <code>C_INCLUDES</code> 里，把包含这些头文件的文件夹路径加进去。</li> </ol> </li> </ul> 
+          </div>
+
+<div class="note note-info">
+            <p><strong>🔥 L1 下载失败：程序无法烧录进入板子内</strong></p> <ul> <li><strong>现象:</strong> 烧写程序后无预期反应, 或者之前的程序未被清除</li> <li><strong>原因分析:</strong> 可能是硬件连接问题,或者对应驱动未安装</li> <li><strong>解决方法:</strong> 确保STM32板子正确供电,确认ST-LINK调试器或其他编程工具与STM32开发板的连接无误,确保ST-LINK的驱动已正确安装</li> </ul> 
+          </div>
+
+<div class="note note-warning">
+            <p>这里偶尔会出现一些神秘的问题,比如boot设置问题,甚至芯片锁死,一般boot问题的解决是烧写程序时按住boot0,如果芯片锁死了大家自己查一下文档吧…</p> 
+          </div>
+
+<div class="note note-info">
+            <p><strong>⚡ L2 内核死机：程序跑着跑着彻底卡死 (HardFault_Handler)</strong></p> <ul> <li><strong>现象：</strong> 板子灯不闪了，点下 VS Code 的暂停键，发现程序卡死在 <code>HardFault_Handler</code> 死循环里。</li> <li><strong>原因分析：</strong> 99% 的情况是<strong>内存越界</strong>（比如数组开了 10 用了 12）、<strong>野指针</strong>（用了没初始化的指针），或者<strong>堆栈溢出</strong>（在局部变量里塞了极大的数组）。</li> <li><strong>解决方法：</strong><ol> <li>在 VS Code 的 “Call Stack(调用堆栈)” 栏目里，回溯看看是哪个函数引发的崩溃。</li> <li>把占用内存特别大的局部变量，加上 <code>static</code> 变成全局静态变量，或者去启动文件 <code>startup_stm32.s</code> 中把 <code>Stack_Size</code> 稍微改大一点。</li> </ol> </li> </ul> 
+          </div>
+
+<hr>
+<h2 id="3-VS-Code-是怎么连上板子的？"><a href="#3-VS-Code-是怎么连上板子的？" class="headerlink" title="3. VS Code 是怎么连上板子的？"></a>3. VS Code 是怎么连上板子的？</h2><p>在 VS Code 里调试，不像 Keil 那样点一个按钮就全包圆了。VS Code 靠的是几套工具<strong>接力干活</strong>，理解了这个过程，找 Bug 就能一针见血：</p>
+<h3 id="3-1-调试的“接力赛”"><a href="#3-1-调试的“接力赛”" class="headerlink" title="3.1 调试的“接力赛”"></a>3.1 调试的“接力赛”</h3><ol>
+<li><strong>好看的皮囊 (VS Code 界面)</strong>：VS Code 本身根本不懂单片机是什么，它只负责提供好看的按钮和文本框。</li>
+<li><strong>大脑 (GDB)</strong>：背地里工作的 <code>arm-none-eabi-gdb</code>。只有它认识你的 C 代码，知道第10行代码对应单片机里的哪个具体指令。</li>
+<li><strong>翻译官 (OpenOCD&#x2F;GDB Server)</strong>：GDB 不知道怎么给板子通电。所以它发指令给翻译官（如 OpenOCD），翻译官把长篇大论变成电信号。</li>
+<li><strong>打工人 (ST-Link 等)</strong>：最后由 ST-Link 仿真器通过杜邦线，顺着 <code>SWD/JTAG</code> 引脚，强制让你的 STM32 芯片暂停或者读取里面的变量。</li>
+</ol>
+<div class="note note-primary">
+            <p><strong>🌟连不上板子怎么办？</strong><br>如果你发现“无法下断点”或是“连接超时报红”，千万不要急着回去改你的 <code>main.c</code>！<strong>问题多半出在这条连线链路里</strong>！顺着藤摸瓜查：</p> <ol> <li>板子通上电没？（测量板子上的 3.3V）</li> <li>ST-Link 灯闪没闪？引脚接对没（<code>SWDIO</code> 接 <code>DIO</code>，<code>SWCLK</code> 接 <code>CLK</code>，地线 <code>GND</code> 必须接）？</li> <li>电脑设备管理器里有没有叹号？</li> <li>下载配置选对芯片型号了吗？（选成了 F103C8 去下 F407）</li> </ol> 
+          </div>
+
+<div class="note note-danger">
+            <p><strong>初始库报红,无法读取</strong><br>是的,我们神秘的vscode有的时候会无法读取初始库,这个时候需要手动更改json文件来手动地把库添加进去</p> 
+          </div>
+
+<h3 id="3-2-怎么看板子里的变量？"><a href="#3-2-怎么看板子里的变量？" class="headerlink" title="3.2 怎么看板子里的变量？"></a>3.2 怎么看板子里的变量？</h3><ul>
+<li><strong>变量监视器 (Variables &amp; Watch)</strong>：在左侧边的调试栏里，把你关注的变量名字敲进去。当你点暂停或者代码停在红点（断点）时，就能看到变量里究竟存着什么数。</li>
+<li><strong>寄存器透视镜 (SVD &amp; Peripheral View)</strong>：如果你怀疑 CubeMX 没把配置写进去，你可以给工程导入对应芯片的 <strong><code>.svd</code> 文件</strong>。这玩意儿能让你直接在 VS Code 里像透视一样，看到芯片最底层的硬件开关状态（比如看外设的 <code>ENABLE</code> 开关到底是不是 <code>1</code>），这可是大杀器！</li>
+</ul>
+<h3 id="3-3-断点不能打怎么办？（看输出与看波形）"><a href="#3-3-断点不能打怎么办？（看输出与看波形）" class="headerlink" title="3.3 断点不能打怎么办？（看输出与看波形）"></a>3.3 断点不能打怎么办？（看输出与看波形）</h3><p>有些东西（比如飞速转动的电机、一直在跑的协议）你点一下“暂停”，单片机愣住了，现象也全毁了。这时候得让代码边跑边监测：</p>
+<ul>
+<li><strong>串口打印</strong>：用串口把变量值印到电脑屏幕（终端）上。几乎人人都会。(微软商店搜索串口调试助手)</li>
+<li><strong>SWO</strong>：如果你接了 ST-Link 并且引错了 SWO 引脚（调试用的神仙引脚），在 VS Code 插件里可以用它来代替串口发数据。它几乎不占用单片机的计算时间算力，再也不怕 printf 导致的程序卡顿了。</li>
+<li><strong>逻辑分析仪</strong>：如果代码怎么看都觉得没毛病，但传感器就是收不到信号。别猜了，掏出十几块钱买个便宜的<strong>逻辑分析仪</strong>，把夹子夹在引脚上看物理波形。很多时候是杜邦线断了或者外界干扰，波形不会骗人！</li>
+</ul>
+<hr>
+<h2 id="4-解决bug的参考路径"><a href="#4-解决bug的参考路径" class="headerlink" title="4. 解决bug的参考路径"></a>4. 解决bug的参考路径</h2><ol>
+<li><strong>先看亮没亮</strong>：别搞了半天发现电源线没插！或者你的调试器 ST-Link 连识别都没被识别。</li>
+<li><strong>找主大门</strong>：在 <code>main()</code> 函数第一句话打个红色的断点，看看程序能不能跑进来。要是进都不进，说明根本没启动成功（看看 Boot 引脚跳线帽拨对了没）。</li>
+<li><strong>测心率（查时钟）</strong>：走到初始化时钟 <code>SystemClock_Config()</code> 函数，看看有没有卡死在等待外面那颗亮晶晶的晶振（HSE）上。</li>
+<li><strong>查初始化有没有报错</strong>：看看外设（比如串口）的 Init 函数返回的究竟是不是 <code>HAL_OK</code>。</li>
+<li><strong>剥离大法（最关键）</strong>：把你网上抄来的几百行神级算法全删掉（注释掉）！<strong>写个最土的死循环代码</strong>（比如点个灯，或者串口死循环发 “Hello”），先向自己证明这个引脚没坏。</li>
+<li><strong>查中断和 DMA</strong>：只有当你确信土办法能通了，再加入中断&#x2F;DMA。如果加了立刻就不行，去检查 CubeMX 里的全局中断打勾了没，DMA 通道是不是被别的外设占了。</li>
+<li><strong>刷缓存（针对高端芯片）</strong>：如果是像 M7&#x2F;M55 这种带 D-Cache 的大芯片，遇到 DMA 传来的数组里面的数字死活不更新，就一定得在读取前加一句清缓存指令。</li>
+</ol>
+<hr>
+<h2 id="5-新手经典翻车现场"><a href="#5-新手经典翻车现场" class="headerlink" title="5. 新手经典翻车现场"></a>5. 新手经典翻车现场</h2><h3 id="5-1-串口-UART-无效"><a href="#5-1-串口-UART-无效" class="headerlink" title="5.1 串口 (UART) 无效"></a>5.1 串口 (UART) 无效</h3><div class="note note-warning">
+            <p><strong>🔥 现象：</strong> 串口助手死活收不到字，或者收到一堆像火星文的乱码 &#96;&#96;。<br><strong>🛠️ 抓虫药方：</strong></p> <ol> <li><strong>测线序</strong>：你引脚选对了吗？RX 线是不是接到了单片机的 TX 引脚上？（必须交叉接法：单片机 TX 接 USB转TTL 的 RX）</li> <li><strong>查波特率</strong>：代码里配的 115200，串口助手上是不是忘了改，还停在 9600？</li> <li><strong>查地线</strong>：发现乱码有时候也是因为电脑跟单片机没共地（GND），只接了 TX 和 RX。</li> </ol> 
+          </div>
+
+<h3 id="5-2-ADC-测电压测了个寂寞"><a href="#5-2-ADC-测电压测了个寂寞" class="headerlink" title="5.2 ADC 测电压测了个寂寞"></a>5.2 ADC 测电压测了个寂寞</h3><div class="note note-danger">
+            <p><strong>🔥 现象：</strong> 不管怎么动传感器，屏幕上的电压永远是个死数字，或者像发疯一样乱跳。<br><strong>🛠️ 抓虫药方：</strong></p> <ol> <li><strong>模式错了</strong>：CubeMX 里面那根引脚，是不是选成了普通的 <code>GPIO_Input</code>，忘了选 <code>Analog</code> (模拟) 模式？</li> <li><strong>没接共地</strong>：如果测出来的值满天乱飞，很可能是单片机和传感器的<strong>地线 (GND) 没有接在一起</strong>！参考基准没了，数据全乱。</li> <li><strong>初始化顺序</strong>：如果用了 DMA 大法，记得初始化代码里：<strong>必须先启动 DMA，再去启动 ADC</strong>！顺序反了底层的搬运工是不干活的。</li> </ol> 
+          </div>
+
+<h3 id="5-3-中断-EXTI-定时器-进不去"><a href="#5-3-中断-EXTI-定时器-进不去" class="headerlink" title="5.3 中断 (EXTI&#x2F;定时器) 进不去"></a>5.3 中断 (EXTI&#x2F;定时器) 进不去</h3><div class="note note-info">
+            <p><strong>🔥 现象：</strong> 按了按键，或者定时器时间到了，灯就是不闪。加了 <code>printf</code> 也没输出。<br><strong>🛠️ 抓虫药方：</strong></p> <ol> <li><strong>忘了开启中断</strong>：这 80% 的新手都会忘！CubeMX 里 NVIC 选项卡，是不是前面的勾没打上（Enable）？</li> <li><strong>回调函数名写错</strong>：在 <code>stm32f4xx_it.c</code> 或者主函数里写中断回调时，函数名字或者参数写得和 HAL 库标准声明不一样（推荐用自动补全）。</li> <li><strong>忘记启动外设</strong>：配置好了定时器中断，但是忘了调用 <code>HAL_TIM_Base_Start_IT(&amp;htimx)</code> 这句话，发动机根本没打火！</li> </ol> 
+          </div>
+
+<hr>
+<h2 id="6-好的习惯"><a href="#6-好的习惯" class="headerlink" title="6. 好的习惯"></a>6. 好的习惯</h2><div class="note note-info">
+            <ul> <li><strong>控制变量法</strong>：找bug时，一次只改一行代码或者一个配置，试了不行就撤回归原样。千万别同时改 5 个地方再看行不行，那样就算碰巧蒙对了，你也不知道是哪个改动起了作用。</li> <li><strong>让板子“说话”</strong>：不会打断点没关系，在你觉得最关键的代码缝隙里，写一句点亮 LED 灯的代码。没亮？你就知道程序彻底gg了，压根没走到这儿。</li> <li><strong>做避坑笔记</strong>：今天遇到的坑花了三小时，用个本子记下来。下次再跳进同样的坑，只需要三秒钟。调试就是一个攒经验打气的过程！</li> </ul> 
+          </div>
+
+<hr>
+<blockquote>
+<p><strong>结语：</strong> 调试是一种系统工程。通过建立严谨的层级判定、掌握 VS Code 调试工具链并遵循标准排查流程，开发人员可以显著降低解决复杂系统问题的平均时间 (MTTR)。</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" class="category-chain-item">开发工具</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/demo/" class="print-no-link">#demo</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>stm32调试指南</div>
+      <div>https://rubbishbro.github.io/2026/03/26/debug_methods/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>March 26, 2026</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/03/24/ADC-DMA_example/" title="ADC/DMA多通道采集例程 - 基于STM32F411">
+                        <span class="hidden-mobile">ADC/DMA多通道采集例程 - 基于STM32F411</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        var texts = ["rubbishbro's Blog","欢迎来到本菜鸡的博客ovo"];
+        typing(texts.join('<br>'));
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

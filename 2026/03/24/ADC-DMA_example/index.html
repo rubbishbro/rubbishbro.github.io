@@ -19,37 +19,22 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="开发工具stm32cubemxSTM32CubeMX 是 ST 官方提供的一款 STM32 单片机图形化配置工具。它的主要作用不是写完整工程代码，而是帮助我们快速完成芯片外设配置、时钟配置、引脚分配，并自动生成初始化代码 STM32CubeMX 主要可以完成以下几件事：  （1）芯片和开发板选择  可以直接选择具体的 STM32 芯片型号，或者选择官方开发板  （2）引脚分配  例如把某个引脚配置">
+    <meta name="description" content="1. 为什么要用 ADC + DMA？             核心原理：解放 CPU！正常情况下，CPU 需要死等 ADC 转换完成，再把数据读出到内存。如果 ADC 通道多、采样频率高，CPU 就会被耗死在“等待-读取”的枯燥操作中。引入 DMA（直接内存访问，硬件搬运工） 后，ADC 每转换完一个通道的数据，会直接触发 DMA 硬件，由 DMA 自动将外设数据搬运到我们指定的内存数组里，整个">
 <meta property="og:type" content="article">
-<meta property="og:title" content="stm32开发工具">
-<meta property="og:url" content="https://rubbishbro.github.io/2025/11/20/primary_develop_forstm32/index.html">
+<meta property="og:title" content="ADC&#x2F;DMA多通道采集例程 - 基于STM32F411">
+<meta property="og:url" content="https://rubbishbro.github.io/2026/03/24/ADC-DMA_example/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="开发工具stm32cubemxSTM32CubeMX 是 ST 官方提供的一款 STM32 单片机图形化配置工具。它的主要作用不是写完整工程代码，而是帮助我们快速完成芯片外设配置、时钟配置、引脚分配，并自动生成初始化代码 STM32CubeMX 主要可以完成以下几件事：  （1）芯片和开发板选择  可以直接选择具体的 STM32 芯片型号，或者选择官方开发板  （2）引脚分配  例如把某个引脚配置">
+<meta property="og:description" content="1. 为什么要用 ADC + DMA？             核心原理：解放 CPU！正常情况下，CPU 需要死等 ADC 转换完成，再把数据读出到内存。如果 ADC 通道多、采样频率高，CPU 就会被耗死在“等待-读取”的枯燥操作中。引入 DMA（直接内存访问，硬件搬运工） 后，ADC 每转换完一个通道的数据，会直接触发 DMA 硬件，由 DMA 自动将外设数据搬运到我们指定的内存数组里，整个">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://rubbishbro.github.io/pics/cubemx.png">
-<meta property="og:image" content="https://rubbishbro.github.io/pics/cubemx2.png">
-<meta property="og:image" content="https://rubbishbro.github.io/pics/cubeprogrammer.png">
-<meta property="og:image" content="https://rubbishbro.github.io/pics/cubeprogrammer3.png">
-<meta property="og:image" content="https://rubbishbro.github.io/pics/cubeprogrammer2.png">
-<meta property="og:image" content="https://rubbishbro.github.io/pics/cubeide.png">
-<meta property="og:image" content="https://rubbishbro.github.io/pics/cubeide2.png">
-<meta property="og:image" content="https://rubbishbro.github.io/pics/cubeide3.png">
-<meta property="og:image" content="https://rubbishbro.github.io/pics/cubeide_vscode.png">
-<meta property="og:image" content="https://rubbishbro.github.io/pics/cubeide_vscode2.png">
-<meta property="og:image" content="https://rubbishbro.github.io/pics/staicore.png">
-<meta property="og:image" content="https://rubbishbro.github.io/pics/staicore2.png">
-<meta property="og:image" content="https://rubbishbro.github.io/pics/staicore3.png">
-<meta property="og:image" content="https://rubbishbro.github.io/pics/staicore4.png">
-<meta property="article:published_time" content="2025-11-20T09:30:10.000Z">
-<meta property="article:modified_time" content="2026-03-23T15:20:14.015Z">
+<meta property="article:published_time" content="2026-03-24T09:00:12.000Z">
+<meta property="article:modified_time" content="2026-03-25T00:00:01.148Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="demo">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://rubbishbro.github.io/pics/cubemx.png">
   
   
   
-  <title>stm32开发工具 - Hexo</title>
+  <title>ADC/DMA多通道采集例程 - 基于STM32F411 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -231,7 +216,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="stm32开发工具"></span>
+            <span id="subtitle" data-typed-text="ADC/DMA多通道采集例程 - 基于STM32F411"></span>
           
         </div>
 
@@ -242,8 +227,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-11-20 17:30" pubdate>
-          November 20, 2025 pm
+        <time datetime="2026-03-24 17:00" pubdate>
+          March 24, 2026 pm
         </time>
       </span>
     
@@ -254,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.8k words
+          3.2k words
         
       </span>
     
@@ -265,7 +250,7 @@
         
         
         
-          24 mins
+          27 mins
         
       </span>
     
@@ -302,145 +287,67 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">stm32开发工具</h1>
+            <h1 id="seo-header">ADC/DMA多通道采集例程 - 基于STM32F411</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="开发工具"><a href="#开发工具" class="headerlink" title="开发工具"></a>开发工具</h2><h3 id="stm32cubemx"><a href="#stm32cubemx" class="headerlink" title="stm32cubemx"></a>stm32cubemx</h3><p>STM32CubeMX 是 ST 官方提供的一款 STM32 单片机图形化配置工具。<br>它的主要作用不是写完整工程代码，而是帮助我们快速完成芯片外设配置、时钟配置、引脚分配，并自动生成初始化代码</p>
-<p>STM32CubeMX 主要可以完成以下几件事：</p>
-<ul>
-<li>（1）芯片和开发板选择</li>
-</ul>
-<p>可以直接选择具体的 STM32 芯片型号，或者选择官方开发板</p>
-<ul>
-<li>（2）引脚分配</li>
-</ul>
-<p>例如把某个引脚配置成：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">GPIO 输入/输出<br>USART 串口<br>SPI<br>I2C<br>ADC<br>PWM 输出<br></code></pre></td></tr></table></figure>
+                <h2 id="1-为什么要用-ADC-DMA？"><a href="#1-为什么要用-ADC-DMA？" class="headerlink" title="1. 为什么要用 ADC + DMA？"></a>1. 为什么要用 ADC + DMA？</h2><div class="note note-info">
+            <p><strong>核心原理：解放 CPU！</strong><br>正常情况下，CPU 需要死等 ADC 转换完成，再把数据读出到内存。如果 ADC 通道多、采样频率高，CPU 就会被耗死在“等待-读取”的枯燥操作中。<br>引入 <strong>DMA（直接内存访问，硬件搬运工）</strong> 后，ADC 每转换完一个通道的数据，会直接触发 DMA 硬件，由 DMA 自动将外设数据搬运到我们指定的内存数组里，整个过程 CPU 完全不需要插手。</p> 
+          </div>
 
-<p>这样就不用自己一页一页翻手册去手动找复用功能</p>
+<h2 id="2-STM32CubeMX-配置指南-基于-F411"><a href="#2-STM32CubeMX-配置指南-基于-F411" class="headerlink" title="2. STM32CubeMX 配置指南 (基于 F411)"></a>2. STM32CubeMX 配置指南 (基于 F411)</h2><p>假设我们需要连续采集两个模拟传感器的数据（例如接入 <code>PA0</code> 和 <code>PA1</code>）。</p>
+<h3 id="第一步：配置-ADC-引脚"><a href="#第一步：配置-ADC-引脚" class="headerlink" title="第一步：配置 ADC 引脚"></a>第一步：配置 ADC 引脚</h3><ol>
+<li>侧边栏打开 <code>Analog -&gt; ADC1</code></li>
+<li>勾选 <code>IN0</code> 和 <code>IN1</code>，对应的 <code>PA0</code> 和 <code>PA1</code> 引脚会自动配置为模拟模式。</li>
+</ol>
+<h3 id="第二步：配置-ADC-参数"><a href="#第二步：配置-ADC-参数" class="headerlink" title="第二步：配置 ADC 参数"></a>第二步：配置 ADC 参数</h3><p>打开 <strong>Parameter Settings</strong> 面板：</p>
 <ul>
-<li>（3）时钟树配置</li>
+<li><strong>Scan Conversion Mode (扫描模式)</strong>：<code>Enable</code>（多通道采集必须开启）。</li>
+<li><strong>Continuous Conversion Mode (连续转换)</strong>：<code>Enable</code>（开启后 ADC 会自动一直采，不需要 CPU 每次去触发）。</li>
+<li><strong>Number of Conversion (转换数量)</strong>：改为 <code>2</code>（因为我们用了两个输入通道）。</li>
+<li>在下方的 <strong>Rank</strong> 中，将 Rank 1 和 Rank 2 分别绑定为 Channel 0 和 Channel 1（这决定了数据存进数组的先后顺序）。</li>
 </ul>
-<p>STM32 的时钟系统比较复杂，CubeMX 可以图形化地配置：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">外部晶振/内部时钟<br>PLL 倍频<br>系统主频<br>各外设时钟频率<br></code></pre></td></tr></table></figure>
+<h3 id="第三步：配置-DMA"><a href="#第三步：配置-DMA" class="headerlink" title="第三步：配置 DMA"></a>第三步：配置 DMA</h3><p>打开 <strong>DMA Settings</strong> 面板，点击 <code>Add</code> 添加 ADC1 的 DMA 请求：</p>
+<ul>
+<li><strong>Mode (模式)</strong>：改为 <code>Circular</code> (循环模式，搬运满一轮后自动回到数组开头继续搬，实现自动刷新)。</li>
+<li><strong>Data Width (数据宽度)</strong>：<ul>
+<li>Peripheral (外设) 选择 <code>Half Word</code> (16位，因为 STM32F411 的 ADC 结果是12位)。</li>
+<li>Memory (内存) 也选择 <code>Half Word</code>。</li>
+</ul>
+</li>
+<li><strong>Increment Address (地址自增)</strong>：<ul>
+<li>Peripheral <strong>保留不勾选</strong> (ADC永远只有那一个数据寄存器，地址固定)。</li>
+<li>Memory 必须 <strong>勾选</strong> (每次搬运自动放到数组的下一个位置，否则后采的数据会覆盖前面)。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="3-代码实战-HAL-库"><a href="#3-代码实战-HAL-库" class="headerlink" title="3. 代码实战 (HAL 库)"></a>3. 代码实战 (HAL 库)</h2><p>CubeMX 配置并生成代码后，我们只需要手动添加不超过 10 行代码就能让它跑起来。</p>
+<h3 id="1-定义存储数组"><a href="#1-定义存储数组" class="headerlink" title="1. 定义存储数组"></a>1. 定义存储数组</h3><p>在 <code>main.c</code> 的全局变量定义区域（<code>/* USER CODE BEGIN PV */</code>），预留出接收数据的数组：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* USER CODE BEGIN PV */</span><br><span class="hljs-type">uint16_t</span> adc_values[<span class="hljs-number">2</span>]; <span class="hljs-comment">// 存放两个通道的 ADC 结果，类型必须与 DMA 配的 Half Word 一致</span><br><span class="hljs-comment">/* USER CODE END PV */</span><br></code></pre></td></tr></table></figure>
 
-<p>这一步非常重要，因为很多外设能否正常工作都和时钟配置有关。</p>
-<p>（4）外设初始化配置</p>
-<p>可以配置很多常用模块的工作参数，例如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">串口波特率<br>ADC 分辨率<br>定时器分频与计数周期<br>DMA 通道<br>中断使能<br></code></pre></td></tr></table></figure>
+<h3 id="2-启动-ADC-与-DMA"><a href="#2-启动-ADC-与-DMA" class="headerlink" title="2. 启动 ADC 与 DMA"></a>2. 启动 ADC 与 DMA</h3><p>在 <code>main()</code> 函数中，各种外设初始化完成后（<code>/* USER CODE BEGIN 2 */</code>），开启自动采集：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* USER CODE BEGIN 2 */</span><br><span class="hljs-comment">// 一条语句：同时启动外设ADC并开启DMA搬运</span><br>HAL_ADC_Start_DMA(&amp;hadc1, (<span class="hljs-type">uint32_t</span> *)adc_values, <span class="hljs-number">2</span>);<br><span class="hljs-comment">/* USER CODE END 2 */</span><br></code></pre></td></tr></table></figure>
+<p><em>注：代码执行到此处后，<code>adc_values[0]</code> 和 <code>adc_values[1]</code> 里的值就会被硬件在后台悄悄且源源不断地更新，主循环里的代码直接当成普通变量读取即可，再也不需要去管底层的调用。</em></p>
+<h3 id="3-进阶-处理转换回调"><a href="#3-进阶-处理转换回调" class="headerlink" title="3. (进阶) 处理转换回调"></a>3. (进阶) 处理转换回调</h3><p>如果想在 DMA 每完整搬运完一轮（集齐2个数据）时立即做点什么运算，可以在 <code>main.c</code> 的最底下写回调函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* USER CODE BEGIN 4 */</span><br><span class="hljs-comment">// DMA 中断回调：搬运完成指定数量的数据后自动触发</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">HAL_ADC_ConvCpltCallback</span><span class="hljs-params">(ADC_HandleTypeDef* hadc)</span><br>&#123;<br>    <span class="hljs-keyword">if</span>(hadc-&gt;Instance == ADC1)<br>    &#123;<br>        <span class="hljs-comment">// 此时一轮数据采集已经完成</span><br>        <span class="hljs-comment">// 你可以通过标志位通知主函数去处理 adc_values 里的最新数据</span><br>    &#125;<br>&#125;<br><span class="hljs-comment">/* USER CODE END 4 */</span><br></code></pre></td></tr></table></figure>
 
-<p>（5）自动生成工程代码</p>
-<p>配置完成后，它可以生成适用于不同 IDE 的工程，例如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">Keil MDK<br>STM32CubeIDE<br>IAR<br></code></pre></td></tr></table></figure>
+<hr>
+<h2 id="4-核心函数剖析"><a href="#4-核心函数剖析" class="headerlink" title="4. 核心函数剖析"></a>4. 核心函数剖析</h2><div class="note note-success">
+            <p><strong><code>HAL_ADC_Start_DMA(ADC_HandleTypeDef* hadc, uint32_t* pData, uint32_t Length)</code></strong></p> 
+          </div>
 
-<p>生成的代码中已经包含了基本初始化函数，方便后续编写应用逻辑</p>
-<p><a target="_blank" rel="noopener" href="https://www.st.com/en/development-tools/stm32cubemx.html#get-software"><strong>点击此处以获得安装包！</strong></a></p>
-<p>打开 STM32CubeMX 的安装程序，程序会启动 STM32CubeMX 的安装向导</p>
-<p><img src="/pics/cubemx.png" srcset="/img/loading.gif" lazyload alt="cubemx配置"></p>
-<p>根据安装向导的提示，选择安装路径</p>
-<p><img src="/pics/cubemx2.png" srcset="/img/loading.gif" lazyload alt="cubemx配置"></p>
-<p>至此，STM32CubeMX 安装完毕</p>
-<h3 id="stm32cubeprogrammer"><a href="#stm32cubeprogrammer" class="headerlink" title="stm32cubeprogrammer"></a>stm32cubeprogrammer</h3><p>STM32CubeProgrammer 是 ST 官方提供的一款 下载、烧录和调试辅助工具。<br>它的主要作用是把我们编译生成的程序文件下载到 STM32 芯片里，并完成一些与芯片连接、擦除、读取相关的操作</p>
-<p>如果说 CubeMX 负责“配置工程”，那么 CubeProgrammer 更像是“把程序真正写进芯片里”的工具</p>
-<p>STM32CubeProgrammer 常见功能包括：</p>
-<ul>
-<li>（1）烧录程序</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">可以把 .hex、.bin、.elf 等文件下载到 STM32 的 Flash 中。<br></code></pre></td></tr></table></figure>
-<ul>
-<li>（2）连接开发板</li>
-</ul>
-<p>支持通过多种接口与芯片通信，例如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">ST-Link<br>USB<br>UART<br>SPI<br>CAN<br></code></pre></td></tr></table></figure>
+<ol>
+<li><code>hadc</code>：ADC 句柄指针，传入 <code>&amp;hadc1</code> 即可。</li>
+<li><code>pData</code>：目标内存的<strong>首地址</strong>。底层参数类型设定的是32位指针，为了不报警告，用 <code>(uint32_t *)adc_values</code> 强转一下。</li>
+<li><code>Length</code>：<strong>传输的数据长度</strong>。DMA 搬运多少次判定为“完成一整轮任务”。我们有 2 个通道，所以填 <code>2</code>。此数值通常等同于你的数组大小和开启的通道数。</li>
+</ol>
+<div class="note note-warning">
+            <p><strong>避坑指南</strong><br>在多通道 ADC 配合 DMA 时，初学者最容易遇到的情况是<strong>读取的数据错位（通道乱套）</strong>。如果你发现 <code>adc_values[0]</code> 里的数值似乎是 <code>PA1</code> 的，那一定是因为在 CubeMX 排列 Rank 顺序时排反了，记住：<strong>数组索引永远严格对应 Rank 序列配置的先后顺序</strong>。</p> 
+          </div>
 
-<p>其中最常用的是 ST-Link。</p>
-<ul>
-<li>（3）擦除和读取 Flash</li>
-</ul>
-<p>可以对芯片进行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">全片擦除<br>分区擦除<br>读取芯片内部存储内容<br></code></pre></td></tr></table></figure>
-
-<ul>
-<li>（4）查看芯片信息</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">芯片型号<br>Flash 大小<br>连接状态<br>存储器分布<br></code></pre></td></tr></table></figure>
-
-<ul>
-<li>（5）设置下载地址和启动方式</li>
-</ul>
-<p>有时还会用它配置 Option Bytes、检查 Boot 相关设置等</p>
-<p><a target="_blank" rel="noopener" href="https://www.st.com/en/development-tools/stm32cubeprog.html#get-software"><strong>点击此处以获得安装包！</strong></a></p>
-<p>打开 STM32CubeProgrammer 的安装程序，程序会启动 STM32CubeProgrammer 的安装向导</p>
-<p><img src="/pics/cubeprogrammer.png" srcset="/img/loading.gif" lazyload alt="cubeprogrammer配置"></p>
-<p>根据安装向导的提示，选择安装路径</p>
-<p><img src="/pics/cubeprogrammer3.png" srcset="/img/loading.gif" lazyload alt="cubeprogrammer配置"></p>
-<p>根据安装向导的提示，选择需要安装的包</p>
-<p><img src="/pics/cubeprogrammer2.png" srcset="/img/loading.gif" lazyload alt="cubeprogrammer配置"></p>
-<p>在安装过程中，安装向导会启动驱动程序的安装向导，该驱动的安装向导主要用于安装ST-Link等的驱动，根据提示进行安装即可</p>
-<p>安装就此完毕</p>
-<h3 id="stm32cubeide-stm32cubeide-for-vscode"><a href="#stm32cubeide-stm32cubeide-for-vscode" class="headerlink" title="stm32cubeide &#x2F; stm32cubeide for vscode"></a>stm32cubeide &#x2F; stm32cubeide for vscode</h3><p>STM32CubeIDE 是 ST 官方提供的 STM32 集成开发环境（IDE），基于 Eclipse，主要面向需要图形化界面、工程管理、编译、下载和调试的一体化开发流程。它支持 STM32 MCU 和 MPU，适合初学者较完整地搭建 STM32 工程</p>
-<p>简单来说，它可以看成：写 STM32 程序的主工作平台</p>
-<p>STM32CubeIDE 最常见的用途有：</p>
-<ul>
-<li>（1）创建和管理工程</li>
-</ul>
-<p>可以新建 STM32 工程，并与 STM32CubeMX 配置流程结合。</p>
-<ul>
-<li>（2）编写代码</li>
-</ul>
-<p>在 IDE 中编辑 main.c、驱动文件、头文件等。</p>
-<ul>
-<li>（3）编译程序</li>
-</ul>
-<p>把代码编译成可执行文件，如 .elf、.hex、.bin。</p>
-<ul>
-<li>（4）下载和调试</li>
-</ul>
-<p>可以连接 ST-Link，对开发板进行程序下载、单步调试、查看变量和寄存器。<br>ST 官方将 STM32CubeIDE 定位为一体化 STM32 开发工具，重点覆盖编辑、构建和调试</p>
-<p>STM32CubeIDE for VS Code 是 ST 官方推出的 基于 Visual Studio Code 的 STM32 开发环境，面向更偏代码编辑体验、灵活扩展、CMake 工作流和 CI&#x2F;CD 集成的开发者。ST 官方页面说明该版本基于 VS Code，并在 2025 年正式推出。</p>
-<p>它的核心特点是：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">使用 VS Code 作为编辑器<br>更强调 CMake + Ninja 构建方式<br>更适合喜欢轻量、灵活、可扩展工作流的用户<br>可结合 Git、AI 辅助插件和第三方扩展使用<br></code></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://www.st.com/en/development-tools/stm32cubeide.html#get-software">点击此处获取安装包!</a></p>
-<p>打开 STM32CubeIDE 的安装程序，程序会启动 STM32CubeIDE 的安装向导</p>
-<p><img src="/pics/cubeide.png" srcset="/img/loading.gif" lazyload alt="stm32cubeide配置"></p>
-<p>根据安装向导的提示，选择安装路径</p>
-<p><img src="/pics/cubeide2.png" srcset="/img/loading.gif" lazyload alt="stm32cubeide配置"></p>
-<p>根据安装向导的提示，选择需要安装的仿真器驱动</p>
-<p><img src="/pics/cubeide3.png" srcset="/img/loading.gif" lazyload alt="stm32cubeide配置"></p>
-<p>至此，STM32CubeIDE 安装完毕</p>
-<p><strong>cubeide for vscode</strong></p>
-<p>打开vscode选择extension(扩展)</p>
-<p><img src="/pics/cubeide_vscode.png" srcset="/img/loading.gif" lazyload alt="vscode配置"></p>
-<p>搜素stm32cubeide for vscode</p>
-<p><img src="/pics/cubeide_vscode2.png" srcset="/img/loading.gif" lazyload alt="vscode配置"></p>
-<h3 id="stm32edgeaicore"><a href="#stm32edgeaicore" class="headerlink" title="stm32edgeaicore"></a>stm32edgeaicore</h3><p>ST Edge AI Core 是 ST 官方提供的 嵌入式人工智能模型优化与部署工具，主要用于把训练好的 AI 模型转换、优化，并部署到 STM32 等 ST 平台上运行。它支持命令行方式使用</p>
-<p>与它密切相关的 STM32Cube.AI，则更偏向 STM32 场景下的图形化或集成式 AI 开发入口，可以把常见深度学习框架训练得到的模型转换为适合 STM32 运行的代码，并支持 STM32N6 上的 Neural-ART NPU</p>
-<p>可以把它理解成把 AI 模型“搬到 STM32 单片机上运行”的工具</p>
-<p>点击<a target="_blank" rel="noopener" href="https://www.st.com/en/development-tools/stedgeai-core.html#get-software">这里</a>和<a target="_blank" rel="noopener" href="https://www.st.com/en/development-tools/stedgeai-core.html#get-software">这里</a>获取ai core和neural art的安装包</p>
-<p>打开 STEdgeAI-Core 的安装程序，程序会启动 STEdgeAI-Core 的安装向导</p>
-<p><img src="/pics/staicore.png" srcset="/img/loading.gif" lazyload alt="stm32coreai配置"></p>
-<p>根据安装向导的提示，选择安装路径</p>
-<p><img src="/pics/staicore2.png" srcset="/img/loading.gif" lazyload alt="stm32coreai配置"></p>
-<p>根据安装向导的提示，选择需要安装的组件</p>
-<p><img src="/pics/staicore3.png" srcset="/img/loading.gif" lazyload alt="stm32coreai配置"></p>
-<p>根据安装向导的提示，选择 ST Neural-ART 软件包的路径</p>
-<p><img src="/pics/staicore4.png" srcset="/img/loading.gif" lazyload alt="stm32coreai配置"></p>
-<p>至此，STEdgeAI-Core 安装完毕。</p>
-<p>配置<br>STEdgeAI-Core 安装完毕后，建议将其可执行文件所在的路径添加到系统的环境变量中，以便在命令行中直接调用 STEdgeAI-Core。</p>
-<p>STEdgeAI-Core 的可执行文件所在的路径为：&lt;STEdgeAI-Core 安装路径&gt;&#x2F;2.0&#x2F;Utilities&#x2F;windows</p>
-<p>可通过以下命令验证环境变量是否配置成功：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">stedgeai --version<br></code></pre></td></tr></table></figure>
-
-<p>如果环境变量配置成功，则该命令会输出 STEdgeAI-Core 的版本信息，例如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">ST Edge AI Core v2.0.0-20049<br>   ISPU 1.1.0<br>   MLC 1.1.0<br>   StellarStudioAI 2.0.0<br>   STM32CubeAI 10.0.0<br></code></pre></td></tr></table></figure>
-<h3 id="CH340C驱动"><a href="#CH340C驱动" class="headerlink" title="CH340C驱动"></a>CH340C驱动</h3><p>CH340C 是一个 USB 总线的转接芯片，实现 USB 转串口或者 USB 转打印口</p>
-<p>点击<a target="_blank" rel="noopener" href="https://www.wch.cn/search.html">这里</a>获取驱动安装包</p>
-<p>打开 CH340C 驱动的安装程序</p>
-<p>点击软件界面的“安装”按钮，并等待安装完成</p>
-<p>至此，CH340C 驱动安装完毕</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* USER CODE BEGIN PV */</span><br><span class="hljs-type">uint16_t</span> adc_values[<span class="hljs-number">2</span>]; <span class="hljs-comment">// 存放两个通道的 ADC 结果</span><br><span class="hljs-comment">/* USER CODE END PV */</span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br><br>  <span class="hljs-comment">/* USER CODE BEGIN 1 */</span><br><br>  <span class="hljs-comment">/* USER CODE END 1 */</span><br><br>  <span class="hljs-comment">/* Enable the CPU Cache */</span><br><br>  <span class="hljs-comment">/* Enable I-Cache---------------------------------------------------------*/</span><br>  SCB_EnableICache();<br><br>  <span class="hljs-comment">/* Enable D-Cache---------------------------------------------------------*/</span><br>  SCB_EnableDCache();<br><br>  <span class="hljs-comment">/* MCU Configuration--------------------------------------------------------*/</span><br><br>  <span class="hljs-comment">/* Update SystemCoreClock variable according to RCC registers values. */</span><br>  SystemCoreClockUpdate();<br>  HAL_Init();<br><br>  <span class="hljs-comment">/* USER CODE BEGIN Init */</span><br><br>  <span class="hljs-comment">/* USER CODE END Init */</span><br><br>  <span class="hljs-comment">/* Update SystemCoreClock variable */</span><br>  SystemCoreClockUpdate();<br><br>  <span class="hljs-comment">/* USER CODE BEGIN SysInit */</span><br><br>  <span class="hljs-comment">/* USER CODE END SysInit */</span><br><br>  <span class="hljs-comment">/* Initialize all configured peripherals */</span><br>  SystemIsolation_Config();<br>  MX_GPIO_Init();<br>  MX_DMA_Init();   <span class="hljs-comment">// 必须先初始化 DMA</span><br>  MX_ADC1_Init();  <span class="hljs-comment">// 再初始化 ADC1</span><br><br>  <span class="hljs-comment">/* USER CODE BEGIN 2 */</span><br>  <span class="hljs-comment">// 启动 ADC 和 DMA，指定目标缓冲区地址和长度</span><br>  HAL_ADC_Start_DMA(&amp;hadc1, (<span class="hljs-type">uint32_t</span> *)adc_values, <span class="hljs-number">2</span>);<br>  <span class="hljs-comment">/* USER CODE END 2 */</span><br><br>  <span class="hljs-comment">/* Infinite loop */</span><br>  <span class="hljs-comment">/* USER CODE BEGIN WHILE */</span><br>  <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>)<br>  &#123;<br>    <span class="hljs-comment">// 在这里可以直接读取 adc_values[0] 和 adc_values[1] 的最新值</span><br>    <span class="hljs-comment">// 硬件会自动在后台刷新这些值，CPU 零负载</span><br>    <br>    <span class="hljs-comment">/* USER CODE END WHILE */</span><br><br>    <span class="hljs-comment">/* USER CODE BEGIN 3 */</span><br>  &#125;<br>  <span class="hljs-comment">/* USER CODE END 3 */</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -459,7 +366,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" class="category-chain-item">开发工具</a>
+  <a href="/categories/%E9%9A%8F%E7%AC%94/" class="category-chain-item">随笔</a>
   
   
 
@@ -486,8 +393,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>stm32开发工具</div>
-      <div>https://rubbishbro.github.io/2025/11/20/primary_develop_forstm32/</div>
+      <div>ADC/DMA多通道采集例程 - 基于STM32F411</div>
+      <div>https://rubbishbro.github.io/2026/03/24/ADC-DMA_example/</div>
     </div>
     <div class="license-meta">
       
@@ -499,7 +406,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>November 20, 2025</div>
+          <div>March 24, 2026</div>
         </div>
       
       
@@ -531,9 +438,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/11/20/machine_learning_basics/" title="机器学习基础">
+                      <a href="/2026/03/26/debug_methods/" title="stm32调试指南">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">机器学习基础</span>
+                        <span class="hidden-mobile">stm32调试指南</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -541,8 +448,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/11/20/verilator-cocotb/" title="verilator+cocotb">
-                        <span class="hidden-mobile">verilator+cocotb</span>
+                      <a href="/2026/03/24/stm32-stepbystep/" title="stm32逐步开发">
+                        <span class="hidden-mobile">stm32逐步开发</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

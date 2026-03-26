@@ -19,12 +19,12 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="人工智能学习1.1神经网络基础E.G. 卷积神经网络–图像识别 长短期记忆网络–语音识别  1.1.1 MLP 多层感知器（vanilla） 神经元可以被理解为一个装有数字的容器 E.G.   我们让每一个神经元中标注的数字代表灰度值, 1表示一个纯白像素, 0表示一个纯黑像素， 神经元里装着的值, 叫做激活值,整个图片的2828总共784个神经元组成了网络的*第一层 对于网络的最后一层, 一共输">
+    <meta name="description" content="人工智能学习1.1神经网络基础E.G. 卷积神经网络–图像识别 1.1.1 MLP 多层感知器（vanilla）神经元可以被理解为一个装有数字的容器。在标准的神经网络中，一个神经元通常包含以下几个核心部分：  输入 (Input): 外部传入的数据，或者上一层神经元的输出。 权重 (Weights): 代表每个输入对当前神经元影响的大小。 偏置 (Bias): 每个神经元自带的偏移量，相当于这个神">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习基础">
 <meta property="og:url" content="https://rubbishbro.github.io/2025/11/20/machine_learning_basics/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="人工智能学习1.1神经网络基础E.G. 卷积神经网络–图像识别 长短期记忆网络–语音识别  1.1.1 MLP 多层感知器（vanilla） 神经元可以被理解为一个装有数字的容器 E.G.   我们让每一个神经元中标注的数字代表灰度值, 1表示一个纯白像素, 0表示一个纯黑像素， 神经元里装着的值, 叫做激活值,整个图片的2828总共784个神经元组成了网络的*第一层 对于网络的最后一层, 一共输">
+<meta property="og:description" content="人工智能学习1.1神经网络基础E.G. 卷积神经网络–图像识别 1.1.1 MLP 多层感知器（vanilla）神经元可以被理解为一个装有数字的容器。在标准的神经网络中，一个神经元通常包含以下几个核心部分：  输入 (Input): 外部传入的数据，或者上一层神经元的输出。 权重 (Weights): 代表每个输入对当前神经元影响的大小。 偏置 (Bias): 每个神经元自带的偏移量，相当于这个神">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://rubbishbro.github.io/2025/11/20/machine_learning_basics/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250517115230333.png">
 <meta property="og:image" content="https://rubbishbro.github.io/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709181815842.png">
@@ -50,9 +50,8 @@
 <meta property="og:image" content="https://rubbishbro.github.io/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250818182013268.png">
 <meta property="og:image" content="https://rubbishbro.github.io/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250818182026967.png">
 <meta property="og:image" content="https://rubbishbro.github.io/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250714121113349.png">
-<meta property="og:image" content="https://rubbishbro.github.io/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250818182559375.png">
 <meta property="article:published_time" content="2025-11-20T09:30:10.000Z">
-<meta property="article:modified_time" content="2026-03-23T14:19:25.123Z">
+<meta property="article:modified_time" content="2026-03-26T07:35:58.691Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="demo">
 <meta name="twitter:card" content="summary_large_image">
@@ -265,7 +264,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          12k words
+          10k words
         
       </span>
     
@@ -276,7 +275,7 @@
         
         
         
-          100 mins
+          87 mins
         
       </span>
     
@@ -320,8 +319,13 @@
                 
                 <h2 id="人工智能学习"><a href="#人工智能学习" class="headerlink" title="人工智能学习"></a>人工智能学习</h2><h4 id="1-1神经网络基础"><a href="#1-1神经网络基础" class="headerlink" title="1.1神经网络基础"></a>1.1神经网络基础</h4><p>E.G.</p>
 <p>卷积神经网络–图像识别</p>
-<p>长短期记忆网络–语音识别 </p>
-<h5 id="1-1-1-MLP-多层感知器（vanilla）"><a href="#1-1-1-MLP-多层感知器（vanilla）" class="headerlink" title="1.1.1 MLP 多层感知器（vanilla）"></a>1.1.1 MLP 多层感知器（vanilla）</h5><p> <strong>神经元</strong>可以被理解为<strong>一个装有数字的容器</strong></p>
+<h5 id="1-1-1-MLP-多层感知器（vanilla）"><a href="#1-1-1-MLP-多层感知器（vanilla）" class="headerlink" title="1.1.1 MLP 多层感知器（vanilla）"></a>1.1.1 MLP 多层感知器（vanilla）</h5><p><strong>神经元</strong>可以被理解为<strong>一个装有数字的容器</strong>。在标准的神经网络中，一个神经元通常包含以下几个核心部分：</p>
+<ul>
+<li><strong>输入 (Input)</strong>: 外部传入的数据，或者上一层神经元的输出。</li>
+<li><strong>权重 (Weights)</strong>: 代表每个输入对当前神经元影响的大小。</li>
+<li><strong>偏置 (Bias)</strong>: 每个神经元自带的偏移量，相当于这个神经元被激发的“门槛”。</li>
+<li><strong>激活函数 (Activation)</strong>: 将“加权求和”后的结果进行非线性转换，决定最终输出。</li>
+</ul>
 <p>E.G.</p>
 <img src="./人工智能学习报告.assets/image-20250517115230333.png" srcset="/img/loading.gif" lazyload alt="image-20250517115230333" style="zoom: 50%;" />
 
@@ -330,7 +334,8 @@
 <p>中间的层数代表着隐含层, 里面进行着处理识别数字的具体工作,隐含层的本质就是将图片拆分后的部分识别出来,再有激活函数组合成整体,从而得出结果</p>
 <p>E.G.激活函数的表格表示,红负绿正:乘算取加权和得到要关注的像素</p>
 <p><img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709181815842.png" srcset="/img/loading.gif" lazyload alt="image-20250709181815842"></p>
-<h5 id="1-1-2激活函数"><a href="#1-1-2激活函数" class="headerlink" title="1.1.2激活函数"></a>1.1.2激活函数</h5><ol>
+<h5 id="1-1-2-为什么需要激活函数？以及常见激活函数"><a href="#1-1-2-为什么需要激活函数？以及常见激活函数" class="headerlink" title="1.1.2 为什么需要激活函数？以及常见激活函数"></a>1.1.2 为什么需要激活函数？以及常见激活函数</h5><p><strong>为什么需要激活函数？</strong><br>如果没有激活函数，无论你叠多少层神经网络，本质上都只是一堆线性方程的相加，最终等于一个一次函数——<strong>它只能画直线，无法拟合现实世界中复杂的曲线规律。</strong> 激活函数引入了<strong>非线性</strong>，让网络拥有了学习复杂图案和逻辑的能力。</p>
+<ol>
 <li><strong>sigmoid</strong>:将一个数轴压缩到0–1区间(逻辑斯蒂曲线)  加偏置b,再sigmoid–&gt;加权和区间<br> <img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709182020913.png" srcset="/img/loading.gif" lazyload alt="image-20250709182020913"></li>
 </ol>
 <p><img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709182037636.png" srcset="/img/loading.gif" lazyload alt="image-20250709182037636"></p>
@@ -360,9 +365,11 @@
 <p><img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709183853233.png" srcset="/img/loading.gif" lazyload alt="image-20250709183853233"></p>
 <p>代价的平均值叫<strong>经验风险</strong>,代价函数也是一种函数</p>
 <p><img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709184051679.png" srcset="/img/loading.gif" lazyload alt="image-20250709184051679"></p>
-<h5 id="2-1-2如何优化"><a href="#2-1-2如何优化" class="headerlink" title="2.1.2如何优化"></a>2.1.2如何优化</h5><p>由于输入值太多,不可能微积分求解,所以<strong>随意选值</strong>,决定函数向左还是右优化以得到代价函数的MIN</p>
+<h5 id="2-1-2-如何优化：寻找最低点"><a href="#2-1-2-如何优化：寻找最低点" class="headerlink" title="2.1.2 如何优化：寻找最低点"></a>2.1.2 如何优化：寻找最低点</h5><p>由于参数（权重和偏置）往往多达几百万个，我们不可能用微积分直接算出最优解。<strong>梯度下降</strong>就是我们寻找最小值的核心方法。</p>
+<p>想象你被蒙住双眼放在半山腰，要走到谷底。你该怎么做？<br>答案是：<strong>用脚探一探周围，哪边往下最陡峭，就往哪边走一步。</strong></p>
+<p>在数学中，衡量“陡峭程度”的工具叫<strong>梯度（所有参数的偏导数组成的向量）</strong>。计算出梯度后，我们**朝着梯度的反方向（向下的方向）**更新参数，不断重复，直到走到谷底。</p>
 <p><img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709184404065.png" srcset="/img/loading.gif" lazyload alt="image-20250709184404065"></p>
-<p>&#x3D;&#x3D;显然这样求出的是<strong>局部最小值</strong>&#x3D;&#x3D;</p>
+<p>&#x3D;&#x3D;注意：由于高维地形复杂，这种“蒙眼下山”的方法有时会让我们卡在一个山坳（<strong>局部最小值</strong>），而不是真正的谷底（全局最小值）。&#x3D;&#x3D;</p>
 <p>现在升维到二维(高维):</p>
 <p><img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709184631133.png" srcset="/img/loading.gif" lazyload alt="image-20250709184631133"></p>
 <p>对于多元微分,上升最快的方向是梯度的方向,那么下降最快的方向就是<strong>梯度的反方向</strong>,将输入的权重看作向量,那么梯度也是<strong>向量</strong></p>
@@ -382,16 +389,12 @@
 <li>深度高: CNN&#x2F;MLP或者是回传步数多</li>
 <li>初始化: 权重矩阵特征值过小或者过大</li>
 </ul>
-<h5 id="2-1-5-学习率"><a href="#2-1-5-学习率" class="headerlink" title="2.1.5 学习率"></a>2.1.5 学习率</h5><p>宏观：学习率是一种衡量每次进行学习时，学习的内容的多少的<strong>超参数</strong><br>想象一下下山的情景。要想安全到达山底，速度必须足够快，才能取得有意义的进展，但又不能太快，以免失去控制，跌跌撞撞。最佳学习率设定了安全的下山速度</p>
-<p>机器学习：学习率是一个超参数(&#x3D;&#x3D;只是一个控制更新权重的常数&#x3D;&#x3D;)，用于控制机器学习模型在优化算法的<strong>每一步中调整参数的程度</strong></p>
+<h5 id="2-1-5-学习率"><a href="#2-1-5-学习率" class="headerlink" title="2.1.5 学习率"></a>2.1.5 学习率</h5><p>学习率（Learning Rate）是一个超参数，用于控制机器在优化算法中<strong>每一步调整参数的距离大小</strong>。<br>这就好比我们前面提到的“蒙眼下山”：你能感知到哪边是下坡，但<strong>你决定这一步跨多大</strong>，就是学习率。</p>
 <p><strong>为什么学习率很重要？</strong></p>
 <ul>
-<li><p>在<strong>最佳学习率</strong>下，外星人会得出结论，鸡也是动物。如果是这样的话，这一定意味着腿的数量不是决定某物是否是动物的关键因素。</p>
-</li>
-<li><p>如果外星人的<strong>学习率低</strong>，就无法从它这只鸡身上获得足够的洞察分析。外星人会得出结论，鸡不是动物，因为它们没有四条腿。外星人的学习能力很弱，在看到更多的鸡之前，它无法更新自己的思维。</p>
-</li>
-<li><p>在<strong>高学习率</strong>下，外星人会过度纠正。现在，它会得出这样的结论：因为鸡是一种动物，而且鸡有两条腿，所以<em>所有</em>动物都必须有两条腿。高学习率意味着模型一次学习的东西“太多”</p>
-</li>
+<li><strong>合适的学习率</strong>：犹如稳健的步伐，一步步踏实地走到谷底（损失最小处）。</li>
+<li><strong>过低的学习率</strong>：就像蚂蚁下山，一次挪动几毫米。虽然方向对，但训练极度缓慢，有时候甚至会卡在一个浅坑里出不来。</li>
+<li><strong>过高的学习率</strong>：就像巨人跨步，一步跨到了对面的山坡上，下一步又跨回来（反复横跳），甚至越跳越高（发散），永远无法收敛。</li>
 </ul>
 <h4 id="3-1-反向传播算法"><a href="#3-1-反向传播算法" class="headerlink" title="3.1 反向传播算法"></a>3.1 反向传播算法</h4><h5 id="3-1-1-训练过程"><a href="#3-1-1-训练过程" class="headerlink" title="3.1.1 训练过程"></a>3.1.1 训练过程</h5><p>在前面已经得知:对于正权重的神经元,需要调大其激活值;对于负权重的神经元,需要减少其激活值;这样使得总输出减小</p>
 <p>那么对于一个随机的结果,我们需要增大其标记参数的输出值,减小其它非标记参数的输出值,如果我们根据它需要更改的程度来记录每个标记或者非标记参数的激活值需要增大或者减小的程度,最后将这些程度加和起来,得到一个总的改变趋势,也是总改变权重(向量)</p>
@@ -402,9 +405,9 @@
 <p>&#x3D;&#x3D;此处得到的平均值,不严格地说就是上一节的负梯度&#x3D;&#x3D;</p>
 <p>注:像素组成的图像有无数种形式,1-9只是其中的几种,因平均向量会让整体识别的更好</p>
 <p><img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250709212807874.png" srcset="/img/loading.gif" lazyload alt="image-20250709212807874"></p>
-<h5 id="3-1-2-训练简化"><a href="#3-1-2-训练简化" class="headerlink" title="3.1.2 训练简化"></a>3.1.2 训练简化</h5><p>如果训练集每一个样本都要过一次反向传播那就太费时间了,所以我们将训练集随机划分为许多minibatch,每个minibatch得出的结果当然不是最好的结果,但是是一个<strong>非常好的近似</strong>,这减少了我们的计算量</p>
-<p>这个技巧叫做<strong>随机梯度下降</strong></p>
-<h5 id="3-1-3-反向传播的本质"><a href="#3-1-3-反向传播的本质" class="headerlink" title="3.1.3 反向传播的本质"></a>3.1.3 反向传播的本质</h5><p>直觉叙述: 反向传播优化的目标: <strong>改变权重$W^{(l)}$ , 让损失函数$L$变小</strong></p>
+<h5 id="3-1-2-训练简化（小批量）"><a href="#3-1-2-训练简化（小批量）" class="headerlink" title="3.1.2 训练简化（小批量）"></a>3.1.2 训练简化（小批量）</h5><p>如果每次都用整个训练集（哪怕是几百万张图片）的所有样本来算一次平均误差，再去更新一次参数，那计算机吃不消，太费时间！<br>所以，通常我们将训练集分成许多小批次（<strong>Mini-batch</strong>）。虽然每一小批算的梯度不是最精准的全局梯度，但只要大方向<strong>近似</strong>而且计算非常快，它就能在“跌跌撞撞”中快速奔向谷底。</p>
+<p>这个技巧叫做<strong>随机梯度下降 (SGD 以及各类变体)</strong>。</p>
+<h5 id="3-1-3-反向传播的本质（连乘“锅”之法）"><a href="#3-1-3-反向传播的本质（连乘“锅”之法）" class="headerlink" title="3.1.3 反向传播的本质（连乘“锅”之法）"></a>3.1.3 反向传播的本质（连乘“锅”之法）</h5><p>直觉叙述: <strong>反向传播就是利用数学上的“链式法则”来“分锅”</strong>。一层一层往回算：最后的误差有多大，上一层的神经元该负多少责任？依次推导到第一层。这就是损失函数对于 $W^{(1)}$ 的偏导。</p>
 <p>比如一个三层网络: <img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250818143013526.png" srcset="/img/loading.gif" lazyload alt="image-20250818143013526"></p>
 <p>损失$L(y, t)$依赖于所有层的输出, 想更新$W^{(1)}$, 必须知道<strong>损失对$W^{(1)}$的敏感度</strong>也就是损失函数对于$W^{(1)}$的偏导</p>
 <p>根据偏导数链式法则: <img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250818144933553.png" srcset="/img/loading.gif" lazyload alt="image-20250818144933553"></p>
@@ -429,32 +432,23 @@
 </ul>
 <p>利用误差项$\delta$更新权重矩阵: ($\eta$ &#x3D; [学习率](# 2.1.5 学习率))</p>
 <p>$\Delta w_{ki} &#x3D; \eta \delta <em>k x</em>{ki}$, $w_{ki} &#x3D; w_{ki} + \Delta w_{ki}$</p>
-<h4 id="4-1-k折交叉验证"><a href="#4-1-k折交叉验证" class="headerlink" title="4.1 k折交叉验证"></a>4.1 <a target="_blank" rel="noopener" href="https://machinelearningmastery.com/k-fold-cross-validation/">k折交叉验证</a></h4><p>此时已经得到了模型和数据集，需要判断模型是否拟合，可以将数据拆分为训练集和测试集，如果只评估一次结果，很可能不准确，预期多评估模型，来确认可靠</p>
-<p>此时有一个k的参数，引用给定数据样本要拆分为的组数，因此叫k折交叉验证，<strong>使用有限的样本来估计模型在用于预测模型训练期间未使用的数据时通常预期性能</strong></p>
-<h5 id="4-1-1一般程序"><a href="#4-1-1一般程序" class="headerlink" title="4.1.1一般程序"></a>4.1.1一般程序</h5><p>一般程序如下：</p>
-<ol>
-<li>随机排列数据集。</li>
-<li>将数据集拆分为 k 组</li>
-<li>对于每个唯一组：<ol>
-<li>将组作为维持数据集或检验数据集</li>
-<li>将剩余组作为训练数据集</li>
-<li>在训练集上拟合模型并在测试集上评估模型</li>
-<li>保留评估分数并丢弃模型</li>
-</ol>
-</li>
-<li>使用模型评估分数样本总结模型的技能</li>
+<h4 id="4-1-k折交叉验证-K-Fold-Cross-Validation"><a href="#4-1-k折交叉验证-K-Fold-Cross-Validation" class="headerlink" title="4.1 k折交叉验证 (K-Fold Cross-Validation)"></a>4.1 k折交叉验证 (K-Fold Cross-Validation)</h4><p>当我们训练出一个模型，需要评价它有几分能耐时，如果只把数据简单切割一次为训练集&#x2F;测试集，可能因为运气好，刚好测试的都是它“背过”的题，使得结果欺骗了我们。<br><strong>k折交叉验证的作用，就是使得我们对模型的评估尽可能的公平、可靠。</strong></p>
+<h5 id="4-1-1-核心步骤（怎么做？）"><a href="#4-1-1-核心步骤（怎么做？）" class="headerlink" title="4.1.1 核心步骤（怎么做？）"></a>4.1.1 核心步骤（怎么做？）</h5><ol>
+<li><strong>随机打乱</strong>你的总数据集。</li>
+<li>将数据平均<strong>切分为 $k$ 份（折）</strong>。</li>
+<li>第一轮：用第 1 份做测验，剩下的 $k-1$ 份充当训练教材。在此基础上得出一个分数。</li>
+<li>第二轮：用第 2 份做测验，剩下的充当教材……</li>
+<li>重复 $k$ 轮，直到每份数据都已经当过一次考卷。最终<strong>取平均分</strong>，就是该模型真实的水平。</li>
 </ol>
 <blockquote>
-<p><em><strong>这种方法涉及将观测值集随机划分为大小大致相等的 k 组或折叠。第一个折叠被视为验证集，该方法适用于剩余的 k − 1 个折叠。</strong></em><sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="— 第 181 页，[统计学习导论](http://amzn.to/2FkHqvW)，2013 年">[1]</span></a></sup></p>
+<p>【避坑！新手常犯错误】在使用交叉验证时，如果涉及数据缩放（归一化）或特征选择，<strong>绝对不能</strong>在总数据上提前算好的均值或方差应用。必须在每次单独切出来的 $k-1$ 个训练集上实时计算然后套用到那 1 份测试集上。否则叫“数据泄露”。</p>
 </blockquote>
-<p>在使用**交叉验证（cross-validation, CV）**来评估机器学习模型的表现时，有一个非常重要的原则：<strong>所有数据准备（如标准化、编码、特征选择等）以及超参数调优，都必须只在每次交叉验证划分出来的训练集上进行，而不能在整个数据集上提前做</strong></p>
-<h5 id="4-1-2-k的配置"><a href="#4-1-2-k的配置" class="headerlink" title="4.1.2 k的配置"></a>4.1.2 k的配置</h5><p>为k选择值的常见策略如下三种:</p>
-<p>1.具有代表性的: k值划分为的k个测试和数据集足够大以至于每个集都能代表整个数据集的特征</p>
-<p>2.k &#x3D; 10: 固定为10,这是一个有惊讶的折数,有低偏差和适度方差</p>
-<p>3.k &#x3D; n,逐个留出法,每一折只留一个样本进行测试<strong>Leave-One-Out Cross-Validation（LOOCV）</strong></p>
-<p>数据少时效果好，但计算代价高、波动大</p>
+<h5 id="4-1-2-k-的配置"><a href="#4-1-2-k-的配置" class="headerlink" title="4.1.2 k 的配置"></a>4.1.2 k 的配置</h5><ul>
+<li><strong>具有代表性的 k &#x3D; 10</strong>：公认的黄金标准，它在测试集与训练集的配比、计算耗时与模型防偏之间找准了平衡。</li>
+<li><strong>留一法 k &#x3D; N (LOOCV)</strong>：极端的交叉验证。每次只留 1 个数据做测试，其余全部训练。<strong>仅当你的总数据少得可怜（比如只有五六十对数据）时使用</strong>，因为其计算量等于你要跑 N 遍训练模型。</li>
+</ul>
 <h5 id="4-1-3-工作实例"><a href="#4-1-3-工作实例" class="headerlink" title="4.1.3 工作实例"></a>4.1.3 工作实例</h5><p><img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250714121113349.png" srcset="/img/loading.gif" lazyload alt="image-20250714121113349"></p>
-<h5 id="4-1-4-交叉验证API"><a href="#4-1-4-交叉验证API" class="headerlink" title="4.1.4 交叉验证API"></a>4.1.4 交叉验证API</h5><p>可以使用<code>kfold()</code>函数去进行随机排序,参数为k&#x2F;是否随机&#x2F;<a href="%E4%BC%AA%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90.md">伪随机数生成器的种子</a></p>
+<h5 id="4-1-4-交叉验证API"><a href="#4-1-4-交叉验证API" class="headerlink" title="4.1.4 交叉验证API"></a>4.1.4 交叉验证API</h5><p>在 Python 环境下，往往不需要手写循环，经常调动 sklearn 的 <code>KFold()</code> 等函数来实现。</p>
 <h4 id="5-Pytorch基础和构建回归模型"><a href="#5-Pytorch基础和构建回归模型" class="headerlink" title="5  Pytorch基础和构建回归模型"></a>5  Pytorch基础和构建回归模型</h4><h5 id="5-1-Pytorch"><a href="#5-1-Pytorch" class="headerlink" title="5.1 Pytorch"></a>5.1 Pytorch</h5><h6 id="5-1-1-张量-Tensor"><a href="#5-1-1-张量-Tensor" class="headerlink" title="5.1.1 张量(Tensor)"></a>5.1.1 张量(Tensor)</h6><p><strong>张量</strong>: 核心数据结构, 用于存储和操作多维数组, 张量可以看作一个多维数组, 支持加速计算, 在pytorch中, 张量就类似<strong>Numpy的数组</strong>, 但是pytorch可以运行在不同的设备上, 比如GPU和CPU, 使得非常适合于进行大规模并行计算, 特别是在深度学习领域</p>
 <ul>
 <li>维度(Dimensionality): 张量的维度就是数据的多维数组结构</li>
@@ -475,14 +469,13 @@
 
 
 
-<h6 id="5-1-2-自动求导-Autograd"><a href="#5-1-2-自动求导-Autograd" class="headerlink" title="5.1.2 自动求导(Autograd)"></a>5.1.2 自动求导(Autograd)</h6><p><strong>自动求导(Automatic Differentiation)</strong>: 是深度学习框架中的一个核心特性, 它允许计算机自动计算数学函数的导数</p>
-<p>在深度学习中, 主要用于两个方面, <strong>1. 在训练神经网络时计算梯度</strong>, <strong>2. 进行反向传播</strong></p>
-<p>自动求导基于[链式法则](# 3.1.3 反向传播的本质)(微积分偏导)</p>
+<h6 id="5-1-2-自动求导-Autograd-与计算图"><a href="#5-1-2-自动求导-Autograd-与计算图" class="headerlink" title="5.1.2 自动求导(Autograd)与计算图"></a>5.1.2 自动求导(Autograd)与计算图</h6><p><strong>自动求导(Automatic Differentiation)</strong>: 是深度学习框架中的一个核心特性, 它允许计算机自动计算复杂的偏导数（梯度），帮我们省去了草稿纸手算微积分的麻烦。</p>
+<p><strong>计算图(Computation Graph)</strong> 是 Autograd 的底层原理：<br>计算图是一系列节点和边组成的“流程图”。当你使用 PyTorch 进行张量的加减乘除计算时，如果张量设定了 <code>requires_grad=True</code>，PyTorch 就会<strong>悄悄在后台动态地画图</strong>，记录每一个操作节点。</p>
 <ul>
-<li>动态图: 在动态图中计算图在运行时动态构建. 每次执行操作时, 计算图都会更新, 这使得调试和修改模型变得更加容易. <code>pytorch</code>是动态图</li>
-<li>静态图: 静态图中济三途在开始执行之前构建完成, 并且不会改变<code>Tensorflow</code>同时支持静态和动态</li>
+<li>前向传播：记录操作流（比如加法、乘法节点）并求出输出。</li>
+<li>反向传播：顺着这张图“原路返回”，利用链式法则通过 <code>.backward()</code> 计算出前置参数的梯度。</li>
 </ul>
-<p><code>pytorch</code>有自动求导功能, 通过<code>autograd</code>模块来自动计算梯度, <code>torch.Tensor</code>对象有一个<code>requires_grad = True</code> 的张量时, <code>Pytorch</code> 会自动跟踪所有对它的操作, 以便在之后计算梯度</p>
+<p><strong>注意！计算图会占用显存&#x2F;内存！(OOM 警告)</strong><br>在训练模型的时候，每计算一个步骤就会画出对应的分支。如果为了省内存做<strong>纯测试预测 (推理)</strong>，一定要按停计算图的绘制。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">x = torch.randn(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, requires_grad = <span class="hljs-literal">True</span>)<br><span class="hljs-built_in">print</span>(x)<br><br>y = x + <span class="hljs-number">2</span><br>z = y * y * <span class="hljs-number">3</span><br>out = z.mean() <span class="hljs-comment">#.mean()后缀是求平均值</span><br><span class="hljs-comment"># dim = ... 指维度 print(x.mean(dim = 0))</span><br><span class="hljs-built_in">print</span>(out)<br></code></pre></td></tr></table></figure>
 
 <h6 id="5-1-3-反向传播-Backpropagation"><a href="#5-1-3-反向传播-Backpropagation" class="headerlink" title="5.1.3 反向传播(Backpropagation)"></a>5.1.3 反向传播(Backpropagation)</h6><p>一旦定义了计算图就可以使用<code>.backward()</code>来计算梯度</p>
@@ -504,7 +497,7 @@
 <p>包括前馈神经网络, 卷积神经网络, 循环神经网络和长短期记忆网络, 在图像识别, 语音处理, 自然语言处理等多个领域都有广泛的应用</p>
 <p><code>Pytorch</code>提供了一个非常方便的接口来构建神经网络模型, 即<code>torch.nn.Module</code>, 我们可以继承<code>nn.Module</code>类并定义自己的网络层</p>
 <p><strong>创建简单网络</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim <span class="hljs-comment"># pytorch的优化模块, 根据梯度更新模型参数, 从而最小化损失函数</span><br><br><span class="hljs-comment"># 定义一个简单的全连接神经网络</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SimpleNN</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">_init_</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">super</span>(SimpleNN, <span class="hljs-variable language_">self</span>)._init_()<br>        <span class="hljs-variable language_">self</span>.fc1 = nn.Linear(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>) <span class="hljs-comment"># 输入层到隐藏层</span><br>        <span class="hljs-variable language_">self</span>.fc2 = nn.Linear(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>) <span class="hljs-comment"># 隐藏层到输出层</span><br>        <br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        x = torch.relu(<span class="hljs-variable language_">self</span>.fc1(x)) <span class="hljs-comment"># ReLU 激活函数</span><br>        x = <span class="hljs-variable language_">self</span>.fc2(x)<br>        <span class="hljs-keyword">return</span> x<br>   <br><span class="hljs-comment"># 创建网络实例</span><br>model = SimpleNN()<br><br><span class="hljs-comment"># 打印模型结构</span><br><span class="hljs-built_in">print</span>(model)<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim <span class="hljs-comment"># pytorch的优化模块, 根据梯度更新模型参数, 从而最小化损失函数</span><br><br><span class="hljs-comment"># 定义一个简单的全连接神经网络</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SimpleNN</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">super</span>(SimpleNN, <span class="hljs-variable language_">self</span>).__init__()<br>        <span class="hljs-variable language_">self</span>.fc1 = nn.Linear(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>) <span class="hljs-comment"># 输入层到隐藏层</span><br>        <span class="hljs-variable language_">self</span>.fc2 = nn.Linear(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>) <span class="hljs-comment"># 隐藏层到输出层</span><br>        <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        x = torch.relu(<span class="hljs-variable language_">self</span>.fc1(x)) <span class="hljs-comment"># ReLU 激活函数</span><br>        x = <span class="hljs-variable language_">self</span>.fc2(x)<br>        <span class="hljs-keyword">return</span> x<br>   <br><span class="hljs-comment"># 创建网络实例</span><br>model = SimpleNN()<br><br><span class="hljs-comment"># 打印模型结构</span><br><span class="hljs-built_in">print</span>(model)<br></code></pre></td></tr></table></figure>
 
 <p><strong>训练过程</strong>:</p>
 <ol>
@@ -521,9 +514,9 @@
 <p>优化器在训练过程中更新神经网络的参数, 来降低损失函数</p>
 <p><code>pytorch</code>提供SGD, Adam等等</p>
 <p><strong>使用优化器进行参数更新</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 定义优化器(Adam)</span><br>optimizer = optim.Adam(model.parameters(), lr = <span class="hljs-number">0.001</span>)<br><br><span class="hljs-comment">#训练步骤</span><br>optimizer.zero_grad() <span class="hljs-comment"># 清空梯度</span><br>loss.backward() <span class="hljs-comment">#反向传播</span><br>optimizer.step() <span class="hljs-comment">#更新参数</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 定义优化器(Adam)</span><br>optimizer = optim.Adam(model.parameters(), lr = <span class="hljs-number">0.001</span>)<br><br><span class="hljs-comment">#训练步骤</span><br>optimizer.zero_grad() <span class="hljs-comment"># 🌟 【关键步骤】清空上一轮残留的梯度！PyTorch默认是累加梯度的。</span><br>loss.backward()       <span class="hljs-comment"># 进行反向传播: 算出所有要求导的参数的梯度</span><br>optimizer.step()      <span class="hljs-comment"># 更新参数: 优化器根据刚才算出的梯度，让参数往下山的方向走一步</span><br></code></pre></td></tr></table></figure>
 
-<h6 id="5-1-5-训练模型"><a href="#5-1-5-训练模型" class="headerlink" title="5.1.5 训练模型"></a>5.1.5 训练模型</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim<br><br><span class="hljs-comment"># 1.定义SimpleNN</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SimpleNN</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">super</span>(SimpleNN, <span class="hljs-variable language_">self</span>).__init__()<br>        <span class="hljs-variable language_">self</span>.fc1 = nn.Linear(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>) <span class="hljs-comment"># 输入层到隐藏层</span><br>        <span class="hljs-variable language_">self</span>.fc2 = nn.Linear(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>) <span class="hljs-comment"># 隐藏层到输出</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        x = torch.relu(<span class="hljs-variable language_">self</span>.fc1(x)) <span class="hljs-comment"># relu</span><br>        x = <span class="hljs-variable language_">self</span>.fc2(x)<br>        <span class="hljs-keyword">return</span> x<br><br><span class="hljs-comment"># 2. 创建模型实例</span><br>model = SimpleNN()<br><br><span class="hljs-comment"># 3. 定义损失函数和优化器</span><br>criterion = nn.MSELoss()  <span class="hljs-comment"># 均方误差损失函数</span><br>optimizer = optim.Adam(model.parameters(), lr=<span class="hljs-number">0.001</span>)  <span class="hljs-comment"># Adam 优化器</span><br><br><span class="hljs-comment"># 4. 假设我们有训练数据 X 和 Y</span><br>X = torch.randn(<span class="hljs-number">10</span>, <span class="hljs-number">2</span>)  <span class="hljs-comment"># 10 个样本，2 个特征</span><br>Y = torch.randn(<span class="hljs-number">10</span>, <span class="hljs-number">1</span>)  <span class="hljs-comment"># 10 个目标值</span><br><br><span class="hljs-comment"># 5. 训练循环</span><br><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">100</span>):  <span class="hljs-comment"># 训练 100 轮</span><br>    optimizer.zero_grad()  <span class="hljs-comment"># 清空之前的梯度</span><br>    output = model(X)  <span class="hljs-comment"># 前向传播</span><br>    loss = criterion(output, Y)  <span class="hljs-comment"># 计算损失</span><br>    loss.backward()  <span class="hljs-comment"># 反向传播</span><br>    optimizer.step()  <span class="hljs-comment"># 更新参数</span><br>   <br>    <span class="hljs-comment"># 每 10 轮输出一次损失</span><br>    <span class="hljs-keyword">if</span> (epoch+<span class="hljs-number">1</span>) % <span class="hljs-number">10</span> == <span class="hljs-number">0</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Epoch [<span class="hljs-subst">&#123;epoch+<span class="hljs-number">1</span>&#125;</span>/100], Loss: <span class="hljs-subst">&#123;loss.item():<span class="hljs-number">.4</span>f&#125;</span>&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<h6 id="5-1-5-训练模型"><a href="#5-1-5-训练模型" class="headerlink" title="5.1.5 训练模型"></a>5.1.5 训练模型</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim<br><br><span class="hljs-comment"># 1.定义SimpleNN</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SimpleNN</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">super</span>(SimpleNN, <span class="hljs-variable language_">self</span>).__init__()<br>        <span class="hljs-variable language_">self</span>.fc1 = nn.Linear(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>) <span class="hljs-comment"># 输入层到隐藏层</span><br>        <span class="hljs-variable language_">self</span>.fc2 = nn.Linear(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>) <span class="hljs-comment"># 隐藏层到输出</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        x = torch.relu(<span class="hljs-variable language_">self</span>.fc1(x)) <span class="hljs-comment"># relu</span><br>        x = <span class="hljs-variable language_">self</span>.fc2(x)<br>        <span class="hljs-keyword">return</span> x<br><br><span class="hljs-comment"># 2. 创建模型实例</span><br>model = SimpleNN()<br><br><span class="hljs-comment"># 3. 定义损失函数和优化器</span><br>criterion = nn.MSELoss()  <span class="hljs-comment"># 均方误差损失函数</span><br>optimizer = optim.Adam(model.parameters(), lr=<span class="hljs-number">0.001</span>)  <span class="hljs-comment"># Adam 优化器</span><br><br><span class="hljs-comment"># 4. 假设我们有训练数据 X 和 Y</span><br>X = torch.randn(<span class="hljs-number">10</span>, <span class="hljs-number">2</span>)  <span class="hljs-comment"># 10 个样本，2 个特征</span><br>Y = torch.randn(<span class="hljs-number">10</span>, <span class="hljs-number">1</span>)  <span class="hljs-comment"># 10 个目标值</span><br><br><span class="hljs-comment"># 5. 训练循环</span><br><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">100</span>):  <span class="hljs-comment"># 训练 100 轮</span><br>    optimizer.zero_grad()  <span class="hljs-comment"># ⭐ 1. 梯度清零（别漏了！）</span><br>    output = model(X)      <span class="hljs-comment"># ⭐ 2. 前向传播：带着数据算输出</span><br>    loss = criterion(output, Y)  <span class="hljs-comment"># ⭐ 3. 算一次损失（考得咋样？）</span><br>    loss.backward()        <span class="hljs-comment"># ⭐ 4. 反向传播：把锅分好（算梯度）</span><br>    optimizer.step()       <span class="hljs-comment"># ⭐ 5. 优化器动手改参数</span><br>   <br>    <span class="hljs-comment"># 每 10 轮输出一次损失</span><br>    <span class="hljs-keyword">if</span> (epoch+<span class="hljs-number">1</span>) % <span class="hljs-number">10</span> == <span class="hljs-number">0</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Epoch [<span class="hljs-subst">&#123;epoch+<span class="hljs-number">1</span>&#125;</span>/100], Loss: <span class="hljs-subst">&#123;loss.item():<span class="hljs-number">.4</span>f&#125;</span>&#x27;</span>)<br></code></pre></td></tr></table></figure>
 
 <h6 id="5-1-6-设备（Device）"><a href="#5-1-6-设备（Device）" class="headerlink" title="5.1.6 设备（Device）"></a>5.1.6 设备（Device）</h6><p>PyTorch 允许你将模型和数据移动到 GPU 上进行加速。</p>
 <p>使用 <code>torch.device</code>来指定计算设备。</p>
@@ -534,92 +527,23 @@
 <h5 id="5-2实例"><a href="#5-2实例" class="headerlink" title="5.2实例"></a>5.2实例</h5><h4 id="6-pytorch数据处理和加载"><a href="#6-pytorch数据处理和加载" class="headerlink" title="6 pytorch数据处理和加载"></a>6 pytorch数据处理和加载</h4><h5 id="6-1-自定义Dataset"><a href="#6-1-自定义Dataset" class="headerlink" title="6.1 自定义Dataset"></a>6.1 自定义Dataset</h5><p><code>torch.utils.data.Dataset</code>是一个抽象类, 允许你从自己的数据源中创建数据集</p>
 <p>我们需要继承该类并实现以下两个方法:</p>
 <ul>
-<li><code>_len_(self)</code>: 返回数据集中的样本数量</li>
-<li><code>_getitem_(self, idx)</code>: 通过索引返回一个样本</li>
+<li><code>__len__(self)</code>: 返回数据集中的样本数量</li>
+<li><code>__getitem__(self, idx)</code>: 通过索引返回一个样本</li>
 </ul>
 <p><strong>假设已经有一个csv文件或者一些数据, 我们可以通过继承Dataset类来创建自己的数据集</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> Dataset<br><br><span class="hljs-comment"># 自定义数据集类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyDataset</span>(<span class="hljs-title class_ inherited__">Dataset</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">_init_</span>(<span class="hljs-params">self, X_data, Y_data</span>):<br>        <span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">        初始化数据集, X_data 和 Y_data 是两个列表或数据</span><br><span class="hljs-string">        X_data: 输入特征</span><br><span class="hljs-string">        Y_data: 目标标签</span><br><span class="hljs-string">        &#x27;&#x27;&#x27;</span><br>        <span class="hljs-variable language_">self</span>.X_data = X_data<br>        <span class="hljs-variable language_">self</span>.Y_data = Y_data<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__len__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">        返回数据集的长度</span><br><span class="hljs-string">        &#x27;&#x27;&#x27;</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">len</span>(<span class="hljs-variable language_">self</span>.X_data)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__getitem__</span>(<span class="hljs-params">self, index</span>):<br>        <span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">        返回数据集中第 index 个数据</span><br><span class="hljs-string">        &#x27;&#x27;&#x27;</span><br>        x = torch.tensor(<span class="hljs-variable language_">self</span>.X_data[index], dtype=torch.float32) <span class="hljs-comment"># 转换为Tensor</span><br>        y = torch.tensor(<span class="hljs-variable language_">self</span>.Y_data[index], dtype=torch.float32) <span class="hljs-comment"># 转换为Tensor</span><br>        <span class="hljs-keyword">return</span> x, y<br>    <br><span class="hljs-comment"># 示例数据</span><br>X_data = [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>], [<span class="hljs-number">5</span>, <span class="hljs-number">6</span>], [<span class="hljs-number">7</span>, <span class="hljs-number">8</span>]]<br>Y_data = [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>]<br><br><span class="hljs-comment"># 创建数据集实例</span><br>dataset = MyDataset(X_data, Y_data)<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> Dataset<br><br><span class="hljs-comment"># 自定义数据集类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyDataset</span>(<span class="hljs-title class_ inherited__">Dataset</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, X_data, Y_data</span>):<br>        <span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">        初始化数据集, X_data 和 Y_data 是两个列表或数据</span><br><span class="hljs-string">        X_data: 输入特征</span><br><span class="hljs-string">        Y_data: 目标标签</span><br><span class="hljs-string">        &#x27;&#x27;&#x27;</span><br>        <span class="hljs-variable language_">self</span>.X_data = X_data<br>        <span class="hljs-variable language_">self</span>.Y_data = Y_data<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__len__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">        返回数据集的长度</span><br><span class="hljs-string">        &#x27;&#x27;&#x27;</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">len</span>(<span class="hljs-variable language_">self</span>.X_data)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__getitem__</span>(<span class="hljs-params">self, index</span>):<br>        <span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">        返回数据集中第 index 个数据</span><br><span class="hljs-string">        &#x27;&#x27;&#x27;</span><br>        x = torch.tensor(<span class="hljs-variable language_">self</span>.X_data[index], dtype=torch.float32) <span class="hljs-comment"># 转换为Tensor</span><br>        y = torch.tensor(<span class="hljs-variable language_">self</span>.Y_data[index], dtype=torch.float32) <span class="hljs-comment"># 转换为Tensor</span><br>        <span class="hljs-keyword">return</span> x, y<br>    <br><span class="hljs-comment"># 示例数据</span><br>X_data = [[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>], [<span class="hljs-number">5</span>, <span class="hljs-number">6</span>], [<span class="hljs-number">7</span>, <span class="hljs-number">8</span>]]<br>Y_data = [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>]<br><br><span class="hljs-comment"># 创建数据集实例</span><br>dataset = MyDataset(X_data, Y_data)<br><br></code></pre></td></tr></table></figure>
 
 <p><strong>使用DataLoader加载数据</strong></p>
 <p><code>Dataloader</code>是<code>pytorch</code>的一个重要工具, 用于从<code>Dataset</code>中按批次<code>(batch)</code>加载数据</p>
-<p><code>DataLoader</code>允许我们批量读取数据并且多线程加载, 从而提高训练效率</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader<br><br><span class="hljs-comment"># 创建 DataLoader 实例, batch_size 设置每次加载的样本数量</span><br>dataLoader = DataLoader(dataset, batch_size=<span class="hljs-number">2</span>, shuffle=<span class="hljs-literal">True</span>)<br><br><span class="hljs-comment"># 打印加载的数据</span><br><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>):<br>    <span class="hljs-keyword">for</span> batch_idx, (inputs, labels)<span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(dataloader):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Batch <span class="hljs-subst">&#123;batch_idx + <span class="hljs-number">1</span>&#125;</span>&#x27;</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Input: <span class="hljs-subst">&#123;inputs&#125;</span>&#x27;</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Labels: <span class="hljs-subst">&#123;labels&#125;</span>&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<p><code>DataLoader</code>允许我们批量读取数据并且多线程加载, 从而大大提高训练效率（利用显卡的并行计算能力）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader<br><br><span class="hljs-comment"># 创建 DataLoader 实例, batch_size 设置每次加载的样本数量</span><br>dataloader = DataLoader(dataset, batch_size=<span class="hljs-number">2</span>, shuffle=<span class="hljs-literal">True</span>)<br><br><span class="hljs-comment"># 打印加载的数据</span><br><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>):<br>    <span class="hljs-keyword">for</span> batch_idx, (inputs, labels) <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(dataloader):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Batch <span class="hljs-subst">&#123;batch_idx + <span class="hljs-number">1</span>&#125;</span>&#x27;</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Input: <span class="hljs-subst">&#123;inputs&#125;</span>&#x27;</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Labels: <span class="hljs-subst">&#123;labels&#125;</span>&#x27;</span>)<br></code></pre></td></tr></table></figure>
 
 <ul>
-<li><code>batch_size</code>: 每次加载的样本数量</li>
-<li><code>shuffle</code>: 是否对数据进行洗牌, 通常训练时需要将数据打乱</li>
-<li><code>drop_last</code>: 如果数据集中的样本不能被<code>batch_size</code> 整除, 设置<code>True</code>时, 丢弃最后一个不完整的<code>batch</code></li>
+<li><code>batch_size</code>: 每次加载的样本数量（建议设为 16, 32, 64 等2的次方，以贴合GPU硬件特性）</li>
+<li><code>shuffle</code>: 是否对数据进行洗牌, 通常训练时需要将数据打乱，防止模型摸到死板的规律。</li>
+<li><code>drop_last</code>: 如果数据集中的样本不能被<code>batch_size</code> 整除, 设置<code>True</code>时, 丢弃最后一个不完整的<code>batch</code>，防止后面训练时计算张量维度出错。</li>
 </ul>
-<h4 id="7-清华科协-–神经网络和基础-总结"><a href="#7-清华科协-–神经网络和基础-总结" class="headerlink" title="7. 清华科协 –神经网络和基础(总结)"></a>7. 清华科协 –神经网络和基础(总结)</h4><h5 id="7-1-1-神经网络的组成"><a href="#7-1-1-神经网络的组成" class="headerlink" title="7.1.1 神经网络的组成"></a>7.1.1 神经网络的组成</h5><p><strong>输入(input)</strong>: 输入信号的权重, 可以是外部输入或者是来自于其它神经元的输出</p>
-<p><strong>权重(weights)</strong>: 输入信号的权重, 表示每个输入对神经元影响的大小</p>
-<p><strong>偏置(bias)</strong>: 每个神经元的偏移量, 即为<code>wx+b</code>中的<code>b</code>, 保持输入的灵活性, 控制输入数据的阈值</p>
-<p><strong>激活函数(Activation)</strong>: 对加权输入的结果应用非线性变换, 常见的有ReLU, Sigmoid, Tanh等</p>
-<h5 id="6-1-2-抽象表达"><a href="#6-1-2-抽象表达" class="headerlink" title="6.1.2 抽象表达"></a>6.1.2 抽象表达</h5><ul>
-<li>是一个具有数以万计的特定参数的高维映射, <strong>对于待定参数可以求偏导</strong>(权重矩阵和偏置), 具有强大的表示能力</li>
-<li>形式上来说$f_{\theta}(x) &#x3D; y$, <code>x</code>就是向量输入, y是向量输出</li>
-<li>实际上这个定义非常的宽泛, 所以神经网络可以做很多事情</li>
-<li>f(图片) &#x3D; Possibility(用于图像分类)</li>
-<li>f(上文) &#x3D; next token(LLM)</li>
-<li>f(x) &#x3D; v(文字生成图片)</li>
-</ul>
-<h5 id="6-1-3-两个问题"><a href="#6-1-3-两个问题" class="headerlink" title="6.1.3  两个问题"></a>6.1.3  两个问题</h5><ul>
-<li>待定参数的形式(“神经网络”)是对的吗? 这样设计的函数的表示能力有上界吗? 会不会这么设计的函数, 根本找不到一组令人满意的参数来组成这样的函数? (任意一种形状的复杂函数)<ol>
-<li>此处不要求闭式解</li>
-<li>泰勒展开, $f(x) &#x3D; [1, x, x^2 …]dot[w_0, w_1, w_2…]$</li>
-<li>傅立叶展开, $f(x) &#x3D; [1, sin(x), sin(2x)…cos(x), cos(2x)…]dot[c, a_1, a_2…b_1, b_2…]$</li>
-<li>上述都可以无限逼近(前者描述充分好的光滑函数, 不断提高n, 后者是周期函数)</li>
-<li><strong>逼近定理</strong>: 对于&#x3D;&#x3D;有限定义域上&#x3D;&#x3D;的&#x3D;&#x3D;连续函数&#x3D;&#x3D;f, 如果网络具有一个隐藏层, 并且使用非线性激活函数(sigmoid, ReLU), 可以找到权重, 使得网络的输出以任意精度逼近f (只解决了<strong>存在性</strong>)</li>
-</ol>
-</li>
-<li>假设说待定参数的形式是对的, 考虑到数以亿计的参数, 如何求解出来呢? <ol>
-<li>求解出来之后要有一个判据判定好坏, 可以理解为现有的函数到目标函数的距离, 也就是损失</li>
-<li>用一个集合来近似所有区域的学习,即{(真实输入), (真实输出)}</li>
-<li>梯度下降法来达到最优值, 需要思考修改量的大小和方向, 也要思考极小和最小的问题</li>
-<li>如何得到梯度? –&gt;[反向传播算法](# 3.1.4 求梯度和误差项)</li>
-</ol>
-</li>
-</ul>
-<p><img src="/./%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%8A%A5%E5%91%8A.assets/image-20250818182559375.png" srcset="/img/loading.gif" lazyload alt="image-20250818182559375"></p>
-<h4 id="7-1-清华科协–pytorch代码基础-总结"><a href="#7-1-清华科协–pytorch代码基础-总结" class="headerlink" title="7.1 清华科协–pytorch代码基础(总结)"></a>7.1 清华科协–pytorch代码基础(总结)</h4><h5 id="7-1-1-计算图"><a href="#7-1-1-计算图" class="headerlink" title="7.1.1 计算图"></a>7.1.1 计算图</h5><h5 id="Autograd-automatic-differentiation（自动微分）"><a href="#Autograd-automatic-differentiation（自动微分）" class="headerlink" title="Autograd &#x3D; automatic differentiation（自动微分）"></a><strong>Autograd</strong> &#x3D; <strong>automatic differentiation（自动微分）</strong></h5><p>可以自动计算梯度的工具</p>
-<p>计算图是由一系列节点和边组成的有向无环图, 每个节点代表一个操作和变量, 边表示变量之间的依赖关系, 在深度学习中, 计算图记录了每个操作(+, *, dot …)如何组成最终的输出</p>
-<p>在前向传播的过程中, 模型通过一系列的操作计算出最终的结果, 同时构建计算图</p>
-<ul>
-<li>当对张量进行操作时, 框架会创建一个新的节点, 记录操作和其输入输出</li>
-<li>输出成为下一个输入, 操作之间通过边连起来</li>
-<li>计算图的节点不仅记录操作, 还会记录输入输出张量以便计算梯度</li>
-</ul>
-<h5 id="7-1-2-存储空间-OOM警告"><a href="#7-1-2-存储空间-OOM警告" class="headerlink" title="7.1.2 存储空间(OOM警告)"></a>7.1.2 存储空间(OOM警告)</h5><p><code>OOM = out of memory</code></p>
-<p>计算图需要占用内存空间来存储与向前传播过程中的每个操作相关的中间结果以及梯度.  在训练过程中, pytorch 会动态构建计算图, 每个操作会生成一个对应的节点, 并在计算图中记录这些操作及其输入输出:</p>
-<ul>
-<li><strong>操作</strong>: 加法, 乘法, 激活函数</li>
-<li><strong>输入张量</strong>: 这些张量是计算图中某个节点的输入</li>
-<li><strong>输出张量</strong>: 这是计算图中某个节点的输出</li>
-</ul>
-<p>由于计算图的每个节点都可能有梯度信息, 因此计算图的存储空间会随着模型的复杂度和输入数据的大小而增加. 大模型和大数据集会使得计算图占用更多的内存空间</p>
-<h5 id="7-1-3-行成时间-动态构建"><a href="#7-1-3-行成时间-动态构建" class="headerlink" title="7.1.3 行成时间(动态构建)"></a>7.1.3 行成时间(动态构建)</h5><p>计算图的行程时间是指在pytorch之中, 每当执行一个操作时, 计算图就会动态地构建, 只有当张量的require_grad设置为true时, pytorch会追踪该向量的运损并且记录操作, 构建出一个计算图, 每次向前传播的时候, pytorch都是根据当前的操作动态更新计算图, 以便于支持后续的梯度计算. 此过程按需进行, 并且能够根据不同的输入动态调整</p>
-<h5 id="7-1-4-销毁时间-反向传播后"><a href="#7-1-4-销毁时间-反向传播后" class="headerlink" title="7.1.4 销毁时间(反向传播后)"></a>7.1.4 销毁时间(反向传播后)</h5><p>在完成反向传播并且计算出梯度时, 计算图会被销毁, 在pytorch中, 计算图在执行backward()时被使用, 并且在计算完梯度后通常会被销毁, 为了节省内存, pytorch会在完成反向传播后, 自动释放计算贴图所占用的内存</p>
-<p>然而, 如果我们设置了<strong>backward(retain_graph &#x3D; True)</strong>, 那么计算图就不会被销毁, 这对于需要多次反向传播的情况非常有用</p>
-<h5 id="7-1-5-pytorch模型"><a href="#7-1-5-pytorch模型" class="headerlink" title="7.1.5 pytorch模型"></a>7.1.5 pytorch模型</h5><p><strong>torch.nn.Module</strong>: </p>
-<ul>
-<li><p>是pytorch中所有神经网络模型的基类, 所有写的神经模型都要继承这个类, 并且重写两个重要的方法</p>
-</li>
-<li><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">_init_() <span class="hljs-comment"># 构造函数, 定义了这个神经网络模型的组成部分</span><br></code></pre></td></tr></table></figure>
-</li>
-<li><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">forward() <span class="hljs-comment"># 前向传播函数, 当执行model()时, 函数对象执行的就是forward()函数, 定义了数据流</span><br></code></pre></td></tr></table></figure>
-</li>
-<li><p>其它重要的成员函数:</p>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">parameters()<br>named_parameters()<br>to()<br>apply()<br><span class="hljs-built_in">eval</span>()<br>train()<br>state_dict()<br>load_state_dict()<br>zero_grad()<br></code></pre></td></tr></table></figure>
 
-
-
-
-
-
-
-<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>— 第 181 页，<a target="_blank" rel="noopener" href="http://amzn.to/2FkHqvW">统计学习导论</a>，2013 年
-<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
                 
               </div>
             
@@ -709,9 +633,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/11/20/primary_develop_forstm32/" title="stm32开发工具">
+                      <a href="/2025/11/20/CMSIS/" title="CMSIS库以及相关算法">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">stm32开发工具</span>
+                        <span class="hidden-mobile">CMSIS库以及相关算法</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -719,8 +643,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/11/20/verilator-cocotb/" title="verilator+cocotb">
-                        <span class="hidden-mobile">verilator+cocotb</span>
+                      <a href="/2025/11/20/primary_develop_forstm32/" title="stm32开发工具">
+                        <span class="hidden-mobile">stm32开发工具</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

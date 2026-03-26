@@ -1,0 +1,843 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="CMSIS库概介CMSIS 全称是 Cortex Microcontroller Software Interface Standard。它的目标是统一 Cortex-M 平台上的底层接口、驱动抽象和高性能算法库，方便你在不同芯片厂商之间移植代码。 它主要包含这些部分：               CMSIS-Core：Cortex-M 内核寄存器、NVIC、中断、SysTick 等底层访问接口">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CMSIS库以及相关算法">
+<meta property="og:url" content="https://rubbishbro.github.io/2025/11/20/CMSIS/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="CMSIS库概介CMSIS 全称是 Cortex Microcontroller Software Interface Standard。它的目标是统一 Cortex-M 平台上的底层接口、驱动抽象和高性能算法库，方便你在不同芯片厂商之间移植代码。 它主要包含这些部分：               CMSIS-Core：Cortex-M 内核寄存器、NVIC、中断、SysTick 等底层访问接口">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://rubbishbro.github.io/pic/v2-9523bdd705f564cfda728fde0f0c6dc7_1440w.jpg">
+<meta property="og:image" content="https://rubbishbro.github.io/pic/v2-eca8606eb352ee168059529f3f4865df_1440w.jpg">
+<meta property="og:image" content="https://rubbishbro.github.io/pic/v2-a21d6d88dc6d7e53ec881be82a2ebdc2_1440w.webp">
+<meta property="og:image" content="https://rubbishbro.github.io/pic/v2-88286336deaba3c6ff36c347813a1fbb_1440w.jpg">
+<meta property="og:image" content="https://rubbishbro.github.io/pic/09f57392c95d495f9af8623ac1d4cdef.png">
+<meta property="og:image" content="https://rubbishbro.github.io/pic/eq.png">
+<meta property="og:image" content="https://rubbishbro.github.io/pic/eq.png">
+<meta property="og:image" content="https://rubbishbro.github.io/pic/eq-1.png">
+<meta property="og:image" content="https://rubbishbro.github.io/pic/eq-2.png">
+<meta property="og:image" content="https://rubbishbro.github.io/pic/eq-3.png">
+<meta property="og:image" content="https://rubbishbro.github.io/pic/eq-4.png">
+<meta property="article:published_time" content="2025-11-20T09:30:10.000Z">
+<meta property="article:modified_time" content="2026-03-24T07:46:28.385Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="demo">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://rubbishbro.github.io/pic/v2-9523bdd705f564cfda728fde0f0c6dc7_1440w.jpg">
+  
+  
+  
+  <title>CMSIS库以及相关算法 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"rubbishbro.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/embedded/" target="_self">
+                <i class="icon-eletronic"></i>
+                <span>嵌入式以及嵌入式ai</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/post.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="CMSIS库以及相关算法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-11-20 17:30" pubdate>
+          November 20, 2025 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          42 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">CMSIS库以及相关算法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="CMSIS库"><a href="#CMSIS库" class="headerlink" title="CMSIS库"></a>CMSIS库</h1><h3 id="概介"><a href="#概介" class="headerlink" title="概介"></a>概介</h3><p>CMSIS 全称是 Cortex Microcontroller Software Interface Standard。<br>它的目标是统一 Cortex-M 平台上的底层接口、驱动抽象和高性能算法库，方便你在不同芯片厂商之间移植代码。</p>
+<p>它主要包含这些部分：</p>
+<div class="note note-info">
+            <ul> <li>CMSIS-Core：Cortex-M 内核寄存器、NVIC、中断、SysTick 等底层访问接口</li> <li>CMSIS-DSP：数字信号处理库</li> <li>CMSIS-NN：面向 Cortex-M 的神经网络推理内核</li> <li>CMSIS-RTOS：RTOS 抽象接口</li> <li>CMSIS-Driver：外设驱动统一接口</li> <li>CMSIS-Pack：软件包管理和工程集成规范</li> </ul> 
+          </div>
+
+<p>对于本项目方向，核心关注点是：</p>
+<ul>
+<li>信号预处理用 CMSIS-DSP</li>
+<li>神经网络推理用 CMSIS-NN</li>
+</ul>
+<h3 id="CMSIS库的优势"><a href="#CMSIS库的优势" class="headerlink" title="CMSIS库的优势"></a>CMSIS库的优势</h3><p>光谱处理的本质就是信号处理，预处理流程通常包括基线矫正，归一化，数据处理阶段包括去噪，平滑，FFT，特征提取，这些均在CMSIS-DSP库内有封装的函数</p>
+<p>之后把处理后的特征送入轻量级嵌入式设备模型，再用CMSIS-NN推理</p>
+<p>其优势:</p>
+<ul>
+<li>针对Cortex-M做过优化(n6使用M55)，速度和功耗优于自定义函数</li>
+<li>支持定点运算，适合无FPU的设备</li>
+<li>能和TensorFlow for Microcontroller适配</li>
+</ul>
+<h3 id="CMSIS-DSP"><a href="#CMSIS-DSP" class="headerlink" title="CMSIS-DSP"></a>CMSIS-DSP</h3><p>包括：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 向量计算:加减乘除、点积、均值、方差</span><br><span class="hljs-comment"># 统计函数：最大值、最小值、RMS、标准差</span><br><span class="hljs-comment"># 变换：FFT、RFFT</span><br><span class="hljs-comment"># 滤波：FIR、IIR、双二阶滤波器</span><br><span class="hljs-comment"># 矩阵运算：乘法、转置、求逆</span><br><span class="hljs-comment"># 插值和基础数学函数</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="CMSIS-NN"><a href="#CMSIS-NN" class="headerlink" title="CMSIS-NN"></a>CMSIS-NN</h3><p>一组神经网路算子加速库,不是训练框架,主要用于在MCU上高效执行推理,适合</p>
+<ul>
+<li>1D CNN</li>
+<li>小型全连接网络</li>
+<li>关键词识别</li>
+<li>传感器分类</li>
+<li>时序&#x2F;频谱特征分类</li>
+</ul>
+<p>它常见支持的算子包括：</p>
+<ul>
+<li>卷积</li>
+<li>深度可分离卷积</li>
+<li>全连接层</li>
+<li>激活函数</li>
+<li>池化</li>
+<li>Softmax</li>
+</ul>
+<h3 id="CMSIS-DSP-算法"><a href="#CMSIS-DSP-算法" class="headerlink" title="CMSIS-DSP 算法"></a>CMSIS-DSP 算法</h3><h4 id="FIR平滑滤波"><a href="#FIR平滑滤波" class="headerlink" title="FIR平滑滤波"></a>FIR平滑滤波</h4><p>FIR平滑滤波的原理及其朴素,本质公式如下</p>
+<p>$$y[n] &#x3D; \sum_{k &#x3D; 0}^{M-1} h[k]x[n-k] $$<br>x为输入,y为输出,h为FIR滤波器系数,M为滤波器长度</p>
+<p>数学含义就是此处的输出为最近M个点的加权平均<br>若$$ h[k] &#x3D; \frac{1}{M}$$<br>就是最简单的滑动平均滤波器</p>
+<p>关于<strong>为什么能去噪</strong>的原因很简单:方差计算的结果为原来的根号M分之一</p>
+<p>在频域内,FIR滤波器是低通滤波器</p>
+<p>缺点:降低分辨率,有一定的延迟($$\frac{M-1}{2}$$次采样)</p>
+<h4 id="SG滤波"><a href="#SG滤波" class="headerlink" title="SG滤波"></a>SG滤波</h4><p>SG滤波:光谱处理内的经典滤波算法,具有保留原信号的形状的能力</p>
+<p>本质:基于局部多项式回归的数字滤波器,核心是通过线性最小二乘法将低阶多项式集合到相邻数据点的滑动窗口中,能在降低噪声的同时保持信号的高阶矩,意味着信号的峰值谷值可以得到较好的保持</p>
+<p>滤波器的工作过程:在信号序列上滑动固定大小的窗口,对窗口的数据点进行多项式拟合,窗口大小和多项式阶数是该算法的两个关键参数,算法在每个窗口位置内计算多项式在中心的值,作为输出</p>
+<p>下面详细介绍数学原理:<br><strong>多项式拟合</strong>:SG滤波器的核心就是局部多项式拟合,设$$(x_i,y_i)$$,i为不含0的自然数,目标是用p阶多项式对局部数据进行拟合</p>
+<p><img src="/./pic/v2-9523bdd705f564cfda728fde0f0c6dc7_1440w.jpg" srcset="/img/loading.gif" lazyload alt="alt text"></p>
+<p>对于中心位于$$x_k$$需要确定向量$$[a_0,a_1…a_p]$$使得多项式能够最佳拟合窗口内的数据点,此优化问题通过最小化均方误差来解决</p>
+<p><img src="/./pic/v2-eca8606eb352ee168059529f3f4865df_1440w.jpg" srcset="/img/loading.gif" lazyload alt="alt text"></p>
+<p>为了说明算法的具体实现过程，我们考虑一个简单的例子：窗口大小为5（即m&#x3D;2）的2阶多项式拟合,数据点为:<br><img src="/./pic/v2-a21d6d88dc6d7e53ec881be82a2ebdc2_1440w.webp" srcset="/img/loading.gif" lazyload alt="alt text"><br>二阶多项式进行拟合<br><img src="/./pic/v2-88286336deaba3c6ff36c347813a1fbb_1440w.jpg" srcset="/img/loading.gif" lazyload alt="alt text"></p>
+<p>一系列的工程分析不予展示,这里给出关于不同窗口和阶数对于去噪效果的影响</p>
+<ul>
+<li>小窗口低阶配置：能够保持局部特征，但对高频噪声的抑制效果有限</li>
+<li>小窗口高阶配置：可以捕获复杂的局部变化，但存在过拟合风险</li>
+<li>大窗口低阶配置：具有良好的噪声抑制效果，但可能会过度平滑信号特征</li>
+<li>大窗口高阶配置：在保持信号特征的同时提供平滑效果，但需要注意窗口大小与信号特征尺度的匹配</li>
+</ul>
+<p><strong>实践指南:</strong></p>
+<p>参数选择策略<br>Savitzky-Golay滤波器的性能很大程度上取决于窗口大小和多项式阶数的选择。这两个参数需要根据具体应用场景进行优化。</p>
+<p><strong>窗口大小选择</strong></p>
+<ul>
+<li><p>小窗口：适用于快速变化信号的处理<br>优势：能够保持信号的局部特征和快速变化<br>局限：噪声抑制效果可能不够理想</p>
+</li>
+<li><p>大窗口：适用于缓慢变化信号的处理<br>优势：具有更好的噪声抑制效果<br>局限：可能会模糊信号的局部特征</p>
+</li>
+</ul>
+<p><strong>多项式阶数选择</strong></p>
+<ul>
+<li><p>低阶多项式（p&#x3D;2或3）<br>适用于平滑变化的信号<br>具有较好的抗噪声能力<br>计算效率较高</p>
+</li>
+<li><p>高阶多项式（p&#x3D;4或5）<br>适用于具有复杂局部结构的信号<br>能够更好地保持信号特征<br>需要注意过拟合风险<br>算法局限性<br>边界效应</p>
+</li>
+</ul>
+<p>注意:<strong>这并不是DSP库内封装函数,所以需要离线求得卷积系数在用FIR和卷积实现</strong></p>
+<h4 id="基线校正"><a href="#基线校正" class="headerlink" title="基线校正"></a>基线校正</h4><p>基线校正是光谱预处理中的关键步骤,用于消除由仪器飘逸,北京散射和荧光效应产生的低频干扰信号,未校正的基线会导致峰位漂移,定量分析误差等问题<br><img src="/./pic/09f57392c95d495f9af8623ac1d4cdef.png" srcset="/img/loading.gif" lazyload alt="alt text"></p>
+<p>基线漂移的来源:</p>
+<ul>
+<li>探测器温度波动</li>
+<li>光线的散射</li>
+<li>非目标物质的干扰信号</li>
+<li>器件老化</li>
+</ul>
+<p>常用基线校正方法</p>
+<ul>
+<li>多项式拟合法<br>适用场景：平缓变化的简单基线<br>关键参数：多项式阶数（通常3-5阶）</li>
+<li>自适应迭代重加权惩罚最小二乘法<br>通过迭代调整权重矩阵 实现基线拟合<br>优势：自动适应复杂基线形态<br>关键参数：平滑因子λ、迭代次数</li>
+<li>小波变换法<br>利用小波分解提取低频基线成分<br>优势：保留高频有用信号<br>关键参数：小波基函数选择、分解层数</li>
+</ul>
+<p>代码实例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">from</span> pybaselines <span class="hljs-keyword">import</span> Baseline<br><span class="hljs-comment"># Set the font family to SimHei (黑体)</span><br>plt.rcParams[<span class="hljs-string">&#x27;font.family&#x27;</span>] = <span class="hljs-string">&#x27;SimHei&#x27;</span><br><br><span class="hljs-comment"># 读取CSV文件</span><br><span class="hljs-comment"># 假设CSV文件的列名为&#x27;wavenumber&#x27;和&#x27;absorbance&#x27;</span><br><span class="hljs-comment"># 如果列名不同，请相应修改names参数</span><br>data = pd.read_csv(<span class="hljs-string">&quot;data.csv&quot;</span>, header=<span class="hljs-literal">None</span>, index_col=<span class="hljs-literal">False</span>)<br><br><span class="hljs-comment"># 获取波数和吸光度数据</span><br>x = data[<span class="hljs-number">0</span>].values<br>y = data[<span class="hljs-number">1</span>].values<br><br><span class="hljs-comment"># 创建基线拟合器</span><br>baseline_fitter = Baseline(x_data=x)<br><br><span class="hljs-comment"># 使用不同的基线校正方法</span><br>bkg_1, params_1 = baseline_fitter.modpoly(y, poly_order=<span class="hljs-number">3</span>)<br>bkg_2, params_2 = baseline_fitter.asls(y, lam=<span class="hljs-number">1e7</span>, p=<span class="hljs-number">0.02</span>)<br>bkg_3, params_3 = baseline_fitter.mor(y, half_window=<span class="hljs-number">30</span>)<br>bkg_4, params_4 = baseline_fitter.snip(y, max_half_window=<span class="hljs-number">40</span>, decreasing=<span class="hljs-literal">True</span>, smooth_half_window=<span class="hljs-number">3</span>)<br>bkg_5, params_5 = baseline_fitter.airpls(y)<br><br><span class="hljs-comment"># 计算校正后的光谱</span><br>corrected_1 = y - bkg_1<br>corrected_2 = y - bkg_2<br>corrected_3 = y - bkg_3<br>corrected_4 = y - bkg_4<br>corrected_5 = y - bkg_5<br><br><span class="hljs-comment"># 绘制结果</span><br>plt.figure(figsize=(<span class="hljs-number">12</span>, <span class="hljs-number">8</span>))<br><br><span class="hljs-comment"># 原始数据和基线</span><br>plt.subplot(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>)<br>plt.plot(x, y, label=<span class="hljs-string">&#x27;原始光谱&#x27;</span>, lw=<span class="hljs-number">1.5</span>)<br>plt.plot(x, bkg_1, <span class="hljs-string">&#x27;--&#x27;</span>, label=<span class="hljs-string">&#x27;modpoly&#x27;</span>)<br>plt.plot(x, bkg_2, <span class="hljs-string">&#x27;--&#x27;</span>, label=<span class="hljs-string">&#x27;asls&#x27;</span>)<br>plt.plot(x, bkg_3, <span class="hljs-string">&#x27;--&#x27;</span>, label=<span class="hljs-string">&#x27;mor&#x27;</span>)<br>plt.plot(x, bkg_4, <span class="hljs-string">&#x27;--&#x27;</span>, label=<span class="hljs-string">&#x27;snip&#x27;</span>)<br>plt.legend()<br>plt.title(<span class="hljs-string">&#x27;原始光谱和基线&#x27;</span>)<br>plt.xlabel(<span class="hljs-string">&#x27;波数&#x27;</span>)<br>plt.ylabel(<span class="hljs-string">&#x27;吸光度&#x27;</span>)<br><br><span class="hljs-comment"># 校正后的光谱</span><br>plt.subplot(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>)<br><span class="hljs-comment"># plt.plot(x, corrected_1, label=&#x27;modpoly correct&#x27;)</span><br><span class="hljs-comment"># plt.plot(x, corrected_2, label=&#x27;asls correct&#x27;)</span><br><span class="hljs-comment"># plt.plot(x, corrected_3, label=&#x27;mor correct&#x27;)</span><br><span class="hljs-comment"># plt.plot(x, corrected_4, label=&#x27;snip correct&#x27;)</span><br>plt.plot(x, corrected_5, label=<span class="hljs-string">&#x27;airPLS correct&#x27;</span>)<br>plt.legend()<br>plt.title(<span class="hljs-string">&#x27;基线校正后的光谱&#x27;</span>)<br>plt.xlabel(<span class="hljs-string">&#x27;波数&#x27;</span>)<br>plt.ylabel(<span class="hljs-string">&#x27;校正后吸光度&#x27;</span>)<br><br>plt.tight_layout()<br>plt.show()<br><br></code></pre></td></tr></table></figure>
+
+<p>和SG一样,基线漂移也需要调用CMSIS的函数来实现</p>
+<h4 id="幅值校正-归一化"><a href="#幅值校正-归一化" class="headerlink" title="幅值校正(归一化)"></a>幅值校正(归一化)</h4><p>归一化（Normalization）是一种数据预处理 技术，旨在将不同量纲、不同取值范围的数据转换到相同的尺度上，以便进行更加公平、有效的比较或分析。</p>
+<p>Mini-MAX归一化<br>将数据线性映射到[0,1]范围内<br><img src="/./pic/eq.png" srcset="/img/loading.gif" lazyload alt="alt text"><br>优点:保持数据的比例关系,简单易行,适合有固定上下界的场景<br>缺点:对极端值很敏感</p>
+<p>Z-score归一化<br>Z-score 归一化通过减去均值再除以标准差，使得数据呈标准正态分布，均值为 0，标准差为 1。其公式为：<br><img src="/./pic/eq.png" srcset="/img/loading.gif" lazyload alt="alt text"><br>优点:不受极端值的影响,适合处理正态分布的数据<br>缺点:如果不是高斯分布效果较差,不能保证数据在[0,1]之间</p>
+<p>最大值归一化:最大值归一化是将数据除以它的绝对最大值，使数据的范围归一化到 [-1, 1] 之间。其公式为：<br><img src="/./pic/eq-1.png" srcset="/img/loading.gif" lazyload alt="alt text"><br>优点：简单快速，适合在数据分布中心为零时使用<br>缺点：仍然对极端值敏感</p>
+<p>小数定标归一化<br>小数定标归一化通过将数据除以一个 10 的整数次幂，使归一化后的数据范围在 [-1, 1] 之间。其公式为：<br><img src="/./pic/eq-2.png" srcset="/img/loading.gif" lazyload alt="alt text"><br>优点：适合当数据范围比较固定且易于计算时使用m</p>
+<p>向量归一化<br>向量归一化通常用于将向量的模长标准化，使整个向量的长度为 1。常用于文本处理、图像处理 等领域。公式为：<br><img src="/./pic/eq-3.png" srcset="/img/loading.gif" lazyload alt="alt text"><br>其中$$\left | x \right |$$是向量 x 的 欧几里得范数，即<br><img src="/./pic/eq-4.png" srcset="/img/loading.gif" lazyload alt="alt text"><br>优点：在处理向量（如图像、文本等）的任务中非常有用，可以消除向量长度差异带来的影响</p>
+<p>不同归一化方法的应用场景<br>Min-Max 归一化：常用于数据范围已知，且目标是将数据归一化到固定范围（如 [0, 1]）的场景，广泛应用于神经网络等需要定量计算的数据模型中。</p>
+<p>Z-score 归一化：适合数据分布为正态分布或需要消除量纲影响的场景，常用于聚类分析和 PCA（主成分分析）等模型。</p>
+<p>最大值归一化：适用于数据值围绕中心对称分布，且希望将数据映射到 [-1, 1] 区间的情况，常用于 SVM 等机器学习算法。</p>
+<p>小数定标归一化：适合数据的取值范围较大，且位数变化相对固定的场景。</p>
+<p>向量归一化：适用于向量数据，如文本分类、图像处理等领域，特别是当要消除向量大小的影响时。</p>
+<h4 id="特征增强"><a href="#特征增强" class="headerlink" title="特征增强"></a>特征增强</h4><ul>
+<li>一阶导<br>突出变化趋势，适合看斜率变化和峰边界</li>
+<li>二阶导<br>更强调曲率和峰结构，常用于分离重叠峰，但更容易放大噪声</li>
+<li>差分<br>本质上也是强调相邻点变化</li>
+<li>峰检测<br>把有意义的局部极值找出来</li>
+<li>波段选择<br>从全谱里挑对任务最有信息量的波段</li>
+</ul>
+<h4 id="变换和压缩"><a href="#变换和压缩" class="headerlink" title="变换和压缩"></a>变换和压缩</h4><ul>
+<li>FFT<br>是把时域&#x2F;序列信号变到频域，重点是“换表示”。</li>
+<li>DCT<br>也是变换到另一组基函数空间，常用于能量集中和压缩。</li>
+<li>PCA<br>是把高维相关变量投影到少数主成分上，重点是降维和保留主要方差。</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%9A%8F%E7%AC%94/" class="category-chain-item">随笔</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/demo/" class="print-no-link">#demo</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>CMSIS库以及相关算法</div>
+      <div>https://rubbishbro.github.io/2025/11/20/CMSIS/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>November 20, 2025</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/11/20/hexo-fluid-blog/" title="hexo-fluid blog">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">hexo-fluid blog</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/11/20/machine_learning_basics/" title="机器学习基础">
+                        <span class="hidden-mobile">机器学习基础</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        var texts = ["rubbishbro's Blog","欢迎来到本菜鸡的博客ovo"];
+        typing(texts.join('<br>'));
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
