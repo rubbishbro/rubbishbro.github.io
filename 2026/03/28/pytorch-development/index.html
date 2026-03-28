@@ -19,22 +19,22 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="verilator+cocotbVerilator是一款开源的Verilog验证工具，它可以将Verilog代码转换为C++代码，然后编译成可执行文件。而cocotb是一款开源的Python测试框架，它可以让用户在Python环境下编写测试用例，并通过Verilator生成的C++代码来驱动仿真器。">
+    <meta name="description" content="这篇文章解决什么问题你已经有 PyTorch 模型，现在要把它放到 STM32N6 上跑。本文给你一条可落地路径：  PC 端模型怎么准备； 为什么要导出 ONNX； ST Edge AI Core 在链路里做什么； CubeMX + VS Code 工程怎么接； 板端结果和 PC 不一致时从哪里查。  默认工具链：  STM32CubeMX STM32CubeIDE for VS Code ST">
 <meta property="og:type" content="article">
-<meta property="og:title" content="verilator+cocotb">
-<meta property="og:url" content="https://rubbishbro.github.io/2025/11/20/verilator-cocotb/index.html">
+<meta property="og:title" content="PyTorch 模型部署到 STM32N6">
+<meta property="og:url" content="https://rubbishbro.github.io/2026/03/28/pytorch-development/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="verilator+cocotbVerilator是一款开源的Verilog验证工具，它可以将Verilog代码转换为C++代码，然后编译成可执行文件。而cocotb是一款开源的Python测试框架，它可以让用户在Python环境下编写测试用例，并通过Verilator生成的C++代码来驱动仿真器。">
+<meta property="og:description" content="这篇文章解决什么问题你已经有 PyTorch 模型，现在要把它放到 STM32N6 上跑。本文给你一条可落地路径：  PC 端模型怎么准备； 为什么要导出 ONNX； ST Edge AI Core 在链路里做什么； CubeMX + VS Code 工程怎么接； 板端结果和 PC 不一致时从哪里查。  默认工具链：  STM32CubeMX STM32CubeIDE for VS Code ST">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-11-20T09:30:10.000Z">
-<meta property="article:modified_time" content="2026-03-23T23:30:12.827Z">
+<meta property="article:published_time" content="2026-03-28T09:20:00.000Z">
+<meta property="article:modified_time" content="2026-03-28T08:54:50.906Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="demo">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>verilator+cocotb - Hexo</title>
+  <title>PyTorch 模型部署到 STM32N6 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -216,7 +216,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="verilator+cocotb"></span>
+            <span id="subtitle" data-typed-text="PyTorch 模型部署到 STM32N6"></span>
           
         </div>
 
@@ -227,8 +227,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-11-20 17:30" pubdate>
-          November 20, 2025 pm
+        <time datetime="2026-03-28 17:20" pubdate>
+          March 28, 2026 pm
         </time>
       </span>
     
@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          150 words
+          2.4k words
         
       </span>
     
@@ -250,7 +250,7 @@
         
         
         
-          2 mins
+          20 mins
         
       </span>
     
@@ -287,12 +287,145 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">verilator+cocotb</h1>
+            <h1 id="seo-header">PyTorch 模型部署到 STM32N6</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="verilator-cocotb"><a href="#verilator-cocotb" class="headerlink" title="verilator+cocotb"></a>verilator+cocotb</h3><p>Verilator是一款开源的Verilog验证工具，它可以将Verilog代码转换为C++代码，然后编译成可执行文件。而cocotb是一款开源的Python测试框架，它可以让用户在Python环境下编写测试用例，并通过Verilator生成的C++代码来驱动仿真器。</p>
+                <h2 id="这篇文章解决什么问题"><a href="#这篇文章解决什么问题" class="headerlink" title="这篇文章解决什么问题"></a>这篇文章解决什么问题</h2><p>你已经有 PyTorch 模型，现在要把它放到 <strong>STM32N6</strong> 上跑。<br>本文给你一条可落地路径：</p>
+<ul>
+<li>PC 端模型怎么准备；</li>
+<li>为什么要导出 ONNX；</li>
+<li>ST Edge AI Core 在链路里做什么；</li>
+<li>CubeMX + VS Code 工程怎么接；</li>
+<li>板端结果和 PC 不一致时从哪里查。</li>
+</ul>
+<p>默认工具链：</p>
+<ul>
+<li>STM32CubeMX</li>
+<li>STM32CubeIDE for VS Code</li>
+<li>STM32CubeProgrammer</li>
+<li>ST Edge AI Core</li>
+</ul>
+<hr>
+<h2 id="先理解部署链路（背后原理）"><a href="#先理解部署链路（背后原理）" class="headerlink" title="先理解部署链路（背后原理）"></a>先理解部署链路（背后原理）</h2><p>你在 PC 上的 PyTorch 模型，不能直接原样放到 MCU 里跑，原因是：</p>
+<ul>
+<li>训练框架依赖重（Python 运行时、算子实现复杂）；</li>
+<li>MCU 资源有限（RAM&#x2F;Flash&#x2F;带宽）；</li>
+<li>嵌入式推理需要静态、可裁剪、可编译的图结构。</li>
+</ul>
+<p>所以常见链路是：</p>
+<ol>
+<li>PyTorch 导出为 ONNX（静态计算图交换格式）</li>
+<li>ST Edge AI Core 分析并转换成目标平台可执行形式</li>
+<li>生成&#x2F;集成 C 工程代码，在 STM32N6 上运行</li>
+</ol>
+<p>核心思想：<strong>把“训练图”变成“部署图”。</strong></p>
+<hr>
+<h2 id="第一步：在-PC-端把模型“部署化”"><a href="#第一步：在-PC-端把模型“部署化”" class="headerlink" title="第一步：在 PC 端把模型“部署化”"></a>第一步：在 PC 端把模型“部署化”</h2><h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><p>先固定模型行为和输入尺寸：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><br>model = MyModel()<br>model.load_state_dict(torch.load(<span class="hljs-string">&quot;best.pt&quot;</span>, map_location=<span class="hljs-string">&quot;cpu&quot;</span>))<br>model.<span class="hljs-built_in">eval</span>()<br><br><span class="hljs-comment"># 固定输入 shape（示例）</span><br>dummy = torch.randn(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">224</span>, <span class="hljs-number">224</span>)<br><br>torch.onnx.export(<br>    model,<br>    dummy,<br>    <span class="hljs-string">&quot;model.onnx&quot;</span>,<br>    input_names=[<span class="hljs-string">&quot;input&quot;</span>],<br>    output_names=[<span class="hljs-string">&quot;output&quot;</span>],<br>    opset_version=<span class="hljs-number">13</span>,<br>    do_constant_folding=<span class="hljs-literal">True</span>,<br>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Exported model.onnx&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><ul>
+<li><code>model.eval()</code>：关闭 Dropout、固定 BN 统计，保证推理稳定；</li>
+<li>固定输入 shape：让后端更容易做内存规划和算子映射；</li>
+<li>ONNX：作为框架间的中间表示，便于后续工具链接入。</li>
+</ul>
+<h3 id="常见坑"><a href="#常见坑" class="headerlink" title="常见坑"></a>常见坑</h3><ul>
+<li>动态输入 shape 导致后端部署困难；</li>
+<li>使用冷门算子导致转换失败；</li>
+<li>训练时预处理和部署时预处理不一致。</li>
+</ul>
+<hr>
+<h2 id="第二步：用-ST-Edge-AI-Core-做分析和转换"><a href="#第二步：用-ST-Edge-AI-Core-做分析和转换" class="headerlink" title="第二步：用 ST Edge AI Core 做分析和转换"></a>第二步：用 ST Edge AI Core 做分析和转换</h2><h3 id="操作-1"><a href="#操作-1" class="headerlink" title="操作"></a>操作</h3><p>先确认工具可用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">stedgeai --version<br>stedgeai --<span class="hljs-built_in">help</span><br></code></pre></td></tr></table></figure>
+
+<p>然后按你本机版本的命令执行分析和生成流程（不同版本参数名可能不同，优先 <code>--help</code>）：</p>
+<ul>
+<li>分析：看算子支持、RAM&#x2F;Flash 估算、性能估算；</li>
+<li>生成：导出可集成进 STM32 工程的产物。</li>
+</ul>
+<h3 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h3><p>ST Edge AI Core 的作用不是“训练模型”，而是做部署编译：</p>
+<ul>
+<li>把通用模型图转换成目标平台支持的执行图；</li>
+<li>做算子替换、图优化、内存规划；</li>
+<li>产出报告（性能、内存、精度风险）和工程集成文件。</li>
+</ul>
+<h3 id="量化说明（INT8）"><a href="#量化说明（INT8）" class="headerlink" title="量化说明（INT8）"></a>量化说明（INT8）</h3><p>量化本质是用更低位宽表示参数和激活，换速度&#x2F;内存，可能损失精度。<br>所以要有校准集，并做量化前后对比，不要直接盲上板。</p>
+<hr>
+<h2 id="第三步：在-STM32N6-工程里接入推理"><a href="#第三步：在-STM32N6-工程里接入推理" class="headerlink" title="第三步：在 STM32N6 工程里接入推理"></a>第三步：在 STM32N6 工程里接入推理</h2><h3 id="操作-2"><a href="#操作-2" class="headerlink" title="操作"></a>操作</h3><ol>
+<li>用 CubeMX 建立 STM32N6 工程，完成时钟和基础外设；</li>
+<li>在 AI 相关配置里导入转换产物；</li>
+<li>生成工程，使用 STM32CubeIDE for VS Code 打开；</li>
+<li>在代码中串起预处理 -&gt; 推理 -&gt; 后处理。</li>
+</ol>
+<p>最小主循环结构：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>)<br>&#123;<br>    <span class="hljs-comment">// 1) 采集或准备输入</span><br>    <span class="hljs-comment">// 2) preprocess: 归一化、resize、通道排列</span><br><br>    <span class="hljs-comment">// 3) 调用推理入口（函数名以生成代码为准）</span><br>    <span class="hljs-comment">// ai_run(ai_input, ai_output);</span><br><br>    <span class="hljs-comment">// 4) postprocess: 阈值/NMS/类别解码</span><br><br>    <span class="hljs-comment">// 5) 串口打印结果和耗时</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="原理-2"><a href="#原理-2" class="headerlink" title="原理"></a>原理</h3><p>把流程拆成四段的原因：</p>
+<ul>
+<li>预处理错了，模型再好也输出垃圾；</li>
+<li>推理层稳定后，问题可快速定位到前后处理；</li>
+<li>后处理是检测类任务误差高发区（阈值、NMS、坐标变换）。</li>
+</ul>
+<hr>
+<h2 id="第四步：VS-Code-编译下载与“对拍验证”"><a href="#第四步：VS-Code-编译下载与“对拍验证”" class="headerlink" title="第四步：VS Code 编译下载与“对拍验证”"></a>第四步：VS Code 编译下载与“对拍验证”</h2><h3 id="操作-3"><a href="#操作-3" class="headerlink" title="操作"></a>操作</h3><ul>
+<li>编译工程；</li>
+<li>ST-Link 下载到板子；</li>
+<li>串口输出推理结果与单次耗时；</li>
+<li>用同一组输入样本，让 PC 与板端对拍。</li>
+</ul>
+<h3 id="原理-3"><a href="#原理-3" class="headerlink" title="原理"></a>原理</h3><p>“编译通过”不等于部署成功。部署成功的判据是：</p>
+<ul>
+<li>功能：输出结果正确；</li>
+<li>一致性：与 PC 参考接近；</li>
+<li>性能：延时满足需求；</li>
+<li>稳定性：连续运行不崩。</li>
+</ul>
+<hr>
+<h2 id="第五步：出现问题时怎么排（操作-原理）"><a href="#第五步：出现问题时怎么排（操作-原理）" class="headerlink" title="第五步：出现问题时怎么排（操作 + 原理）"></a>第五步：出现问题时怎么排（操作 + 原理）</h2><h3 id="1-板子跑崩或-HardFault"><a href="#1-板子跑崩或-HardFault" class="headerlink" title="1) 板子跑崩或 HardFault"></a>1) 板子跑崩或 HardFault</h3><p>先查：</p>
+<ul>
+<li>输入输出 buffer 大小是否和模型要求一致；</li>
+<li>大数组放置是否合理（避免栈爆）；</li>
+<li>是否有越界访问。</li>
+</ul>
+<p>原因：嵌入式端内存紧，越界和栈溢出比 PC 更容易直接崩溃。</p>
+<h3 id="2-输出和-PC-明显不一致"><a href="#2-输出和-PC-明显不一致" class="headerlink" title="2) 输出和 PC 明显不一致"></a>2) 输出和 PC 明显不一致</h3><p>先查预处理：</p>
+<ul>
+<li>归一化范围（0<del>1 还是 -1</del>1）；</li>
+<li>均值方差；</li>
+<li>RGB&#x2F;BGR 通道顺序；</li>
+<li>resize 方式和插值方法。</li>
+</ul>
+<p>原因：模型学到的是“训练输入分布”，不是你的想当然输入。</p>
+<h3 id="3-延时太高"><a href="#3-延时太高" class="headerlink" title="3) 延时太高"></a>3) 延时太高</h3><p>优先动作：</p>
+<ul>
+<li>降输入分辨率；</li>
+<li>换轻量模型；</li>
+<li>做量化；</li>
+<li>减少后处理复杂度。</li>
+</ul>
+<p>原因：MCU&#x2F;NPU 算力和内存带宽有限，检测类后处理常是隐藏瓶颈。</p>
+<h3 id="4-串口没结果"><a href="#4-串口没结果" class="headerlink" title="4) 串口没结果"></a>4) 串口没结果</h3><p>先做最小化：</p>
+<ul>
+<li>先打印固定字符串确认串口通；</li>
+<li>再打印推理前后时间戳；</li>
+<li>最后再看模型逻辑。</li>
+</ul>
+<p>原因：很多“模型问题”本质是 IO 或流程没走到。</p>
+<hr>
+<h2 id="你们这套-STM32N6-项目的实用建议"><a href="#你们这套-STM32N6-项目的实用建议" class="headerlink" title="你们这套 STM32N6 项目的实用建议"></a>你们这套 STM32N6 项目的实用建议</h2><p>如果是首次落地，建议顺序：</p>
+<ol>
+<li>先用小分类模型跑通全链路；</li>
+<li>再上检测模型（如 YOLO）；</li>
+<li>再做精度和延时优化。</li>
+</ol>
+<p>原因很直接：</p>
+<ul>
+<li>分类模型链路短，便于验证工具链和工程结构；</li>
+<li>检测模型会引入更多后处理和内存压力，先跑通再加复杂度更稳。</li>
+</ul>
+<hr>
+<h2 id="一句话结尾"><a href="#一句话结尾" class="headerlink" title="一句话结尾"></a>一句话结尾</h2><p>STM32N6 部署最容易失败的点不是“模型不够强”，而是“输入定义和工程链路不一致”。<br>先把导出、转换、集成、对拍这四步做成固定流水线，你后面换模型会轻松很多。</p>
 
                 
               </div>
@@ -338,8 +471,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>verilator+cocotb</div>
-      <div>https://rubbishbro.github.io/2025/11/20/verilator-cocotb/</div>
+      <div>PyTorch 模型部署到 STM32N6</div>
+      <div>https://rubbishbro.github.io/2026/03/28/pytorch-development/</div>
     </div>
     <div class="license-meta">
       
@@ -351,7 +484,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>November 20, 2025</div>
+          <div>March 28, 2026</div>
         </div>
       
       
@@ -383,15 +516,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/11/20/machine_learning_basics/" title="机器学习基础">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">机器学习基础</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2026/03/28/conda-cudaGPU/" title="Anaconda/Miniconda 环境配置及 PyTorch GPU 版本安装指南">
+                        <span class="hidden-mobile">Anaconda/Miniconda 环境配置及 PyTorch GPU 版本安装指南</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
