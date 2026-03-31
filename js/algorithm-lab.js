@@ -2,34 +2,32 @@
  * 交互式算法实验室 - 基于 Pyodide 的 Python 运行环境
  */
 
-const algoPresets = {
-    'sg': `import numpy as np
-from scipy.signal import savgol_filter
+// 已缓存的算法代码
+const presetCache = {};
 
-# t, y_noise 已经在全局环境准备好
-# y_noise 为含有随机高频噪声和脉冲杂波的输入信号
-# 输出变量必须命名为 y_processed
-# 对于 SG 滤波：window_length (窗宽)必须为奇数，polyorder 为多项式拟合阶数
-y_processed = savgol_filter(y_noise, window_length=21, polyorder=3)
-`,
-    'fir': `import numpy as np
-
-# t, y_noise 已经在全局环境准备好
-# FIR滑动平均：设定窗宽 M
-M = 15
-kernel = np.ones(M) / M  # 归一化的矩形窗
-# 使用 np.convolve 进行卷积平滑
-y_processed = np.convolve(y_noise, kernel, mode='same')
-`,
-    'median': `import numpy as np
-from scipy.signal import medfilt
-
-# t, y_noise 已经在全局环境准备好
-# 中值滤波：最拿手的是过滤掉随机出现的极端峰值干扰（如椒盐噪声）
-# kernel_size 同样必须为奇数
-y_processed = medfilt(y_noise, kernel_size=15)
-`
-};
+async function loadAndSetAlgo(algoName) {
+    const editor = document.getElementById('code-editor');
+    if (presetCache[algoName]) {
+        editor.value = presetCache[algoName];
+    } else {
+        editor.value = '# 正在加载算法代码...';
+        try {
+            // 从本站静态文件中获取相应的 python 预设文件
+            const res = await fetch(`/algorithm-lab/${algoName}.py`);
+            if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+            const code = await res.text();
+            presetCache[algoName] = code;
+            editor.value = code;
+        } catch (e) {
+            editor.value = '# 算法加载失败，请检查网络或确认文件存在。';
+            console.error(e);
+        }
+    }
+    
+    // 重置右侧图表为占位符
+    document.getElementById('processed-plot-img').style.display = 'none';
+    document.getElementById('proc-placeholder').style.display = 'block';
+}
 
 let pyodideInstance = null;
 
@@ -46,35 +44,48 @@ async function initPyodideWorkspace() {
         statusEl.innerText = '⏳ 正在加载 numpy, scipy, matplotlib... 这通常会花费几秒钟。';
         await pyodideInstance.loadPackage(['numpy', 'scipy', 'matplotlib']);
         
-        // 初始化环境与生成测试信号
+        statusEl.innerText = '⏳ 正在加载并且获取测试数据...';
+        
+        // 从网站相对路径拉取 CSV 数据并写入 Pyodide 虚拟文件系统
+        const dataRes = await fetch('/algorithm-lab/data.csv');
+        if (!dataRes.ok) throw new Error("无法拉取数据文件 /algorithm-lab/data.csv");
+        const dataText = await dataRes.text();
+        pyodideInstance.FS.writeFile('/data.csv', dataText);
+
+        // 初始化环境并从本地挂载的测试数据开始读取
         await pyodideInstance.runPythonAsync(`
 import numpy as np
 import matplotlib.pyplot as plt
 import io, base64
 
-# 生成基础信号 (带有多个波峰的模拟光谱或缓变信号)
-t = np.linspace(0, 10, 500)
-y_clean = np.sin(t) + 0.5 * np.cos(3*t) + 0.2 * np.sin(0.5*t)
+# 读取提前生成好的包含高频和脉冲噪声的光谱信号测试数据
+data = np.loadtxt('/data.csv', delimiter=',', skiprows=1)
+t = data[:, 0]
+y_noise = data[:, 1]
 
-# 添加高斯白噪声
-np.random.seed(42)
-noise = np.random.normal(0, 0.15, t.shape)  
+# 获取原始数据的坐标轴范围基准，保证前后对比一致
+global_ylim = None
 
-# 注入随机尖峰(脉冲杂讯)
-spikes = np.zeros_like(t)
-spike_indices = np.random.choice(len(t), 12, replace=False)
-spikes[spike_indices] = np.random.uniform(2, 3.5, 12) * np.random.choice([-1, 1], 12)
-
-# 合成最终带噪的污染信号
-y_noise = y_clean + noise + spikes
-
-def plot_img_b64(y_data, title, color):
+def plot_img_b64(y_data, title, color, is_original=False):
+    global global_ylim
     plt.close('all')
     fig, ax = plt.subplots(figsize=(6, 4))
     ax.plot(t, y_data, color=color, linewidth=1.5, alpha=0.9)
     ax.set_title(title, fontsize=12, fontweight='bold')
     ax.set_xlabel("Time / Index")
     ax.set_ylabel("Amplitude")
+    
+    # x 轴始终保持不变
+    ax.set_xlim([t.min(), t.max()])
+    
+    if is_original:
+        # 记录原始信号的y轴范围
+        global_ylim = ax.get_ylim()
+    else:
+        # 对处理后的信号强制使用保存的原始y轴范围，这样可以直观看出平滑效果
+        if global_ylim is not None:
+            ax.set_ylim(global_ylim)
+            
     ax.grid(True, linestyle='--', alpha=0.5)
     plt.tight_layout()
     
@@ -85,8 +96,8 @@ def plot_img_b64(y_data, title, color):
     return base64.b64encode(buf.read()).decode('utf-8')
         `);
 
-        // 获取原始带噪信号的 Base64 图片
-        const origB64 = await pyodideInstance.runPythonAsync(`plot_img_b64(y_noise, "Original Corrupted Signal", "#6c757d")`);
+        // 获取原始带噪信号的 Base64 图片，并设置 is_original 标志位来记录 y 轴范围
+        const origB64 = await pyodideInstance.runPythonAsync(`plot_img_b64(y_noise, "Original Corrupted Signal", "#6c757d", is_original=True)`);
         
         document.getElementById('orig-placeholder').style.display = 'none';
         const origImg = document.getElementById('original-plot-img');
@@ -116,9 +127,7 @@ function setupEventListeners() {
 
     if (selectEl) {
         selectEl.addEventListener('change', (e) => {
-            document.getElementById('code-editor').value = algoPresets[e.target.value];
-            document.getElementById('processed-plot-img').style.display = 'none';
-            document.getElementById('proc-placeholder').style.display = 'block';
+            loadAndSetAlgo(e.target.value);
         });
     }
 
@@ -132,23 +141,30 @@ function setupEventListeners() {
             
             const code = document.getElementById('code-editor').value;
             
+            const escapedCode = code.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n');
+            
             const wrapper = `
+import traceback
 try:
-${code.split('\n').map(line => '    ' + line).join('\n')}
-    _result_base64_ = plot_img_b64(y_processed, "Processed Signal", "#0d6efd")
-    _result_base64_
+    exec("${escapedCode}", globals())
+    if 'y_processed' not in globals():
+        _res_ = "ERROR: 代码执行完毕，但未在全局找到 y_processed 变量。请检查是否为其赋值。"
+    else:
+        _res_ = plot_img_b64(globals()['y_processed'], "Processed Signal", "#0d6efd")
 except Exception as e:
-    str(e)
+    _res_ = "ERROR:\\n" + traceback.format_exc()
+
+_res_
 `;
             try {
                 const res = await pyodideInstance.runPythonAsync(wrapper);
-                if (res && res.startsWith('iVBOR')) { 
+                if (res && typeof res === 'string' && !res.startsWith('ERROR:')) { 
                     document.getElementById('proc-placeholder').style.display = 'none';
                     const procImg = document.getElementById('processed-plot-img');
                     procImg.src = "data:image/png;base64," + res;
                     procImg.style.display = 'block';
                 } else {
-                    alert("运行时出错，检查是否缺少 y_processed 变量?\\nPython 报错: " + res);
+                    alert("运行异常:\\n" + (res || "返回值为空/undefined"));
                 }
             } catch(err) {
                 alert("执行出错了，代码可能有语法错误:\\n" + (err.message || err));

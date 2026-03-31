@@ -26,10 +26,10 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="CMSIS库概介CMSIS 全称是 Cortex Microcontroller Software Interface Standard。它的目标是统一 Cortex-M 平台上的底层接口、驱动抽象和高性能算法库，方便你在不同芯片厂商之间移植代码。 它主要包含这些部分：               CMSIS-Core：Cortex-M 内核寄存器、NVIC、中断、SysTick 等底层访问接口">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://rubbishbro.github.io/pic/v2-9523bdd705f564cfda728fde0f0c6dc7_1440w.jpg">
-<meta property="og:image" content="https://rubbishbro.github.io/pic/v2-eca8606eb352ee168059529f3f4865df_1440w.jpg">
-<meta property="og:image" content="https://rubbishbro.github.io/pic/v2-a21d6d88dc6d7e53ec881be82a2ebdc2_1440w.webp">
-<meta property="og:image" content="https://rubbishbro.github.io/pic/v2-88286336deaba3c6ff36c347813a1fbb_1440w.jpg">
+<meta property="og:image" content="https://rubbishbro.github.io/pics/SG-1.jpg">
+<meta property="og:image" content="https://rubbishbro.github.io/pics/SG-2.jpg">
+<meta property="og:image" content="https://rubbishbro.github.io/pics/SG-3.webp">
+<meta property="og:image" content="https://rubbishbro.github.io/pics/SG-4.jpg">
 <meta property="og:image" content="https://rubbishbro.github.io/pic/09f57392c95d495f9af8623ac1d4cdef.png">
 <meta property="og:image" content="https://rubbishbro.github.io/pic/eq.png">
 <meta property="og:image" content="https://rubbishbro.github.io/pic/eq.png">
@@ -38,11 +38,11 @@
 <meta property="og:image" content="https://rubbishbro.github.io/pic/eq-3.png">
 <meta property="og:image" content="https://rubbishbro.github.io/pic/eq-4.png">
 <meta property="article:published_time" content="2025-11-20T09:30:10.000Z">
-<meta property="article:modified_time" content="2026-03-31T12:34:10.229Z">
+<meta property="article:modified_time" content="2026-03-31T15:10:48.676Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="demo">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://rubbishbro.github.io/pic/v2-9523bdd705f564cfda728fde0f0c6dc7_1440w.jpg">
+<meta name="twitter:image" content="https://rubbishbro.github.io/pics/SG-1.jpg">
   
   
   
@@ -135,6 +135,18 @@
               <a class="nav-link" href="/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/algorithm-lab/" target="_self">
+                <i class="iconfont icon-code"></i>
+                <span>算法实验室</span>
               </a>
             </li>
           
@@ -353,10 +365,13 @@
 <p>本质:基于局部多项式回归的数字滤波器,核心是通过线性最小二乘法将低阶多项式集合到相邻数据点的滑动窗口中,能在降低噪声的同时保持信号的高阶矩,意味着信号的峰值谷值可以得到较好的保持</p>
 <p>滤波器的工作过程:在信号序列上滑动固定大小的窗口,对窗口的数据点进行多项式拟合,窗口大小和多项式阶数是该算法的两个关键参数,算法在每个窗口位置内计算多项式在中心的值,作为输出</p>
 <p>下面详细介绍数学原理:<br><strong>多项式拟合</strong>:SG滤波器的核心就是局部多项式拟合,设$$(x_i,y_i)$$,i为不含0的自然数,目标是用p阶多项式对局部数据进行拟合</p>
-<p><img src="/./pic/v2-9523bdd705f564cfda728fde0f0c6dc7_1440w.jpg" srcset="/img/loading.gif" lazyload alt="alt text"></p>
+<p><img src="/pics/SG-1.jpg" srcset="/img/loading.gif" lazyload alt="SG 滤波算法"></p>
 <p>对于中心位于$$x_k$$需要确定向量$$[a_0,a_1…a_p]$$使得多项式能够最佳拟合窗口内的数据点,此优化问题通过最小化均方误差来解决</p>
-<p><img src="/./pic/v2-eca8606eb352ee168059529f3f4865df_1440w.jpg" srcset="/img/loading.gif" lazyload alt="alt text"></p>
-<p>为了说明算法的具体实现过程，我们考虑一个简单的例子：窗口大小为5（即m&#x3D;2）的2阶多项式拟合,数据点为:<br><img src="/./pic/v2-a21d6d88dc6d7e53ec881be82a2ebdc2_1440w.webp" srcset="/img/loading.gif" lazyload alt="alt text"><br>二阶多项式进行拟合<br><img src="/./pic/v2-88286336deaba3c6ff36c347813a1fbb_1440w.jpg" srcset="/img/loading.gif" lazyload alt="alt text"></p>
+<p><img src="/pics/SG-2.jpg" srcset="/img/loading.gif" lazyload alt="SG 滤波算法"></p>
+<p>为了说明算法的具体实现过程，我们考虑一个简单的例子：窗口大小为5（即m&#x3D;2）的2阶多项式拟合,数据点为:</p>
+<p><img src="/pics/SG-3.webp" srcset="/img/loading.gif" lazyload alt="SG 滤波算法"></p>
+<p>二阶多项式进行拟合</p>
+<p><img src="/pics/SG-4.jpg" srcset="/img/loading.gif" lazyload alt="SG 滤波算法"></p>
 <p>一系列的工程分析不予展示,这里给出关于不同窗口和阶数对于去噪效果的影响</p>
 <ul>
 <li>小窗口低阶配置：能够保持局部特征，但对高频噪声的抑制效果有限</li>
@@ -632,7 +647,10 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+<i class="iconfont icon-love"></i>
+<a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+
     </div>
   
   
