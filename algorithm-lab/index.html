@@ -19,17 +19,21 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Archives">
-<meta property="og:url" content="https://rubbishbro.github.io/archives/2025/index.html">
+    <meta name="description" content="以下是一个基于 WebAssembly (Pyodide) 技术的交互式 Python 环境，您可以直接在浏览器中使用 Python (Matplotlib + Scipy) 运行与调试滤波算法，体验不同参数处理有噪信号的效果。首次加载需依赖下载（约十余兆），请耐心等待几秒钟。        ⏳ 正在加载 Python 运行环境 (~10MB)，请稍候...">
+<meta property="og:type" content="website">
+<meta property="og:title" content="交互式算法实验室">
+<meta property="og:url" content="https://rubbishbro.github.io/algorithm-lab/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="以下是一个基于 WebAssembly (Pyodide) 技术的交互式 Python 环境，您可以直接在浏览器中使用 Python (Matplotlib + Scipy) 运行与调试滤波算法，体验不同参数处理有噪信号的效果。首次加载需依赖下载（约十余兆），请耐心等待几秒钟。        ⏳ 正在加载 Python 运行环境 (~10MB)，请稍候...">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-31T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-31T12:34:48.975Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Archives - Hexo</title>
+  <title>交互式算法实验室 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -205,7 +209,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Archives"></span>
+            <span id="subtitle" data-typed-text="交互式算法实验室"></span>
           
         </div>
 
@@ -232,59 +236,58 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="list-group">
-  <p class="h4">13 posts in total</p>
-  <hr>
-  
-  
+<article class="page-content">
+  <link rel="stylesheet" href="/css/algorithm-lab.css">
+
+<blockquote>
+<p>以下是一个基于 WebAssembly (Pyodide) 技术的交互式 Python 环境，您可以直接在浏览器中使用 Python (Matplotlib + Scipy) 运行与调试滤波算法，体验不同参数处理有噪信号的效果。<strong>首次加载需依赖下载（约十余兆），请耐心等待几秒钟。</strong></p>
+</blockquote>
+
+<div class="algo-lab-container">
+    <div id="py-loading-status" class="algo-status loading">⏳ 正在加载 Python 运行环境 (~10MB)，请稍候...</div>
     
-      
-      <p class="h5">2025</p>
-    
-    <a href="/2025/12/07/linux-file-structure/" class="list-group-item list-group-item-action">
-      <time>12-07</time>
-      <div class="list-group-item-title">linux文件结构</div>
-    </a>
-  
-    
-    <a href="/2025/12/06/wsl-codex-config/" class="list-group-item list-group-item-action">
-      <time>12-06</time>
-      <div class="list-group-item-title">wsl-codex配置</div>
-    </a>
-  
-    
-    <a href="/2025/11/20/CMSIS/" class="list-group-item list-group-item-action">
-      <time>11-20</time>
-      <div class="list-group-item-title">CMSIS库以及相关算法</div>
-    </a>
-  
-    
-    <a href="/2025/11/20/hexo-fluid-blog/" class="list-group-item list-group-item-action">
-      <time>11-20</time>
-      <div class="list-group-item-title">hexo-fluid blog</div>
-    </a>
-  
-    
-    <a href="/2025/11/20/primary_develop_forstm32/" class="list-group-item list-group-item-action">
-      <time>11-20</time>
-      <div class="list-group-item-title">stm32开发工具</div>
-    </a>
-  
-    
-    <a href="/2025/11/20/machine_learning_basics/" class="list-group-item list-group-item-action">
-      <time>11-20</time>
-      <div class="list-group-item-title">机器学习基础</div>
-    </a>
-  
-    
-    <a href="/2025/11/20/verilator-cocotb/" class="list-group-item list-group-item-action">
-      <time>11-20</time>
-      <div class="list-group-item-title">verilator+cocotb</div>
-    </a>
-  
+    <div class="algo-plot-container">
+        <div class="algo-plot-box">
+            <h5>原始信号 (含高频与脉冲噪声)</h5>
+            <div class="algo-plot-canvas">
+                <img id="original-plot-img" alt="原始信号图" />
+                <span id="orig-placeholder">等待环境加载...</span>
+            </div>
+        </div>
+        <div class="algo-plot-box">
+            <h5>处理后信号</h5>
+            <div class="algo-plot-canvas">
+                <img id="processed-plot-img" alt="算法运行后显示" />
+                <span id="proc-placeholder">运行代码后显示图表</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="algo-controls">
+        <label for="algo-select">选择预设滤波算法：</label>
+        <select id="algo-select">
+            <option value="sg">Savitzky-Golay 滤波 (保护峰值)</option>
+            <option value="fir">FIR 滑动平均滤波 (平滑降噪)</option>
+            <option value="median">中值滤波 (除尖峰/椒盐噪声)</option>
+        </select>
+        <button id="run-btn" disabled>运行算法</button>
+    </div>
+
+    <div class="algo-editor">
+        <label for="code-editor">Python 算法代码 (可在线修改参数)：</label>
+        <textarea id="code-editor" spellcheck="false"></textarea>
+    </div>
 </div>
 
+<!-- 引入 Pyodide 核心脚本 -->
+<script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+<!-- 引入业务代码 -->
+<script src="/js/algorithm-lab.js"></script>
 
+
+  
+
+</article>
 
 
 

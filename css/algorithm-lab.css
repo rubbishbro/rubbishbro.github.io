@@ -1,0 +1,129 @@
+/* 交互式算法实验室样式 */
+
+.algo-lab-container {
+    border: 1px solid #dee2e6;
+    padding: 20px;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #333;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    margin-top: 20px;
+}
+
+.algo-status {
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 0.95em;
+}
+
+.algo-status.loading {
+    color: #0d6efd;
+}
+
+.algo-status.success {
+    color: #198754;
+}
+
+.algo-status.error {
+    color: #dc3545;
+}
+
+.algo-plot-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.algo-plot-box {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+}
+
+.algo-plot-box h5 {
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: #495057;
+}
+
+.algo-plot-canvas {
+    background: #f8f9fa;
+    border: 1px dashed #ced4da;
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.algo-plot-canvas img {
+    max-width: 100%;
+    display: none;
+}
+
+.algo-plot-canvas span {
+    color: #adb5bd;
+}
+
+.algo-controls {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.algo-controls label {
+    font-weight: 600;
+    margin: 0;
+    color: #212529;
+}
+
+.algo-controls select {
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    flex: 1;
+    min-width: 200px;
+}
+
+.algo-controls button {
+    padding: 6px 20px;
+    background: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: not-allowed;
+    opacity: 0.65;
+    font-weight: 500;
+}
+
+.algo-controls button:not(:disabled) {
+    cursor: pointer;
+    opacity: 1;
+}
+
+.algo-editor {
+    margin-top: 10px;
+}
+
+.algo-editor label {
+    font-weight: 600;
+    color: #212529;
+    margin-bottom: 8px;
+    display: block;
+}
+
+#code-editor {
+    width: 100%;
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: 14px;
+    height: 160px;
+    padding: 12px;
+    background-color: #f1f3f5;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    resize: vertical;
+    box-sizing: border-box;
+}
