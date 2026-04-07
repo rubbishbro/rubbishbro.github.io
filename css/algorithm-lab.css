@@ -74,6 +74,25 @@
     gap: 10px;
 }
 
+.algo-controls-dataset {
+    margin-bottom: 20px;
+    background: #e9ecef;
+    padding: 12px;
+    border-radius: 6px;
+}
+
+.algo-label-dataset {
+    color: #0c5460;
+    font-weight: 700;
+    margin-right: 10px;
+}
+
+.algo-select-dataset {
+    flex: 1;
+    max-width: 600px;
+    padding: 6px;
+}
+
 .algo-controls label {
     font-weight: 600;
     margin: 0;
@@ -86,6 +105,11 @@
     border: 1px solid #ced4da;
     flex: 1;
     min-width: 200px;
+}
+
+#preprocess-select {
+    flex: 0 0 160px;
+    min-width: 160px;
 }
 
 .algo-controls button {
@@ -115,15 +139,25 @@
     display: block;
 }
 
+/* 原始 textarea 样式 (回退) */
 #code-editor {
     width: 100%;
-    font-family: Consolas, 'Courier New', monospace;
+    font-family: "Consolas", monospace;
     font-size: 14px;
-    height: 160px;
+    height: 400px;
     padding: 12px;
     background-color: #f1f3f5;
     border: 1px solid #ced4da;
     border-radius: 4px;
     resize: vertical;
     box-sizing: border-box;
+}
+
+/* CodeMirror 样式覆盖以增加固定高度与圆角等 */
+.CodeMirror {
+    height: 400px !important;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-family: "Consolas", monospace !important;
+    font-size: 15px !important;
 }
