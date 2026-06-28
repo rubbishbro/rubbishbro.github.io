@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
@@ -16,16 +16,16 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="孙铭涵">
   <meta name="keywords" content="">
   
-    <meta name="description" content="嵌入式与嵌入式 AI 入门指南   今天，你学习了吗？                📬 欢迎交流讨论：如果您在阅读中有新的疑惑，发现了问题，想提出建议，请在 GitHub（主页栏末）上提出 Issue！或者通过邮箱 2024050905018@std.uestc.edu.cn 和我联系！期待您的来信！">
+    <meta name="description" content="嵌入式系统与工程实践                                                    STM32 开发工具                  简介：从 STM32CubeMX、CubeIDE 到 VS Code 的常用开发工具与工作流。                       阅读全文 →">
 <meta property="og:type" content="website">
-<meta property="og:title" content="嵌入式以及嵌入式ai">
-<meta property="og:url" content="https://rubbishbro.github.io/embedded/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="嵌入式与嵌入式 AI 入门指南   今天，你学习了吗？                📬 欢迎交流讨论：如果您在阅读中有新的疑惑，发现了问题，想提出建议，请在 GitHub（主页栏末）上提出 Issue！或者通过邮箱 2024050905018@std.uestc.edu.cn 和我联系！期待您的来信！">
-<meta property="og:locale" content="en_US">
+<meta property="og:title" content="📚 学习笔记">
+<meta property="og:url" content="https://rubbishbro.github.io/notes/index.html">
+<meta property="og:site_name" content="孙铭涵的技术笔记">
+<meta property="og:description" content="嵌入式系统与工程实践                                                    STM32 开发工具                  简介：从 STM32CubeMX、CubeIDE 到 VS Code 的常用开发工具与工作流。                       阅读全文 →">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60">
 <meta property="og:image" content="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60">
 <meta property="og:image" content="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60">
@@ -34,15 +34,17 @@
 <meta property="og:image" content="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60">
 <meta property="og:image" content="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60">
 <meta property="og:image" content="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60">
-<meta property="article:published_time" content="2026-03-28T09:30:11.337Z">
-<meta property="article:modified_time" content="2026-03-28T09:30:11.337Z">
-<meta property="article:author" content="John Doe">
+<meta property="og:image" content="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60">
+<meta property="og:image" content="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60">
+<meta property="article:published_time" content="2026-06-25T15:44:17.194Z">
+<meta property="article:modified_time" content="2026-06-25T15:44:17.194Z">
+<meta property="article:author" content="孙铭涵">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60">
   
   
   
-  <title>嵌入式以及嵌入式ai - Hexo</title>
+  <title>📚 学习笔记 - 孙铭涵的技术笔记</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -134,6 +136,42 @@
           
           
             <li class="nav-item">
+              <a class="nav-link" href="/notes/" target="_self">
+                <i class="iconfont icon-bookmark-fill"></i>
+                <span>笔记</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/projects/" target="_self">
+                <i class="iconfont icon-bookmark"></i>
+                <span>项目</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/roadmap/" target="_self">
+                <i class="iconfont icon-pen"></i>
+                <span>学习路线</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
               <a class="nav-link" href="/algorithm-lab/" target="_self">
                 <i class="iconfont icon-code"></i>
                 <span>算法实验室</span>
@@ -149,42 +187,6 @@
               <a class="nav-link" href="/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
-                <i class="iconfont icon-category-fill"></i>
-                <span>分类</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/embedded/" target="_self">
-                <i class="icon-eletronic"></i>
-                <span>嵌入式以及嵌入式ai</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>标签</span>
               </a>
             </li>
           
@@ -230,7 +232,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="嵌入式以及嵌入式ai"></span>
+            <span id="subtitle" data-typed-text="📚 学习笔记"></span>
           
         </div>
 
@@ -258,18 +260,83 @@
                 
 
 <article class="page-content">
-  <div style="text-align: center; margin: 40px 0;">
-  <h2 style="font-weight: bold; font-size: 2em; margin-bottom: 10px; border-bottom: none;">嵌入式与嵌入式 AI 入门指南</h2>
-  <p style="color: #888; font-size: 1.1em; letter-spacing: 2px;">今天，你学习了吗？</p>
-</div>
-
-<div class="note note-primary">
-            <p><strong>📬 欢迎交流讨论：</strong><br>如果您在阅读中有新的疑惑，发现了问题，想提出建议，请在 GitHub（主页栏末）上提出 Issue！<br>或者通过邮箱 <strong><a href="mailto:&#x32;&#x30;&#x32;&#x34;&#48;&#x35;&#x30;&#x39;&#48;&#53;&#x30;&#x31;&#56;&#64;&#115;&#116;&#x64;&#x2e;&#117;&#x65;&#x73;&#116;&#x63;&#46;&#101;&#x64;&#x75;&#x2e;&#99;&#x6e;">2024050905018@std.uestc.edu.cn</a></strong> 和我联系！期待您的来信！</p> 
-          </div>
-
-<div style="display: flex; flex-direction: column; gap: 30px; margin-top: 30px;">
+  <h2 id="嵌入式系统与工程实践"><a href="#嵌入式系统与工程实践" class="headerlink" title="嵌入式系统与工程实践"></a>嵌入式系统与工程实践</h2>
+  <div style="display: flex; align-items: stretch; border: 1px solid #eee; border-radius: 8px; overflow: hidden; transition: box-shadow 0.3s; margin-bottom: 30px; background-color: var(--board-bg-color, #fff);" onmouseover="this.style.boxShadow='0 8px 16px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='none'">
+    <a href="/2025/11/20/primary_develop_forstm32/" style="flex: 0 0 35%; display: block; overflow: hidden; border-bottom: none;">
+      <img src="/pics/stm.png" srcset="/img/loading.gif" lazyload alt="STM32 开发工具封面" style="width: 100%; height: 100%; object-fit: cover; margin: 0; display: block;" onerror="this.src='https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'">
+    </a>
+    <div style="flex: 1; padding: 25px; display: flex; flex-direction: column; justify-content: space-between;">
+      <div>
+        <h3 style="margin-top: 0; font-size: 1.5em; border-bottom: none;">
+          <a href="/2025/11/20/primary_develop_forstm32/" style="text-decoration: none;">STM32 开发工具</a>
+        </h3>
+        <p style="color: var(--text-color, #666); line-height: 1.6; margin-top: 15px;"><strong>简介：</strong>从 STM32CubeMX、CubeIDE 到 VS Code 的常用开发工具与工作流。</p>
+      </div>
+      <div style="text-align: right; margin-top: 15px;">
+        <a href="/2025/11/20/primary_develop_forstm32/" style="display: inline-block; padding: 6px 15px; border-radius: 4px; border: 1px solid #3498db; color: #3498db; text-decoration: none; font-size: 0.9em; transition: 0.2s;" onmouseover="this.style.background='#3498db'; this.style.color='#fff'" onmouseout="this.style.background='transparent'; this.style.color='#3498db'">阅读全文 →</a>
+      </div>
+    </div>
+  </div>
   
+
+
+  <div style="display: flex; align-items: stretch; border: 1px solid #eee; border-radius: 8px; overflow: hidden; transition: box-shadow 0.3s; margin-bottom: 30px; background-color: var(--board-bg-color, #fff);" onmouseover="this.style.boxShadow='0 8px 16px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='none'">
+    <a href="/2026/03/24/stm32-stepbystep/" style="flex: 0 0 35%; display: block; overflow: hidden; border-bottom: none;">
+      <img src="/pics/stm32-build.png" srcset="/img/loading.gif" lazyload alt="STM32 逐步开发封面" style="width: 100%; height: 100%; object-fit: cover; margin: 0; display: block;" onerror="this.src='https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'">
+    </a>
+    <div style="flex: 1; padding: 25px; display: flex; flex-direction: column; justify-content: space-between;">
+      <div>
+        <h3 style="margin-top: 0; font-size: 1.5em; border-bottom: none;">
+          <a href="/2026/03/24/stm32-stepbystep/" style="text-decoration: none;">STM32 逐步开发</a>
+        </h3>
+        <p style="color: var(--text-color, #666); line-height: 1.6; margin-top: 15px;"><strong>简介：</strong>从工程创建、外设配置到 Cache 避坑的 STM32 开发流程。</p>
+      </div>
+      <div style="text-align: right; margin-top: 15px;">
+        <a href="/2026/03/24/stm32-stepbystep/" style="display: inline-block; padding: 6px 15px; border-radius: 4px; border: 1px solid #3498db; color: #3498db; text-decoration: none; font-size: 0.9em; transition: 0.2s;" onmouseover="this.style.background='#3498db'; this.style.color='#fff'" onmouseout="this.style.background='transparent'; this.style.color='#3498db'">阅读全文 →</a>
+      </div>
+    </div>
+  </div>
   
+
+
+  <div style="display: flex; align-items: stretch; border: 1px solid #eee; border-radius: 8px; overflow: hidden; transition: box-shadow 0.3s; margin-bottom: 30px; background-color: var(--board-bg-color, #fff);" onmouseover="this.style.boxShadow='0 8px 16px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='none'">
+    <a href="/2026/03/24/ADC-DMA_example/" style="flex: 0 0 35%; display: block; overflow: hidden; border-bottom: none;">
+      <img src="/pics/ADC-DMA.png" srcset="/img/loading.gif" lazyload alt="ADC / DMA 多通道采集封面" style="width: 100%; height: 100%; object-fit: cover; margin: 0; display: block;" onerror="this.src='https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'">
+    </a>
+    <div style="flex: 1; padding: 25px; display: flex; flex-direction: column; justify-content: space-between;">
+      <div>
+        <h3 style="margin-top: 0; font-size: 1.5em; border-bottom: none;">
+          <a href="/2026/03/24/ADC-DMA_example/" style="text-decoration: none;">ADC / DMA 多通道采集</a>
+        </h3>
+        <p style="color: var(--text-color, #666); line-height: 1.6; margin-top: 15px;"><strong>简介：</strong>用 STM32CubeMX 配置 ADC 扫描和 DMA 循环模式的实战笔记。</p>
+      </div>
+      <div style="text-align: right; margin-top: 15px;">
+        <a href="/2026/03/24/ADC-DMA_example/" style="display: inline-block; padding: 6px 15px; border-radius: 4px; border: 1px solid #3498db; color: #3498db; text-decoration: none; font-size: 0.9em; transition: 0.2s;" onmouseover="this.style.background='#3498db'; this.style.color='#fff'" onmouseout="this.style.background='transparent'; this.style.color='#3498db'">阅读全文 →</a>
+      </div>
+    </div>
+  </div>
+  
+
+
+  <div style="display: flex; align-items: stretch; border: 1px solid #eee; border-radius: 8px; overflow: hidden; transition: box-shadow 0.3s; margin-bottom: 30px; background-color: var(--board-bg-color, #fff);" onmouseover="this.style.boxShadow='0 8px 16px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='none'">
+    <a href="/2026/03/26/debug_methods/" style="flex: 0 0 35%; display: block; overflow: hidden; border-bottom: none;">
+      <img src="/pics/debug.png" srcset="/img/loading.gif" lazyload alt="STM32 调试指南封面" style="width: 100%; height: 100%; object-fit: cover; margin: 0; display: block;" onerror="this.src='https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'">
+    </a>
+    <div style="flex: 1; padding: 25px; display: flex; flex-direction: column; justify-content: space-between;">
+      <div>
+        <h3 style="margin-top: 0; font-size: 1.5em; border-bottom: none;">
+          <a href="/2026/03/26/debug_methods/" style="text-decoration: none;">STM32 调试指南</a>
+        </h3>
+        <p style="color: var(--text-color, #666); line-height: 1.6; margin-top: 15px;"><strong>简介：</strong>从编译问题到内核死机的排查思路与调试方法。</p>
+      </div>
+      <div style="text-align: right; margin-top: 15px;">
+        <a href="/2026/03/26/debug_methods/" style="display: inline-block; padding: 6px 15px; border-radius: 4px; border: 1px solid #3498db; color: #3498db; text-decoration: none; font-size: 0.9em; transition: 0.2s;" onmouseover="this.style.background='#3498db'; this.style.color='#fff'" onmouseout="this.style.background='transparent'; this.style.color='#3498db'">阅读全文 →</a>
+      </div>
+    </div>
+  </div>
+  
+
+<h2 id="机器学习与边缘-AI"><a href="#机器学习与边缘-AI" class="headerlink" title="机器学习与边缘 AI"></a>机器学习与边缘 AI</h2>
   <div style="display: flex; align-items: stretch; border: 1px solid #eee; border-radius: 8px; overflow: hidden; transition: box-shadow 0.3s; margin-bottom: 30px; background-color: var(--board-bg-color, #fff);" onmouseover="this.style.boxShadow='0 8px 16px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='none'">
     <a href="/2025/11/20/machine_learning_basics/" style="flex: 0 0 35%; display: block; overflow: hidden; border-bottom: none;">
       <img src="/pics/ml.png" srcset="/img/loading.gif" lazyload alt="机器学习基础封面" style="width: 100%; height: 100%; object-fit: cover; margin: 0; display: block;" onerror="this.src='https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'">
@@ -279,7 +346,7 @@
         <h3 style="margin-top: 0; font-size: 1.5em; border-bottom: none;">
           <a href="/2025/11/20/machine_learning_basics/" style="text-decoration: none;">机器学习基础</a>
         </h3>
-        <p style="color: var(--text-color, #666); line-height: 1.6; margin-top: 15px;"><strong>简介：</strong>人工智能学习中的神经网络基础，包含卷积神经网络处理图像识别、长短期记忆网络处理语音识别，以及多层感知器（MLP）等内容的基础介绍。</p>
+        <p style="color: var(--text-color, #666); line-height: 1.6; margin-top: 15px;"><strong>简介：</strong>神经网络、优化、训练与模型评估的基础学习记录。</p>
       </div>
       <div style="text-align: right; margin-top: 15px;">
         <a href="/2025/11/20/machine_learning_basics/" style="display: inline-block; padding: 6px 15px; border-radius: 4px; border: 1px solid #3498db; color: #3498db; text-decoration: none; font-size: 0.9em; transition: 0.2s;" onmouseover="this.style.background='#3498db'; this.style.color='#fff'" onmouseout="this.style.background='transparent'; this.style.color='#3498db'">阅读全文 →</a>
@@ -288,17 +355,17 @@
   </div>
   
 
-  
+
   <div style="display: flex; align-items: stretch; border: 1px solid #eee; border-radius: 8px; overflow: hidden; transition: box-shadow 0.3s; margin-bottom: 30px; background-color: var(--board-bg-color, #fff);" onmouseover="this.style.boxShadow='0 8px 16px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='none'">
     <a href="/2026/03/28/conda-cudaGPU/" style="flex: 0 0 35%; display: block; overflow: hidden; border-bottom: none;">
-      <img src="/pics/conda.png" srcset="/img/loading.gif" lazyload alt="conda+cuda+pytorch环境配置封面" style="width: 100%; height: 100%; object-fit: cover; margin: 0; display: block;" onerror="this.src='https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'">
+      <img src="/pics/conda.png" srcset="/img/loading.gif" lazyload alt="Conda、CUDA 与 PyTorch 环境封面" style="width: 100%; height: 100%; object-fit: cover; margin: 0; display: block;" onerror="this.src='https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'">
     </a>
     <div style="flex: 1; padding: 25px; display: flex; flex-direction: column; justify-content: space-between;">
       <div>
         <h3 style="margin-top: 0; font-size: 1.5em; border-bottom: none;">
-          <a href="/2026/03/28/conda-cudaGPU/" style="text-decoration: none;">conda+cuda+pytorch环境配置</a>
+          <a href="/2026/03/28/conda-cudaGPU/" style="text-decoration: none;">Conda、CUDA 与 PyTorch 环境</a>
         </h3>
-        <p style="color: var(--text-color, #666); line-height: 1.6; margin-top: 15px;"><strong>简介：</strong>面向新手的环境搭建闭环指南：为什么推荐 Miniconda、如何新建独立环境、如何选择 Python/CUDA 版本、如何安装 PyTorch GPU 版并完成 Jupyter/VSCode 绑定与常见错误排查。</p>
+        <p style="color: var(--text-color, #666); line-height: 1.6; margin-top: 15px;"><strong>简介：</strong>从独立环境到 PyTorch GPU 安装和开发工具绑定的配置指南。</p>
       </div>
       <div style="text-align: right; margin-top: 15px;">
         <a href="/2026/03/28/conda-cudaGPU/" style="display: inline-block; padding: 6px 15px; border-radius: 4px; border: 1px solid #3498db; color: #3498db; text-decoration: none; font-size: 0.9em; transition: 0.2s;" onmouseover="this.style.background='#3498db'; this.style.color='#fff'" onmouseout="this.style.background='transparent'; this.style.color='#3498db'">阅读全文 →</a>
@@ -307,17 +374,17 @@
   </div>
   
 
-  
+
   <div style="display: flex; align-items: stretch; border: 1px solid #eee; border-radius: 8px; overflow: hidden; transition: box-shadow 0.3s; margin-bottom: 30px; background-color: var(--board-bg-color, #fff);" onmouseover="this.style.boxShadow='0 8px 16px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='none'">
     <a href="/2026/03/28/pytorch-development/" style="flex: 0 0 35%; display: block; overflow: hidden; border-bottom: none;">
-      <img src="/pics/yolo.png" srcset="/img/loading.gif" lazyload alt="PyTorch部署到STM32N6封面" style="width: 100%; height: 100%; object-fit: cover; margin: 0; display: block;" onerror="this.src='https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'">
+      <img src="/pics/yolo.png" srcset="/img/loading.gif" lazyload alt="PyTorch 部署到 STM32N6封面" style="width: 100%; height: 100%; object-fit: cover; margin: 0; display: block;" onerror="this.src='https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'">
     </a>
     <div style="flex: 1; padding: 25px; display: flex; flex-direction: column; justify-content: space-between;">
       <div>
         <h3 style="margin-top: 0; font-size: 1.5em; border-bottom: none;">
-          <a href="/2026/03/28/pytorch-development/" style="text-decoration: none;">PyTorch部署到STM32N6</a>
+          <a href="/2026/03/28/pytorch-development/" style="text-decoration: none;">PyTorch 部署到 STM32N6</a>
         </h3>
-        <p style="color: var(--text-color, #666); line-height: 1.6; margin-top: 15px;"><strong>简介：</strong>结合 STM32N6 + ST 全工具链 + VS Code 的实战流程，讲清从 PyTorch 导出模型、ST Edge AI Core 分析转换、工程集成、上板验证到性能排错的完整路径。</p>
+        <p style="color: var(--text-color, #666); line-height: 1.6; margin-top: 15px;"><strong>简介：</strong>从 PyTorch 导出模型、工具链转换到板端验证的部署路径。</p>
       </div>
       <div style="text-align: right; margin-top: 15px;">
         <a href="/2026/03/28/pytorch-development/" style="display: inline-block; padding: 6px 15px; border-radius: 4px; border: 1px solid #3498db; color: #3498db; text-decoration: none; font-size: 0.9em; transition: 0.2s;" onmouseover="this.style.background='#3498db'; this.style.color='#fff'" onmouseout="this.style.background='transparent'; this.style.color='#3498db'">阅读全文 →</a>
@@ -326,55 +393,17 @@
   </div>
   
 
-  
-  <div style="display: flex; align-items: stretch; border: 1px solid #eee; border-radius: 8px; overflow: hidden; transition: box-shadow 0.3s; margin-bottom: 30px; background-color: var(--board-bg-color, #fff);" onmouseover="this.style.boxShadow='0 8px 16px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='none'">
-    <a href="/2025/11/20/primary_develop_forstm32/" style="flex: 0 0 35%; display: block; overflow: hidden; border-bottom: none;">
-      <img src="/pics/stm.png" srcset="/img/loading.gif" lazyload alt="stm32开发工具封面" style="width: 100%; height: 100%; object-fit: cover; margin: 0; display: block;" onerror="this.src='https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'">
-    </a>
-    <div style="flex: 1; padding: 25px; display: flex; flex-direction: column; justify-content: space-between;">
-      <div>
-        <h3 style="margin-top: 0; font-size: 1.5em; border-bottom: none;">
-          <a href="/2025/11/20/primary_develop_forstm32/" style="text-decoration: none;">stm32开发工具</a>
-        </h3>
-        <p style="color: var(--text-color, #666); line-height: 1.6; margin-top: 15px;"><strong>简介：</strong>介绍 STM32CubeMX 这款 ST 官方提供的单片机图形化配置工具，说明如何通过它快速完成芯片外设配置、时钟配置、引脚分配，并自动生成初始化代码。</p>
-      </div>
-      <div style="text-align: right; margin-top: 15px;">
-        <a href="/2025/11/20/primary_develop_forstm32/" style="display: inline-block; padding: 6px 15px; border-radius: 4px; border: 1px solid #3498db; color: #3498db; text-decoration: none; font-size: 0.9em; transition: 0.2s;" onmouseover="this.style.background='#3498db'; this.style.color='#fff'" onmouseout="this.style.background='transparent'; this.style.color='#3498db'">阅读全文 →</a>
-      </div>
-    </div>
-  </div>
-  
 
-  
-  <div style="display: flex; align-items: stretch; border: 1px solid #eee; border-radius: 8px; overflow: hidden; transition: box-shadow 0.3s; margin-bottom: 30px; background-color: var(--board-bg-color, #fff);" onmouseover="this.style.boxShadow='0 8px 16px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='none'">
-    <a href="/2026/03/24/stm32-stepbystep/" style="flex: 0 0 35%; display: block; overflow: hidden; border-bottom: none;">
-      <img src="/pics/stm32-build.png" srcset="/img/loading.gif" lazyload alt="stm32逐步开发封面" style="width: 100%; height: 100%; object-fit: cover; margin: 0; display: block;" onerror="this.src='https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'">
-    </a>
-    <div style="flex: 1; padding: 25px; display: flex; flex-direction: column; justify-content: space-between;">
-      <div>
-        <h3 style="margin-top: 0; font-size: 1.5em; border-bottom: none;">
-          <a href="/2026/03/24/stm32-stepbystep/" style="text-decoration: none;">stm32逐步开发</a>
-        </h3>
-        <p style="color: var(--text-color, #666); line-height: 1.6; margin-top: 15px;"><strong>简介：</strong>详细记录了从零搭建 STM32 项目的完整流程，包括 MCU 图形化引脚分配、底层外设代码结构及进阶开发中的 Cache 缓存管理避坑指南。</p>
-      </div>
-      <div style="text-align: right; margin-top: 15px;">
-        <a href="/2026/03/24/stm32-stepbystep/" style="display: inline-block; padding: 6px 15px; border-radius: 4px; border: 1px solid #3498db; color: #3498db; text-decoration: none; font-size: 0.9em; transition: 0.2s;" onmouseover="this.style.background='#3498db'; this.style.color='#fff'" onmouseout="this.style.background='transparent'; this.style.color='#3498db'">阅读全文 →</a>
-      </div>
-    </div>
-  </div>
-  
-
-  
   <div style="display: flex; align-items: stretch; border: 1px solid #eee; border-radius: 8px; overflow: hidden; transition: box-shadow 0.3s; margin-bottom: 30px; background-color: var(--board-bg-color, #fff);" onmouseover="this.style.boxShadow='0 8px 16px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='none'">
     <a href="/2025/11/20/CMSIS/" style="flex: 0 0 35%; display: block; overflow: hidden; border-bottom: none;">
-      <img src="/pics/CMSIS.png" srcset="/img/loading.gif" lazyload alt="CMSIS库封面" style="width: 100%; height: 100%; object-fit: cover; margin: 0; display: block;" onerror="this.src='https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'">
+      <img src="/pics/CMSIS.png" srcset="/img/loading.gif" lazyload alt="CMSIS 与相关算法封面" style="width: 100%; height: 100%; object-fit: cover; margin: 0; display: block;" onerror="this.src='https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'">
     </a>
     <div style="flex: 1; padding: 25px; display: flex; flex-direction: column; justify-content: space-between;">
       <div>
         <h3 style="margin-top: 0; font-size: 1.5em; border-bottom: none;">
-          <a href="/2025/11/20/CMSIS/" style="text-decoration: none;">CMSIS库</a>
+          <a href="/2025/11/20/CMSIS/" style="text-decoration: none;">CMSIS 与相关算法</a>
         </h3>
-        <p style="color: var(--text-color, #666); line-height: 1.6; margin-top: 15px;"><strong>简介：</strong>系统讲解 ARM 架构下 CMSIS (微控制器软件接口标准) 库的核心概念，理清内核与外设寄存器之间的硬件抽象关系，助力编写高效可移植的底层代码。</p>
+        <p style="color: var(--text-color, #666); line-height: 1.6; margin-top: 15px;"><strong>简介：</strong>ARM CMSIS 的基础概念，以及面向嵌入式信号处理的算法笔记。</p>
       </div>
       <div style="text-align: right; margin-top: 15px;">
         <a href="/2025/11/20/CMSIS/" style="display: inline-block; padding: 6px 15px; border-radius: 4px; border: 1px solid #3498db; color: #3498db; text-decoration: none; font-size: 0.9em; transition: 0.2s;" onmouseover="this.style.background='#3498db'; this.style.color='#fff'" onmouseout="this.style.background='transparent'; this.style.color='#3498db'">阅读全文 →</a>
@@ -383,45 +412,43 @@
   </div>
   
 
-  
+<h2 id="开发环境与工具"><a href="#开发环境与工具" class="headerlink" title="开发环境与工具"></a>开发环境与工具</h2>
   <div style="display: flex; align-items: stretch; border: 1px solid #eee; border-radius: 8px; overflow: hidden; transition: box-shadow 0.3s; margin-bottom: 30px; background-color: var(--board-bg-color, #fff);" onmouseover="this.style.boxShadow='0 8px 16px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='none'">
-    <a href="/2026/03/24/ADC-DMA_example/" style="flex: 0 0 35%; display: block; overflow: hidden; border-bottom: none;">
-      <img src="/pics/ADC-DMA.png" srcset="/img/loading.gif" lazyload alt="ADC/DMA多通道采集封面" style="width: 100%; height: 100%; object-fit: cover; margin: 0; display: block;" onerror="this.src='https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'">
+    <a href="/2025/12/06/wsl-codex-config/" style="flex: 0 0 35%; display: block; overflow: hidden; border-bottom: none;">
+      <img src="/img/post.jpg" srcset="/img/loading.gif" lazyload alt="WSL 与 Codex 配置封面" style="width: 100%; height: 100%; object-fit: cover; margin: 0; display: block;" onerror="this.src='https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'">
     </a>
     <div style="flex: 1; padding: 25px; display: flex; flex-direction: column; justify-content: space-between;">
       <div>
         <h3 style="margin-top: 0; font-size: 1.5em; border-bottom: none;">
-          <a href="/2026/03/24/ADC-DMA_example/" style="text-decoration: none;">ADC/DMA多通道采集</a>
+          <a href="/2025/12/06/wsl-codex-config/" style="text-decoration: none;">WSL 与 Codex 配置</a>
         </h3>
-        <p style="color: var(--text-color, #666); line-height: 1.6; margin-top: 15px;"><strong>简介：</strong>从原理到代码实战的入门指南，讲解如何通过 STM32CubeMX 配置 ADC 扫描与 DMA 循环模式，彻底解放 CPU 算力，实现高效的硬件自动数据搬运。</p>
+        <p style="color: var(--text-color, #666); line-height: 1.6; margin-top: 15px;"><strong>简介：</strong>WSL 开发环境和 Codex 的配置记录。</p>
       </div>
       <div style="text-align: right; margin-top: 15px;">
-        <a href="/2026/03/24/ADC-DMA_example/" style="display: inline-block; padding: 6px 15px; border-radius: 4px; border: 1px solid #3498db; color: #3498db; text-decoration: none; font-size: 0.9em; transition: 0.2s;" onmouseover="this.style.background='#3498db'; this.style.color='#fff'" onmouseout="this.style.background='transparent'; this.style.color='#3498db'">阅读全文 →</a>
+        <a href="/2025/12/06/wsl-codex-config/" style="display: inline-block; padding: 6px 15px; border-radius: 4px; border: 1px solid #3498db; color: #3498db; text-decoration: none; font-size: 0.9em; transition: 0.2s;" onmouseover="this.style.background='#3498db'; this.style.color='#fff'" onmouseout="this.style.background='transparent'; this.style.color='#3498db'">阅读全文 →</a>
       </div>
     </div>
   </div>
   
 
-  
+
   <div style="display: flex; align-items: stretch; border: 1px solid #eee; border-radius: 8px; overflow: hidden; transition: box-shadow 0.3s; margin-bottom: 30px; background-color: var(--board-bg-color, #fff);" onmouseover="this.style.boxShadow='0 8px 16px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='none'">
-    <a href="/2026/03/26/debug_methods/" style="flex: 0 0 35%; display: block; overflow: hidden; border-bottom: none;">
-      <img src="/pics/debug.png" srcset="/img/loading.gif" lazyload alt="stm32调试指南封面" style="width: 100%; height: 100%; object-fit: cover; margin: 0; display: block;" onerror="this.src='https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'">
+    <a href="/2025/12/07/linux-file-structure/" style="flex: 0 0 35%; display: block; overflow: hidden; border-bottom: none;">
+      <img src="/pics/linux.jpg" srcset="/img/loading.gif" lazyload alt="Linux 文件结构封面" style="width: 100%; height: 100%; object-fit: cover; margin: 0; display: block;" onerror="this.src='https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'">
     </a>
     <div style="flex: 1; padding: 25px; display: flex; flex-direction: column; justify-content: space-between;">
       <div>
         <h3 style="margin-top: 0; font-size: 1.5em; border-bottom: none;">
-          <a href="/2026/03/26/debug_methods/" style="text-decoration: none;">stm32调试指南</a>
+          <a href="/2025/12/07/linux-file-structure/" style="text-decoration: none;">Linux 文件结构</a>
         </h3>
-        <p style="color: var(--text-color, #666); line-height: 1.6; margin-top: 15px;"><strong>简介：</strong>专为新手打造的 VS Code STM32 调试“保姆级”排坑指南。从编译报错到内核死机，提供直观的 L0-L4 常见 Bug 分类图鉴，并总结了解决 90% 单片机问题的“黄金七步法”，带你彻底告别玄学瞎改代码。</p>
+        <p style="color: var(--text-color, #666); line-height: 1.6; margin-top: 15px;"><strong>简介：</strong>Linux 文件系统和常用目录的学习笔记。</p>
       </div>
       <div style="text-align: right; margin-top: 15px;">
-        <a href="/2026/03/26/debug_methods/" style="display: inline-block; padding: 6px 15px; border-radius: 4px; border: 1px solid #3498db; color: #3498db; text-decoration: none; font-size: 0.9em; transition: 0.2s;" onmouseover="this.style.background='#3498db'; this.style.color='#fff'" onmouseout="this.style.background='transparent'; this.style.color='#3498db'">阅读全文 →</a>
+        <a href="/2025/12/07/linux-file-structure/" style="display: inline-block; padding: 6px 15px; border-radius: 4px; border: 1px solid #3498db; color: #3498db; text-decoration: none; font-size: 0.9em; transition: 0.2s;" onmouseover="this.style.background='#3498db'; this.style.color='#fff'" onmouseout="this.style.background='transparent'; this.style.color='#3498db'">阅读全文 →</a>
       </div>
     </div>
   </div>
   
-
-</div>
 
 
   
@@ -449,7 +476,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -457,7 +484,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -546,7 +573,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
 </body>
 </html>

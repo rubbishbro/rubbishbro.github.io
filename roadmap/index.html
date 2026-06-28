@@ -1,0 +1,484 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="孙铭涵">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="技术主线         从嵌入式系统到边缘 AI 部署的工程学习主线。                              🔧                                 嵌入式系统基础             已完成                      STM32,ESP32,Ti,和基础外设的开发调试">
+<meta property="og:type" content="website">
+<meta property="og:title" content="🧭 学习路线">
+<meta property="og:url" content="https://rubbishbro.github.io/roadmap/index.html">
+<meta property="og:site_name" content="孙铭涵的技术笔记">
+<meta property="og:description" content="技术主线         从嵌入式系统到边缘 AI 部署的工程学习主线。                              🔧                                 嵌入式系统基础             已完成                      STM32,ESP32,Ti,和基础外设的开发调试">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-24T11:38:47.769Z">
+<meta property="article:modified_time" content="2026-06-24T11:38:47.769Z">
+<meta property="article:author" content="孙铭涵">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>🧭 学习路线 - 孙铭涵的技术笔记</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"rubbishbro.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/notes/" target="_self">
+                <i class="iconfont icon-bookmark-fill"></i>
+                <span>笔记</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/projects/" target="_self">
+                <i class="iconfont icon-bookmark"></i>
+                <span>项目</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/roadmap/" target="_self">
+                <i class="iconfont icon-pen"></i>
+                <span>学习路线</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/algorithm-lab/" target="_self">
+                <i class="iconfont icon-code"></i>
+                <span>算法实验室</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/post.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="🧭 学习路线"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<article class="page-content">
+  <link rel="stylesheet" href="/css/roadmap.css">
+
+<section class="roadmap" aria-label="学习路线">
+    <section class="roadmap__route" aria-labelledby="roadmap-route-1">
+      <header class="roadmap__route-head">
+        <h2 id="roadmap-route-1" class="roadmap__route-title">技术主线</h2>
+        <p class="roadmap__summary">从嵌入式系统到边缘 AI 部署的工程学习主线。</p>
+      </header>
+      <ol class="roadmap__track">
+      <li class="roadmap__stage" data-status="completed" data-card-size="auto" data-link-count="4" style="--roadmap-card-width: 16.18rem">
+        <div class="roadmap__marker" aria-hidden="true">🔧</div>
+        <article class="roadmap__card">
+          <div class="roadmap__card-head">
+            <h2 class="roadmap__title">嵌入式系统基础</h2>
+            <span class="roadmap__status">已完成</span>
+          </div>
+          <p class="roadmap__description">STM32,ESP32,Ti,和基础外设的开发调试</p>
+          <div class="roadmap__links"><a class="roadmap__link" href="/2025/11/20/primary_develop_forstm32/">stm32开发工具</a><a class="roadmap__link" href="/2026/03/24/stm32-stepbystep/">stm32逐步开发</a><a class="roadmap__link" href="/2026/03/24/ADC-DMA_example/">ADC/DMA多通道采集例程 - 基于STM32F411</a><a class="roadmap__link" href="/2025/11/20/CMSIS/">CMSIS库以及相关算法</a></div>
+        </article>
+      </li><li class="roadmap__connector" aria-hidden="true"></li>
+      <li class="roadmap__stage" data-status="active" data-card-size="auto" data-link-count="3" style="--roadmap-card-width: 17.57rem">
+        <div class="roadmap__marker" aria-hidden="true">📡</div>
+        <article class="roadmap__card">
+          <div class="roadmap__card-head">
+            <h2 class="roadmap__title">信号处理外设和相关算法</h2>
+            <span class="roadmap__status">进行中</span>
+          </div>
+          <p class="roadmap__description">ADC,DAM,UART,SPI,IIC等外设的使用,信号处理的相关深度知识和算法与工程(滤波器,频谱仪,超外差接受机等)</p>
+          <div class="roadmap__links"><a class="roadmap__link" href="/2026/03/26/debug_methods/">stm32调试指南</a><a class="roadmap__link" href="/2026/03/28/conda-cudaGPU/">Anaconda/Miniconda 环境配置及 PyTorch GPU 版本安装指南</a><a class="roadmap__link" href="/2025/12/06/wsl-codex-config/">wsl-codex配置</a></div>
+        </article>
+      </li><li class="roadmap__connector" aria-hidden="true"></li>
+      <li class="roadmap__stage" data-status="active" data-card-size="auto" data-link-count="2" style="--roadmap-card-width: 14.67rem">
+        <div class="roadmap__marker" aria-hidden="true">🧠</div>
+        <article class="roadmap__card">
+          <div class="roadmap__card-head">
+            <h2 class="roadmap__title">机器学习与信号处理</h2>
+            <span class="roadmap__status">进行中</span>
+          </div>
+          <p class="roadmap__description">神经网络的训练,适配,以及深度学习基本算法在嵌入式平台的实现(RKNN,CUDA等),以及相关的信号处理算法和应用(语音识别,图像处理等)</p>
+          <div class="roadmap__links"><a class="roadmap__link" href="/2025/11/20/machine_learning_basics/">机器学习基础</a><a class="roadmap__link" href="/algorithm-lab/">交互式算法实验室</a></div>
+        </article>
+      </li><li class="roadmap__connector" aria-hidden="true"></li>
+      <li class="roadmap__stage" data-status="current" data-card-size="auto" data-link-count="1" style="--roadmap-card-width: 14.32rem">
+        <div class="roadmap__marker" aria-hidden="true">🚀</div>
+        <article class="roadmap__card">
+          <div class="roadmap__card-head">
+            <h2 class="roadmap__title">边缘 AI 部署和适配</h2>
+            <span class="roadmap__status">当前主线</span>
+          </div>
+          <p class="roadmap__description">完成模型导出和部署,量化分析,性能分析,算法选择和适配,算子的开发和优化等等</p>
+          <div class="roadmap__links"><a class="roadmap__link" href="/2026/03/28/pytorch-development/">PyTorch 模型部署到 STM32N6</a></div>
+        </article>
+      </li></ol>
+    </section>
+    <section class="roadmap__route" aria-labelledby="roadmap-route-2">
+      <header class="roadmap__route-head">
+        <h2 id="roadmap-route-2" class="roadmap__route-title">侧线1</h2>
+        <p class="roadmap__summary">量化交易学习的侧线，测试交易策略，搭建量化交易系统</p>
+      </header>
+      <ol class="roadmap__track">
+      <li class="roadmap__stage" data-status="active" data-card-size="auto" data-link-count="0" style="--roadmap-card-width: 12.20rem">
+        <div class="roadmap__marker" aria-hidden="true">📊</div>
+        <article class="roadmap__card">
+          <div class="roadmap__card-head">
+            <h2 class="roadmap__title">金融入门和数据分析基础</h2>
+            <span class="roadmap__status">进行中</span>
+          </div>
+          <p class="roadmap__description">金融基础认知,认识市场,了解指标的含义,使用PY进行获取,清洗和分析行情数据</p>
+          
+        </article>
+      </li><li class="roadmap__connector" aria-hidden="true"></li>
+      <li class="roadmap__stage" data-status="active" data-card-size="auto" data-link-count="0" style="--roadmap-card-width: 12.00rem">
+        <div class="roadmap__marker" aria-hidden="true">⚙️</div>
+        <article class="roadmap__card">
+          <div class="roadmap__card-head">
+            <h2 class="roadmap__title">回测系统的搭建</h2>
+            <span class="roadmap__status">进行中</span>
+          </div>
+          <p class="roadmap__description">可信的回测系统的搭建,基本策略的研究和验证</p>
+          
+        </article>
+      </li><li class="roadmap__connector" aria-hidden="true"></li>
+      <li class="roadmap__stage" data-status="planned" data-card-size="auto" data-link-count="0" style="--roadmap-card-width: 12.00rem">
+        <div class="roadmap__marker" aria-hidden="true">🛡️</div>
+        <article class="roadmap__card">
+          <div class="roadmap__card-head">
+            <h2 class="roadmap__title">风险控制方法</h2>
+            <span class="roadmap__status">计划中</span>
+          </div>
+          <p class="roadmap__description">风险控制的基本方法,实盘交易的注意事项和准备工作</p>
+          
+        </article>
+      </li><li class="roadmap__connector" aria-hidden="true"></li>
+      <li class="roadmap__stage" data-status="planned" data-card-size="auto" data-link-count="0" style="--roadmap-card-width: 12.00rem">
+        <div class="roadmap__marker" aria-hidden="true">🤖</div>
+        <article class="roadmap__card">
+          <div class="roadmap__card-head">
+            <h2 class="roadmap__title">模拟盘内半自动化交易系统的搭建</h2>
+            <span class="roadmap__status">计划中</span>
+          </div>
+          <p class="roadmap__description">半自动化交易系统的搭建,实盘测试和优化</p>
+          
+        </article>
+      </li></ol>
+    </section></section>
+
+
+  
+
+</article>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+<i class="iconfont icon-love"></i>
+<a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        var texts = ["rubbishbro's Blog","欢迎来到本菜鸡的博客ovo"];
+        typing(texts.join('<br>'));
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

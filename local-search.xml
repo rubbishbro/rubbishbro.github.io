@@ -88,7 +88,7 @@
     
     <categories>
       
-      <category>随笔</category>
+      <category>STM32开发</category>
       
     </categories>
     
@@ -96,6 +96,37 @@
     <tags>
       
       <tag>demo</tag>
+      
+      <tag>stm32</tag>
+      
+      <tag>dma</tag>
+      
+      <tag>adc</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>信号处理相关知识</title>
+    <link href="/2026/03/24/signal-processing/"/>
+    <url>/2026/03/24/signal-processing/</url>
+    
+    <content type="html"><![CDATA[<h2 id="信号处理的知识的基本分类"><a href="#信号处理的知识的基本分类" class="headerlink" title="信号处理的知识的基本分类"></a>信号处理的知识的基本分类</h2><ul><li>模拟前端设计</li><li>滤波器设计</li><li>实时外设分配和处理</li><li>数字信号算法处理</li><li>stm32的flash&#x2F;cache分配</li><li>通信和显示</li></ul><h3 id="模拟前端设计"><a href="#模拟前端设计" class="headerlink" title="模拟前端设计"></a>模拟前端设计</h3><h4 id="抗混叠"><a href="#抗混叠" class="headerlink" title="抗混叠"></a>抗混叠</h4><p>混叠： 采样频率不够高的时候，原本的不同频率的模拟信号，在采样后混在一起了，比如两个不同的连续时间信号离散采样后得到的数据点是一样的，造成混叠</p><p>比如测量的频率是10HZ，测量的频率是9HZ,这样测得的结果就会和1HZ相同，造成了混叠</p><p>也就是说，超过nyquist频率，如果不进行前级处理，就会造成混叠，也就是数字域无法分辨真实的频率</p><h4 id="放缩和转换地"><a href="#放缩和转换地" class="headerlink" title="放缩和转换地"></a>放缩和转换地</h4><h4 id="高精度电源设计"><a href="#高精度电源设计" class="headerlink" title="高精度电源设计"></a>高精度电源设计</h4><h4 id="DDS模块"><a href="#DDS模块" class="headerlink" title="DDS模块"></a>DDS模块</h4><h3 id="滤波器设计"><a href="#滤波器设计" class="headerlink" title="滤波器设计"></a>滤波器设计</h3><h4 id="模拟滤波器设计"><a href="#模拟滤波器设计" class="headerlink" title="模拟滤波器设计"></a>模拟滤波器设计</h4><h4 id="数字滤波器设计"><a href="#数字滤波器设计" class="headerlink" title="数字滤波器设计"></a>数字滤波器设计</h4><h3 id="实时外设分配和处理"><a href="#实时外设分配和处理" class="headerlink" title="实时外设分配和处理"></a>实时外设分配和处理</h3><h4 id="ADC-DMA"><a href="#ADC-DMA" class="headerlink" title="ADC&#x2F;DMA"></a>ADC&#x2F;DMA</h4><h5 id="ADC选型"><a href="#ADC选型" class="headerlink" title="ADC选型"></a>ADC选型</h5><h4 id="UART"><a href="#UART" class="headerlink" title="UART"></a>UART</h4><h3 id="数字信号算法处理"><a href="#数字信号算法处理" class="headerlink" title="数字信号算法处理"></a>数字信号算法处理</h3><h4 id="FFT"><a href="#FFT" class="headerlink" title="FFT"></a>FFT</h4><h4 id="CMSIS"><a href="#CMSIS" class="headerlink" title="CMSIS"></a>CMSIS</h4><h4 id="混频"><a href="#混频" class="headerlink" title="混频"></a>混频</h4><h3 id="stm32flash-cache分配"><a href="#stm32flash-cache分配" class="headerlink" title="stm32flash&#x2F;cache分配"></a>stm32flash&#x2F;cache分配</h3><h4 id="预计算"><a href="#预计算" class="headerlink" title="预计算"></a>预计算</h4><h4 id="实时计算"><a href="#实时计算" class="headerlink" title="实时计算"></a>实时计算</h4><h3 id="通信和显示"><a href="#通信和显示" class="headerlink" title="通信和显示"></a>通信和显示</h3><h4 id="串口通信"><a href="#串口通信" class="headerlink" title="串口通信"></a>串口通信</h4><h4 id="串口屏幕"><a href="#串口屏幕" class="headerlink" title="串口屏幕"></a>串口屏幕</h4><h4 id="LVGL"><a href="#LVGL" class="headerlink" title="LVGL"></a>LVGL</h4>]]></content>
+    
+    
+    <categories>
+      
+      <category>stm32</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>proj</tag>
       
     </tags>
     
@@ -138,7 +169,7 @@
     
     <categories>
       
-      <category>随笔</category>
+      <category>竞赛经验</category>
       
     </categories>
     
@@ -146,6 +177,10 @@
     <tags>
       
       <tag>feedback</tag>
+      
+      <tag>nuedc</tag>
+      
+      <tag>电子设计竞赛</tag>
       
     </tags>
     
@@ -213,7 +248,7 @@
     
     <categories>
       
-      <category>随笔</category>
+      <category>STM32开发</category>
       
     </categories>
     
@@ -222,30 +257,11 @@
       
       <tag>demo</tag>
       
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>hexo-fluid blog</title>
-    <link href="/2025/11/20/hexo-fluid-blog/"/>
-    <url>/2025/11/20/hexo-fluid-blog/</url>
-    
-    <content type="html"><![CDATA[<h2 id="HEXO博客目录"><a href="#HEXO博客目录" class="headerlink" title="HEXO博客目录"></a>HEXO博客目录</h2><p>你的博客目录为:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">myblog/<br></code></pre></td></tr></table></figure><p>打开看到:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">_config.yml<br>package.json<br>scaffolds/<br><span class="hljs-built_in">source</span>/<br>themes/<br>node_modules/<br>.gitignore<br></code></pre></td></tr></table></figure><h5 id="1-config-yml-Hexo主配置文件"><a href="#1-config-yml-Hexo主配置文件" class="headerlink" title="1._config.yml ( Hexo主配置文件 )"></a>1.<code>_config.yml</code> ( Hexo主配置文件 )</h5><p>作用: ( 用来控制Hexo本身 )</p><ul><li>标题</li><li>语言</li><li>主题名称</li><li>部署到github pages的配置</li><li>站点URL</li><li>生成规则,分页</li></ul><p>例如:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">title: My Blog<br>theme: fluid<br>url: https://xxx.github.io<br>deploy:<br>  <span class="hljs-built_in">type</span>: git<br>  repo: https://github.com/xxx/xxx.github.io.git<br></code></pre></td></tr></table></figure><p>Hexo的配置在 <code>_config.yml</code><br> 主题的配置在 <code>themes/fluid/_config.yml</code></p><h5 id="2-package-json-npm项目说明"><a href="#2-package-json-npm项目说明" class="headerlink" title="2.package.json ( npm项目说明)"></a>2.<code>package.json</code> ( npm项目说明)</h5><p>Hexo本质是一个Node.js项目</p><p>这个文件定义:</p><ul><li>Hexo的依赖包</li><li>版本</li><li>插件</li><li>npm脚本(可选)</li></ul><p>一般不需要修改,系统用来识别blog项目</p><p>例如:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-string">&quot;dependencies&quot;</span>: &#123;<br>  <span class="hljs-string">&quot;hexo&quot;</span>: <span class="hljs-string">&quot;^7.0.0&quot;</span>,<br>  <span class="hljs-string">&quot;hexo-deployer-git&quot;</span>: <span class="hljs-string">&quot;^3.0.0&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure><h5 id="3-source"><a href="#3-source" class="headerlink" title="3. source/"></a>3. <code>source/</code></h5><p>Hexo的所有内容来源</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span>/<br> ├─ _posts/<br> ├─ img/<br> ├─ about/<br> ├─ categories/<br> └─ tags/<br></code></pre></td></tr></table></figure><p><code>_posts/</code></p><p>博客文章</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span>/_posts/esp32.md<br><span class="hljs-built_in">source</span>/_posts/anime-life.md<br></code></pre></td></tr></table></figure><p><code>img/</code>:图片</p><p>自定义界面:</p><p><code>/about/</code></p><p><code>/categories/</code></p><p><code>/tags/</code></p><p><code>/links/</code></p><p>运行</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo new page about<br><span class="hljs-comment"># 生成</span><br><span class="hljs-comment"># source/about/index.md</span><br></code></pre></td></tr></table></figure><h5 id="4-themes-主题核心"><a href="#4-themes-主题核心" class="headerlink" title="4. themes/(主题核心)"></a>4. <code>themes/</code>(主题核心)</h5><p>Fluid主题所在处</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">themes/fluid/<br>   ├─ _config.yml<br>   ├─ layout/<br>   ├─ <span class="hljs-built_in">source</span>/<br>   ├─ scripts/<br>   ├─ languages/<br>   └─ ...<br></code></pre></td></tr></table></figure><p><strong>主要控制外观, ui, 功能</strong></p><p> <code>themes/fluid/_config.yml</code>（主题配置）</p><p>控制: <strong>外观, 样式和功能</strong></p><p> <code>themes/fluid/layout/</code>（模板）</p><p>一般不重要, 是html模板</p><h5 id="5-public-生成静态网站"><a href="#5-public-生成静态网站" class="headerlink" title="5.public/(生成静态网站)"></a>5.<code>public/</code>(生成静态网站)</h5><p>可以看到</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql">public<span class="hljs-operator">/</span><br>   ├─ index.html<br>   ├─ archives<span class="hljs-operator">/</span><br>   ├─ img<span class="hljs-operator">/</span><br>   └─ css<span class="hljs-operator">/</span><br></code></pre></td></tr></table></figure><p>不要修改,每次<code>hexo generate </code>都会被覆盖</p><h5 id="6-node-modules-依赖"><a href="#6-node-modules-依赖" class="headerlink" title="6. node_modules/(依赖)"></a>6. <code>node_modules/</code>(依赖)</h5><p>不要修改, 如果失灵</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install<br></code></pre></td></tr></table></figure><h5 id="7-scaffolds-文章模板"><a href="#7-scaffolds-文章模板" class="headerlink" title="7.scaffolds/(文章模板)"></a>7.<code>scaffolds/</code>(文章模板)</h5><p>当运行</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo new <span class="hljs-string">&quot;My Post&quot;</span><br></code></pre></td></tr></table></figure><p>生成文章头的yaml</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-meta">---</span><br><span class="hljs-attr">title:</span> <span class="hljs-string">My</span> <span class="hljs-string">Post</span><br><span class="hljs-attr">date:</span> <span class="hljs-string">xxxx</span><br><span class="hljs-meta">---</span><br></code></pre></td></tr></table></figure><h5 id="8-gitignore-git-忽略列表"><a href="#8-gitignore-git-忽略列表" class="headerlink" title="8. gitignore(git 忽略列表)"></a>8. <code>gitignore</code>(git 忽略列表)</h5><p>确保git不上传的部分</p><p>例如:</p><ul><li>node_modules</li><li>public</li><li>scaffolds</li></ul>]]></content>
-    
-    
-    <categories>
+      <tag>stm32</tag>
       
-      <category>随笔</category>
+      <tag>cmsis</tag>
       
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>demo</tag>
+      <tag>dsp</tag>
       
     </tags>
     
@@ -279,6 +295,35 @@
   
   
   <entry>
+    <title>hexo-fluid blog</title>
+    <link href="/2025/11/20/hexo-fluid-blog/"/>
+    <url>/2025/11/20/hexo-fluid-blog/</url>
+    
+    <content type="html"><![CDATA[<h2 id="HEXO博客目录"><a href="#HEXO博客目录" class="headerlink" title="HEXO博客目录"></a>HEXO博客目录</h2><p>你的博客目录为:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">myblog/<br></code></pre></td></tr></table></figure><p>打开看到:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">_config.yml<br>package.json<br>scaffolds/<br><span class="hljs-built_in">source</span>/<br>themes/<br>node_modules/<br>.gitignore<br></code></pre></td></tr></table></figure><h5 id="1-config-yml-Hexo主配置文件"><a href="#1-config-yml-Hexo主配置文件" class="headerlink" title="1._config.yml ( Hexo主配置文件 )"></a>1.<code>_config.yml</code> ( Hexo主配置文件 )</h5><p>作用: ( 用来控制Hexo本身 )</p><ul><li>标题</li><li>语言</li><li>主题名称</li><li>部署到github pages的配置</li><li>站点URL</li><li>生成规则,分页</li></ul><p>例如:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">title: My Blog<br>theme: fluid<br>url: https://xxx.github.io<br>deploy:<br>  <span class="hljs-built_in">type</span>: git<br>  repo: https://github.com/xxx/xxx.github.io.git<br></code></pre></td></tr></table></figure><p>Hexo的配置在 <code>_config.yml</code><br> 主题的配置在 <code>themes/fluid/_config.yml</code></p><h5 id="2-package-json-npm项目说明"><a href="#2-package-json-npm项目说明" class="headerlink" title="2.package.json ( npm项目说明)"></a>2.<code>package.json</code> ( npm项目说明)</h5><p>Hexo本质是一个Node.js项目</p><p>这个文件定义:</p><ul><li>Hexo的依赖包</li><li>版本</li><li>插件</li><li>npm脚本(可选)</li></ul><p>一般不需要修改,系统用来识别blog项目</p><p>例如:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-string">&quot;dependencies&quot;</span>: &#123;<br>  <span class="hljs-string">&quot;hexo&quot;</span>: <span class="hljs-string">&quot;^7.0.0&quot;</span>,<br>  <span class="hljs-string">&quot;hexo-deployer-git&quot;</span>: <span class="hljs-string">&quot;^3.0.0&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure><h5 id="3-source"><a href="#3-source" class="headerlink" title="3. source/"></a>3. <code>source/</code></h5><p>Hexo的所有内容来源</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span>/<br> ├─ _posts/<br> ├─ img/<br> ├─ about/<br> ├─ categories/<br> └─ tags/<br></code></pre></td></tr></table></figure><p><code>_posts/</code></p><p>博客文章</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span>/_posts/esp32.md<br><span class="hljs-built_in">source</span>/_posts/anime-life.md<br></code></pre></td></tr></table></figure><p><code>img/</code>:图片</p><p>自定义界面:</p><p><code>/about/</code></p><p><code>/categories/</code></p><p><code>/tags/</code></p><p><code>/links/</code></p><p>运行</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo new page about<br><span class="hljs-comment"># 生成</span><br><span class="hljs-comment"># source/about/index.md</span><br></code></pre></td></tr></table></figure><h5 id="4-themes-主题核心"><a href="#4-themes-主题核心" class="headerlink" title="4. themes/(主题核心)"></a>4. <code>themes/</code>(主题核心)</h5><p>Fluid主题所在处</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">themes/fluid/<br>   ├─ _config.yml<br>   ├─ layout/<br>   ├─ <span class="hljs-built_in">source</span>/<br>   ├─ scripts/<br>   ├─ languages/<br>   └─ ...<br></code></pre></td></tr></table></figure><p><strong>主要控制外观, ui, 功能</strong></p><p> <code>themes/fluid/_config.yml</code>（主题配置）</p><p>控制: <strong>外观, 样式和功能</strong></p><p> <code>themes/fluid/layout/</code>（模板）</p><p>一般不重要, 是html模板</p><h5 id="5-public-生成静态网站"><a href="#5-public-生成静态网站" class="headerlink" title="5.public/(生成静态网站)"></a>5.<code>public/</code>(生成静态网站)</h5><p>可以看到</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql">public<span class="hljs-operator">/</span><br>   ├─ index.html<br>   ├─ archives<span class="hljs-operator">/</span><br>   ├─ img<span class="hljs-operator">/</span><br>   └─ css<span class="hljs-operator">/</span><br></code></pre></td></tr></table></figure><p>不要修改,每次<code>hexo generate </code>都会被覆盖</p><h5 id="6-node-modules-依赖"><a href="#6-node-modules-依赖" class="headerlink" title="6. node_modules/(依赖)"></a>6. <code>node_modules/</code>(依赖)</h5><p>不要修改, 如果失灵</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install<br></code></pre></td></tr></table></figure><h5 id="7-scaffolds-文章模板"><a href="#7-scaffolds-文章模板" class="headerlink" title="7.scaffolds/(文章模板)"></a>7.<code>scaffolds/</code>(文章模板)</h5><p>当运行</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo new <span class="hljs-string">&quot;My Post&quot;</span><br></code></pre></td></tr></table></figure><p>生成文章头的yaml</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-meta">---</span><br><span class="hljs-attr">title:</span> <span class="hljs-string">My</span> <span class="hljs-string">Post</span><br><span class="hljs-attr">date:</span> <span class="hljs-string">xxxx</span><br><span class="hljs-meta">---</span><br></code></pre></td></tr></table></figure><h5 id="8-gitignore-git-忽略列表"><a href="#8-gitignore-git-忽略列表" class="headerlink" title="8. gitignore(git 忽略列表)"></a>8. <code>gitignore</code>(git 忽略列表)</h5><p>确保git不上传的部分</p><p>例如:</p><ul><li>node_modules</li><li>public</li><li>scaffolds</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>网站搭建</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>demo</tag>
+      
+      <tag>hexo</tag>
+      
+      <tag>fluid</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>机器学习基础</title>
     <link href="/2025/11/20/machine_learning_basics/"/>
     <url>/2025/11/20/machine_learning_basics/</url>
@@ -288,7 +333,7 @@
     
     <categories>
       
-      <category>随笔</category>
+      <category>人工智能</category>
       
     </categories>
     
@@ -297,6 +342,10 @@
       
       <tag>demo</tag>
       
+      <tag>机器学习</tag>
+      
+      <tag>人工智能</tag>
+      
     </tags>
     
   </entry>
@@ -304,7 +353,7 @@
   
   
   <entry>
-    <title>verilator+cocotb</title>
+    <title>verilator+cocotb的FPGA入门</title>
     <link href="/2025/11/20/verilator-cocotb/"/>
     <url>/2025/11/20/verilator-cocotb/</url>
     
